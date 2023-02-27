@@ -179,5 +179,6 @@ namespace qt_ros
 		msg.data = vEegData;
 		// ROS_INFO("I send data[0] %f", msg.data[0]);
 		chat_pub2.publish(msg);
+        sleep(1);
 	}
 } // namespace qt_ros

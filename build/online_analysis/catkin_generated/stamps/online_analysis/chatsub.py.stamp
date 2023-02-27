@@ -20,7 +20,7 @@ def listener():
     # anonymous=True flag means that rospy will choose a unique
     # name for our 'listener' node so that multiple listeners can
     # run simultaneously.
-	rospy.init_node('listener', anonymous=True)
+	rospy.init_node('chatsub', anonymous=True)
 
 	rospy.Subscriber("samplerate", UInt16, callback_get_rate)
 	rospy.Subscriber("packet", Float32MultiArray, callback_get_packet)
