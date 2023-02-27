@@ -68,6 +68,8 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/home/wuyou/catkin_ws/src/CMakeLists.txt"
   "/home/wuyou/catkin_ws/src/online_analysis/CMakeLists.txt"
   "/home/wuyou/catkin_ws/src/online_analysis/package.xml"
+  "/home/wuyou/catkin_ws/src/online_analysis/scripts/chatpub.py"
+  "/home/wuyou/catkin_ws/src/online_analysis/scripts/chatsub.py"
   "/home/wuyou/catkin_ws/src/qt_ros/CMakeLists.txt"
   "/home/wuyou/catkin_ws/src/qt_ros/package.xml"
   "/opt/ros/melodic/share/catkin/cmake/../package.xml"

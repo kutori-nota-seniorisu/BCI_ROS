@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
 import numpy as np
-import scipy.io as scio
+import h5py as h5
 from sklearn.cross_decomposition import CCA
 from scipy import signal
 from statistics import median
@@ -78,7 +78,7 @@ camera_on = False
 data_used = np.array([])
 
 # 从 mat 文件中读取数据
-eegdata = np.array(scio.loadmat('/home/wuyou/eegdata.mat')['eegdata'])
+eegdata = np.array(h5.File('/home/wuyou/eegdata.mat', 'r')['eegdata']).T
 print("数组形状：", eegdata.shape)
 print("数组第二维：", eegdata.shape[1])
 

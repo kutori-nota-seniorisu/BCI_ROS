@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python2
 # -*- coding: UTF-8 -*-
 import rospy
 import numpy as np
@@ -26,7 +26,7 @@ downBuffSize = int(BUFFSIZE / downSamplingNum)
 # 参数：50Hz陷波滤波器
 # 将要被移除的频率 (Hz)
 f_notch = 50
-Ts = 1.0 / downSampleRate
+Ts = 1 / downSampleRate
 alpha = -2 * np.cos(2 * np.pi * f_notch * Ts)
 beta = 0.95
 # 构造滤波器
@@ -35,8 +35,8 @@ notch_a = [1, alpha * beta, beta**2]
 
 # 参数：带通滤波器
 # 通带阻带截止频率
-Wp = [7.0 / (downSampleRate / 2), 70.0 / (downSampleRate / 2)]
-Ws = [5.0 / (downSampleRate / 2), 80.0 / (downSampleRate / 2)]
+Wp = [7 / (downSampleRate / 2), 70 / (downSampleRate / 2)]
+Ws = [5 / (downSampleRate / 2), 80 / (downSampleRate / 2)]
 # 通带最大衰减 [dB]
 Rp = 3
 # 阻带最小衰减 [dB]
@@ -51,7 +51,7 @@ num_harms = 4
 w_sincos = 0
 num_freqs = len(freqList)
 y_ref = np.zeros((num_freqs, 2 * num_harms, downBuffSize))
-t = np.array([(i * 1.0) / downSampleRate for i in range(1, downBuffSize + 1)])
+t = np.array([i / downSampleRate for i in range(1, downBuffSize + 1)])
 # 对每个参考频率都生成参考波形
 for freq_i in range(0, num_freqs):
 	tmp = np.zeros((2 * num_harms, downBuffSize))
@@ -79,7 +79,7 @@ camera_on = False
 # 用于分析的数据数组
 data_used = np.array([])
 
-def callback_get_rate(rate):
+def callback1(rate):
 	global sampleRate
 	sampleRate = rate.data
 	rospy.loginfo("sample rate is : %f", sampleRate)
@@ -88,12 +88,17 @@ def callback2(data):
 	rospy.loginfo("I receive")
 
 def callback_get_packet(data):
-	# print("I subscibe")
+	# rospy.loginfo("I receive data[0] %f", data.data[0])
+	# global sampleRate
+	# global downBuffSize
+	# global y_ref
+	# global camera_on
+	print(sampleRate)
 
 	# 把一维数组转换成二维数组
-	rawdata = np.array(data.data[:]).reshape(35, 512)
+	rawdata = np.array(data.data[:]).reshape(10, 500)
 	# 判断，是初始化，还是将数据拼接
-	global data_used, camera_on
+	global data_used
 	if data_used.size == 0:
 		data_used = rawdata
 	else:
@@ -103,9 +108,10 @@ def callback_get_packet(data):
 			if (delta / packetSize) % 2 == 0:
 				data_used = data_used[:, -BUFFSIZE : ]
 	rospy.loginfo("data_used samples: %f", data_used.shape[1])
-	if data_used.shape[1] == BUFFSIZE:
+	if not (data_used.shape[1] < BUFFSIZE):
 		# 当数组长度超过缓存长度，则进行处理
 		# 选择导联
+		# ch_used = [21, 25, 26, 27, 28, 29, 30, 31, 32]
 		ch_used = [20, 24, 25, 26, 27, 28, 29, 30, 31]
 
 		# data used
@@ -150,7 +156,6 @@ def callback_get_packet(data):
 		# 获取相关系数值最大的序号
 		index_class_cca = np.argmax(r_cca)
 		result = freqList[index_class_cca]
-		print('the result is', result)
 
 		if result == 20:
 			# do something
@@ -178,10 +183,21 @@ def callback_get_packet(data):
 			else:
 				print("no")
 
-		# pub = rospy.Publisher("control", UInt16, queue_size=10)
-		# str = "the result is %u" % result
-		# rospy.loginfo(str)
-		# pub.publish(result)
+		pub = rospy.Publisher("control", UInt16, queue_size=10)
+		str = "the result is %u" % result
+		rospy.loginfo(str)
+		pub.publish(result)
+
+		# res[exper_i, target_i] = result
+
+	# f = open('/home/wuyou/y.txt', 'a')
+	# for i in range(11):
+	#   for j in range(501):
+	#     f.write(str(rawdata[i][j]))
+	#     f.write('\t')
+	#   f.write(os.linesep)
+	# rospy.loginfo(rospy.get_caller_id() + "I heard %s", data.data)
+
 
 def listener():
 
@@ -192,9 +208,9 @@ def listener():
     # run simultaneously.
 	rospy.init_node('listener', anonymous=True)
 
-	rospy.Subscriber("samplerate", UInt16, callback_get_rate)
-	rospy.Subscriber("packet", Float32MultiArray, callback_get_packet)
-	rospy.Subscriber("packet1", Float32MultiArray, callback2)
+	rospy.Subscriber("samplerate", UInt16, callback1)
+	rospy.Subscriber("packet1", Float32MultiArray, callback_get_packet)
+	rospy.Subscriber("packet", Float32MultiArray, callback2)
 
 	# spin() simply keeps python from exiting until this node is stopped
 	rospy.spin()
