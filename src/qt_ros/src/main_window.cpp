@@ -19,10 +19,6 @@
 #include "spuce/filters/chebyshev_iir.h"
 #include "spuce/filters/iir_df.h"
 
-//#include "kfr/include/kfr/base.hpp"
-//#include "kfr/include/kfr/dsp.hpp"
-//#include "kfr/include/kfr/io.hpp"
-
 /*****************************************************************************
 ** Namespaces
 *****************************************************************************/

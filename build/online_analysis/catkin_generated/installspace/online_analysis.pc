@@ -1,4 +1,4 @@
-prefix=/home/wuyou/catkin_ws/install
+prefix=/usr/local
 
 Name: online_analysis
 Description: Description of online_analysis

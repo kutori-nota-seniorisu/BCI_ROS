@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
 import rospy
 import numpy as np
@@ -10,7 +10,7 @@ packetSize = 512
 def talker():
     pub = rospy.Publisher('packet', Float32MultiArray, queue_size=10)
     rospy.init_node('pub_packet', anonymous=True)
-    rate = rospy.Rate(10)
+    rate = rospy.Rate(5)
 
     eegdata = np.array(h5.File('/home/wuyou/eegdata.mat', 'r')['eegdata']).T
     packet_pub = Float32MultiArray()

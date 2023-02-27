@@ -54,9 +54,9 @@ namespace qt_ros
 		ros::start(); // explicitly needed since our nodehandle is going out of scope.
 		ros::NodeHandle n;
 		// 发布者，发布采样频率
-		chat_pub1 = n.advertise<std_msgs::UInt16>("/samplerate", 10);
+        chat_pub1 = n.advertise<std_msgs::UInt16>("samplerate", 10);
 		// 发布者，发布数据包
-		chat_pub2 = n.advertise<std_msgs::Float32MultiArray>("/packet", 1000);
+        chat_pub2 = n.advertise<std_msgs::Float32MultiArray>("packet", 1000);
 		//	start();
 		return true;
 	}

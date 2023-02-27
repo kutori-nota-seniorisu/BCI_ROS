@@ -15,8 +15,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/qt_ros.dir/include/qt_ros/moc_main_window.cpp.o"
   "CMakeFiles/qt_ros.dir/include/qt_ros/moc_qnetstreamingreceiver.cpp.o"
   "CMakeFiles/qt_ros.dir/include/qt_ros/moc_qnode.cpp.o"
-  "/home/wuyou/catkin_ws/devel/lib/qt_ros/qt_ros.pdb"
-  "/home/wuyou/catkin_ws/devel/lib/qt_ros/qt_ros"
+  "../devel/lib/qt_ros/qt_ros.pdb"
+  "../devel/lib/qt_ros/qt_ros"
 )
 
 # Per-language clean rules from dependency scanning.
