@@ -84,9 +84,6 @@ def callback_get_rate(rate):
 	sampleRate = rate.data
 	rospy.loginfo("sample rate is : %f", sampleRate)
 
-def callback2(data):
-	rospy.loginfo("I receive")
-
 def callback_get_packet(data):
 	# print("I subscibe")
 
@@ -107,11 +104,8 @@ def callback_get_packet(data):
 		# 当数组长度超过缓存长度，则进行处理
 		# 选择导联
 		ch_used = [20, 24, 25, 26, 27, 28, 29, 30, 31]
-
 		# data used
 		data_chused = data_used[ch_used, :]
-		# print("data_chused形状", data_chused.shape)
-
 		# the number of channels usd
 		channel_usedNum = len(ch_used)
 
@@ -131,8 +125,6 @@ def callback_get_packet(data):
 			data_removeBaseline[chan_th, :] = data_50hz[chan_th,:] - median(data_50hz[chan_th, :])
 			# bandpass filter
 			data_bandpass[chan_th, :] = signal.filtfilt(B, A, data_removeBaseline[chan_th, :])
-
-		# print("降采样后的数组形状：", data_downSample.shape)
 
 		# Intercept a data segment
 		ref_data = y_ref
@@ -194,7 +186,7 @@ def listener():
 
 	rospy.Subscriber("samplerate", UInt16, callback_get_rate)
 	rospy.Subscriber("packet", Float32MultiArray, callback_get_packet)
-	rospy.Subscriber("packet1", Float32MultiArray, callback2)
+	# rospy.Subscriber("packet1", Float32MultiArray, callback2)
 
 	# spin() simply keeps python from exiting until this node is stopped
 	rospy.spin()
