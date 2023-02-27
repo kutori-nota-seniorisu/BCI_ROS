@@ -97,28 +97,18 @@ for exper_i in range(0, eegdata.shape[3]):
 			packet = data[:, packet_i * packetSize : (packet_i + 1) * packetSize]
 			if data_used.size == 0:
 				data_used = packet
-				continue
 			else:
 				data_used = np.hstack((data_used, packet))
 				delta = data_used.shape[1] - BUFFSIZE
 				if delta >= 0:
 					if (delta / packetSize) % 2 == 0:
 						data_used = data_used[:, -BUFFSIZE : ]
-					else:
-						continue
-				else:
-					continue
 			if data_used.shape[1] == BUFFSIZE:
-
 				# 当数组长度超过缓存长度，则进行处理
 				# 选择导联
-				# ch_used = [21, 25, 26, 27, 28, 29, 30, 31, 32]
 				ch_used = [20, 24, 25, 26, 27, 28, 29, 30, 31]
-
 				# data used
 				data_chused = data_used[ch_used, :]
-				# print("data_chused形状", data_chused.shape)
-
 				# the number of channels usd
 				channel_usedNum = len(ch_used)
 
@@ -138,8 +128,6 @@ for exper_i in range(0, eegdata.shape[3]):
 					data_removeBaseline[chan_th, :] = data_50hz[chan_th,:] - median(data_50hz[chan_th, :])
 					# bandpass filter
 					data_bandpass[chan_th, :] = signal.filtfilt(B, A, data_removeBaseline[chan_th, :])
-
-				# print("降采样后的数组形状：", data_downSample.shape)
 
 				ref_data = y_ref
 				test_data = data_bandpass.T
