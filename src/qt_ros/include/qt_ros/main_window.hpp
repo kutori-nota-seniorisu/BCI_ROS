@@ -41,9 +41,6 @@ public:
 	MainWindow(int argc, char** argv, QWidget *parent = 0);
 	~MainWindow();
 
-	void ReadSettings(); // Load up qt program settings at startup
-	void WriteSettings(); // Save qt program settings when closing
-
 	void closeEvent(QCloseEvent *event); // Overloaded function
 	void showNoMasterMessage();
 	// 初始化画布
@@ -54,25 +51,22 @@ public Q_SLOTS:
 	** Auto-connections (connectSlotsByName())
 	*******************************************/
 	void on_actionAbout_triggered();
-	void on_checkbox_use_environment_stateChanged(int state);
-
-	/******************************************
-	** Manual connections
-	*******************************************/
-	void updateLoggingView(); // no idea why this can't connect automatically
 
 private slots:
+        // 连接Qt与仿真器
 	void on_button_connect_clicked();
+        // 初始化线条
 	void InitLines(int lineNums);
+        // 接收数据并绘制波形
 	void RecvAndDraw(float* pfData, int nEegChan, long nNumSamples);
-	void UpdateLogConfig();
+        // 更新日志消息
+        void UpdateLogConfig();
 	void UpdateLogCom();
 	void UpdateLogEve();
 
+        // 检测勾选框状态
 	void on_checkBox_notch_stateChanged(int arg1);
-
 	void on_checkBox_low_stateChanged(int arg1);
-
 	void on_checkBox_high_stateChanged(int arg1);
 
 private:

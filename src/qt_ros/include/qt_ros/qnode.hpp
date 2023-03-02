@@ -44,42 +44,23 @@ namespace qt_ros
 		QNode(int argc, char **argv);
 		virtual ~QNode();
 		bool init();
-		bool init(const std::string &master_url, const std::string &host_url);
-		void run();
-
-		/*********************
-		** Logging
-		**********************/
-		enum LogLevel
-		{
-			Debug,
-			Info,
-			Warn,
-			Error,
-			Fatal
-		};
-
-		QStringListModel *loggingModel() { return &logging_model; }
-		void log(const LogLevel &level, const std::string &msg);
 
 	Q_SIGNALS:
-		void loggingUpdated();
 		void rosShutdown();
 
 	private slots:
 		// 发布采样频率
-		void QNodePub1(int);
+        void QNode_Pub_Rate(int);
 		// 发布数据包
-		void QNodePub2(float *pfData, int nChannels, long nSamples);
+        void QNode_Pub_Packet(float *pfData, int nChannels, long nSamples);
 
 	private:
 		int init_argc;
 		char **init_argv;
 		// 发布者，发布采样频率
-		ros::Publisher chat_pub1;
+        ros::Publisher pub_rate;
 		// 发布者，发布数据包
-		ros::Publisher chat_pub2;
-		QStringListModel logging_model;
+        ros::Publisher pub_packet;
 	};
 
 } // namespace qt_ros

@@ -16,14 +16,7 @@ vector<complex<double>> DFT(std::vector<double> input)
 		}
 		output[f].real(real);
 		output[f].imag(imag);
-		//cout << "y[" << f << "]:" << output[f].real() << " + j " << output[f].imag() << endl;
 	}
-	// 输出幅值
-	//for (int f = 0; f < N; ++f)
-	//{
-	//	double m = output[f].real() * output[f].real() + output[f].imag() * output[f].imag();
-	//	m = sqrt(m);
-	//	cout << f << ":::" << m << endl;
-	//}
+
 	return output;
 }
