@@ -1,4 +1,4 @@
-prefix=/usr/local
+prefix=/home/wuyou/catkin_ws/install
 
 Name: qt_ros
 Description: Description of qt_ros

@@ -68,13 +68,13 @@ set(online_analysis_CONFIG_INCLUDED TRUE)
 # set variables for source/devel/install prefixes
 if("FALSE" STREQUAL "TRUE")
   set(online_analysis_SOURCE_PREFIX /home/wuyou/catkin_ws/src/online_analysis)
-  set(online_analysis_DEVEL_PREFIX /home/wuyou/catkin_ws/build/devel)
+  set(online_analysis_DEVEL_PREFIX /home/wuyou/catkin_ws/devel)
   set(online_analysis_INSTALL_PREFIX "")
   set(online_analysis_PREFIX ${online_analysis_DEVEL_PREFIX})
 else()
   set(online_analysis_SOURCE_PREFIX "")
   set(online_analysis_DEVEL_PREFIX "")
-  set(online_analysis_INSTALL_PREFIX /usr/local)
+  set(online_analysis_INSTALL_PREFIX /home/wuyou/catkin_ws/install)
   set(online_analysis_PREFIX ${online_analysis_INSTALL_PREFIX})
 endif()
 
@@ -154,7 +154,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /usr/local/lib)
+    foreach(path /home/wuyou/catkin_ws/install/lib;/opt/ros/melodic/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)

@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/QNetStreamingReceiver.dir/src/qnetstreamingreceiver.cpp.o"
-  "../devel/lib/libQNetStreamingReceiver.pdb"
-  "../devel/lib/libQNetStreamingReceiver.so"
+  "/home/wuyou/catkin_ws/devel/lib/libQNetStreamingReceiver.pdb"
+  "/home/wuyou/catkin_ws/devel/lib/libQNetStreamingReceiver.so"
 )
 
 # Per-language clean rules from dependency scanning.

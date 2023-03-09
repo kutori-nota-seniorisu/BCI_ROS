@@ -60,15 +60,15 @@ include qt_ros/CMakeFiles/spuce.dir/flags.make
 qt_ros/CMakeFiles/spuce.dir/src/chebyshev_iir.cpp.o: qt_ros/CMakeFiles/spuce.dir/flags.make
 qt_ros/CMakeFiles/spuce.dir/src/chebyshev_iir.cpp.o: /home/wuyou/catkin_ws/src/qt_ros/src/chebyshev_iir.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wuyou/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object qt_ros/CMakeFiles/spuce.dir/src/chebyshev_iir.cpp.o"
-	cd /home/wuyou/catkin_ws/build/qt_ros && /usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/spuce.dir/src/chebyshev_iir.cpp.o -c /home/wuyou/catkin_ws/src/qt_ros/src/chebyshev_iir.cpp
+	cd /home/wuyou/catkin_ws/build/qt_ros && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/spuce.dir/src/chebyshev_iir.cpp.o -c /home/wuyou/catkin_ws/src/qt_ros/src/chebyshev_iir.cpp
 
 qt_ros/CMakeFiles/spuce.dir/src/chebyshev_iir.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/spuce.dir/src/chebyshev_iir.cpp.i"
-	cd /home/wuyou/catkin_ws/build/qt_ros && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wuyou/catkin_ws/src/qt_ros/src/chebyshev_iir.cpp > CMakeFiles/spuce.dir/src/chebyshev_iir.cpp.i
+	cd /home/wuyou/catkin_ws/build/qt_ros && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wuyou/catkin_ws/src/qt_ros/src/chebyshev_iir.cpp > CMakeFiles/spuce.dir/src/chebyshev_iir.cpp.i
 
 qt_ros/CMakeFiles/spuce.dir/src/chebyshev_iir.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/spuce.dir/src/chebyshev_iir.cpp.s"
-	cd /home/wuyou/catkin_ws/build/qt_ros && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wuyou/catkin_ws/src/qt_ros/src/chebyshev_iir.cpp -o CMakeFiles/spuce.dir/src/chebyshev_iir.cpp.s
+	cd /home/wuyou/catkin_ws/build/qt_ros && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wuyou/catkin_ws/src/qt_ros/src/chebyshev_iir.cpp -o CMakeFiles/spuce.dir/src/chebyshev_iir.cpp.s
 
 qt_ros/CMakeFiles/spuce.dir/src/chebyshev_iir.cpp.o.requires:
 
@@ -84,15 +84,15 @@ qt_ros/CMakeFiles/spuce.dir/src/chebyshev_iir.cpp.o.provides.build: qt_ros/CMake
 qt_ros/CMakeFiles/spuce.dir/src/find_roots.cpp.o: qt_ros/CMakeFiles/spuce.dir/flags.make
 qt_ros/CMakeFiles/spuce.dir/src/find_roots.cpp.o: /home/wuyou/catkin_ws/src/qt_ros/src/find_roots.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wuyou/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object qt_ros/CMakeFiles/spuce.dir/src/find_roots.cpp.o"
-	cd /home/wuyou/catkin_ws/build/qt_ros && /usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/spuce.dir/src/find_roots.cpp.o -c /home/wuyou/catkin_ws/src/qt_ros/src/find_roots.cpp
+	cd /home/wuyou/catkin_ws/build/qt_ros && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/spuce.dir/src/find_roots.cpp.o -c /home/wuyou/catkin_ws/src/qt_ros/src/find_roots.cpp
 
 qt_ros/CMakeFiles/spuce.dir/src/find_roots.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/spuce.dir/src/find_roots.cpp.i"
-	cd /home/wuyou/catkin_ws/build/qt_ros && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wuyou/catkin_ws/src/qt_ros/src/find_roots.cpp > CMakeFiles/spuce.dir/src/find_roots.cpp.i
+	cd /home/wuyou/catkin_ws/build/qt_ros && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wuyou/catkin_ws/src/qt_ros/src/find_roots.cpp > CMakeFiles/spuce.dir/src/find_roots.cpp.i
 
 qt_ros/CMakeFiles/spuce.dir/src/find_roots.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/spuce.dir/src/find_roots.cpp.s"
-	cd /home/wuyou/catkin_ws/build/qt_ros && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wuyou/catkin_ws/src/qt_ros/src/find_roots.cpp -o CMakeFiles/spuce.dir/src/find_roots.cpp.s
+	cd /home/wuyou/catkin_ws/build/qt_ros && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wuyou/catkin_ws/src/qt_ros/src/find_roots.cpp -o CMakeFiles/spuce.dir/src/find_roots.cpp.s
 
 qt_ros/CMakeFiles/spuce.dir/src/find_roots.cpp.o.requires:
 
@@ -108,15 +108,15 @@ qt_ros/CMakeFiles/spuce.dir/src/find_roots.cpp.o.provides.build: qt_ros/CMakeFil
 qt_ros/CMakeFiles/spuce.dir/src/iir_coeff.cpp.o: qt_ros/CMakeFiles/spuce.dir/flags.make
 qt_ros/CMakeFiles/spuce.dir/src/iir_coeff.cpp.o: /home/wuyou/catkin_ws/src/qt_ros/src/iir_coeff.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wuyou/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object qt_ros/CMakeFiles/spuce.dir/src/iir_coeff.cpp.o"
-	cd /home/wuyou/catkin_ws/build/qt_ros && /usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/spuce.dir/src/iir_coeff.cpp.o -c /home/wuyou/catkin_ws/src/qt_ros/src/iir_coeff.cpp
+	cd /home/wuyou/catkin_ws/build/qt_ros && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/spuce.dir/src/iir_coeff.cpp.o -c /home/wuyou/catkin_ws/src/qt_ros/src/iir_coeff.cpp
 
 qt_ros/CMakeFiles/spuce.dir/src/iir_coeff.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/spuce.dir/src/iir_coeff.cpp.i"
-	cd /home/wuyou/catkin_ws/build/qt_ros && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wuyou/catkin_ws/src/qt_ros/src/iir_coeff.cpp > CMakeFiles/spuce.dir/src/iir_coeff.cpp.i
+	cd /home/wuyou/catkin_ws/build/qt_ros && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wuyou/catkin_ws/src/qt_ros/src/iir_coeff.cpp > CMakeFiles/spuce.dir/src/iir_coeff.cpp.i
 
 qt_ros/CMakeFiles/spuce.dir/src/iir_coeff.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/spuce.dir/src/iir_coeff.cpp.s"
-	cd /home/wuyou/catkin_ws/build/qt_ros && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wuyou/catkin_ws/src/qt_ros/src/iir_coeff.cpp -o CMakeFiles/spuce.dir/src/iir_coeff.cpp.s
+	cd /home/wuyou/catkin_ws/build/qt_ros && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wuyou/catkin_ws/src/qt_ros/src/iir_coeff.cpp -o CMakeFiles/spuce.dir/src/iir_coeff.cpp.s
 
 qt_ros/CMakeFiles/spuce.dir/src/iir_coeff.cpp.o.requires:
 
@@ -132,15 +132,15 @@ qt_ros/CMakeFiles/spuce.dir/src/iir_coeff.cpp.o.provides.build: qt_ros/CMakeFile
 qt_ros/CMakeFiles/spuce.dir/src/design_iir.cpp.o: qt_ros/CMakeFiles/spuce.dir/flags.make
 qt_ros/CMakeFiles/spuce.dir/src/design_iir.cpp.o: /home/wuyou/catkin_ws/src/qt_ros/src/design_iir.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wuyou/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object qt_ros/CMakeFiles/spuce.dir/src/design_iir.cpp.o"
-	cd /home/wuyou/catkin_ws/build/qt_ros && /usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/spuce.dir/src/design_iir.cpp.o -c /home/wuyou/catkin_ws/src/qt_ros/src/design_iir.cpp
+	cd /home/wuyou/catkin_ws/build/qt_ros && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/spuce.dir/src/design_iir.cpp.o -c /home/wuyou/catkin_ws/src/qt_ros/src/design_iir.cpp
 
 qt_ros/CMakeFiles/spuce.dir/src/design_iir.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/spuce.dir/src/design_iir.cpp.i"
-	cd /home/wuyou/catkin_ws/build/qt_ros && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wuyou/catkin_ws/src/qt_ros/src/design_iir.cpp > CMakeFiles/spuce.dir/src/design_iir.cpp.i
+	cd /home/wuyou/catkin_ws/build/qt_ros && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wuyou/catkin_ws/src/qt_ros/src/design_iir.cpp > CMakeFiles/spuce.dir/src/design_iir.cpp.i
 
 qt_ros/CMakeFiles/spuce.dir/src/design_iir.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/spuce.dir/src/design_iir.cpp.s"
-	cd /home/wuyou/catkin_ws/build/qt_ros && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wuyou/catkin_ws/src/qt_ros/src/design_iir.cpp -o CMakeFiles/spuce.dir/src/design_iir.cpp.s
+	cd /home/wuyou/catkin_ws/build/qt_ros && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wuyou/catkin_ws/src/qt_ros/src/design_iir.cpp -o CMakeFiles/spuce.dir/src/design_iir.cpp.s
 
 qt_ros/CMakeFiles/spuce.dir/src/design_iir.cpp.o.requires:
 
@@ -156,15 +156,15 @@ qt_ros/CMakeFiles/spuce.dir/src/design_iir.cpp.o.provides.build: qt_ros/CMakeFil
 qt_ros/CMakeFiles/spuce.dir/src/FFT.cpp.o: qt_ros/CMakeFiles/spuce.dir/flags.make
 qt_ros/CMakeFiles/spuce.dir/src/FFT.cpp.o: /home/wuyou/catkin_ws/src/qt_ros/src/FFT.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wuyou/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object qt_ros/CMakeFiles/spuce.dir/src/FFT.cpp.o"
-	cd /home/wuyou/catkin_ws/build/qt_ros && /usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/spuce.dir/src/FFT.cpp.o -c /home/wuyou/catkin_ws/src/qt_ros/src/FFT.cpp
+	cd /home/wuyou/catkin_ws/build/qt_ros && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/spuce.dir/src/FFT.cpp.o -c /home/wuyou/catkin_ws/src/qt_ros/src/FFT.cpp
 
 qt_ros/CMakeFiles/spuce.dir/src/FFT.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/spuce.dir/src/FFT.cpp.i"
-	cd /home/wuyou/catkin_ws/build/qt_ros && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wuyou/catkin_ws/src/qt_ros/src/FFT.cpp > CMakeFiles/spuce.dir/src/FFT.cpp.i
+	cd /home/wuyou/catkin_ws/build/qt_ros && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wuyou/catkin_ws/src/qt_ros/src/FFT.cpp > CMakeFiles/spuce.dir/src/FFT.cpp.i
 
 qt_ros/CMakeFiles/spuce.dir/src/FFT.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/spuce.dir/src/FFT.cpp.s"
-	cd /home/wuyou/catkin_ws/build/qt_ros && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wuyou/catkin_ws/src/qt_ros/src/FFT.cpp -o CMakeFiles/spuce.dir/src/FFT.cpp.s
+	cd /home/wuyou/catkin_ws/build/qt_ros && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wuyou/catkin_ws/src/qt_ros/src/FFT.cpp -o CMakeFiles/spuce.dir/src/FFT.cpp.s
 
 qt_ros/CMakeFiles/spuce.dir/src/FFT.cpp.o.requires:
 
@@ -188,18 +188,18 @@ spuce_OBJECTS = \
 # External object files for target spuce
 spuce_EXTERNAL_OBJECTS =
 
-devel/lib/libspuce.so: qt_ros/CMakeFiles/spuce.dir/src/chebyshev_iir.cpp.o
-devel/lib/libspuce.so: qt_ros/CMakeFiles/spuce.dir/src/find_roots.cpp.o
-devel/lib/libspuce.so: qt_ros/CMakeFiles/spuce.dir/src/iir_coeff.cpp.o
-devel/lib/libspuce.so: qt_ros/CMakeFiles/spuce.dir/src/design_iir.cpp.o
-devel/lib/libspuce.so: qt_ros/CMakeFiles/spuce.dir/src/FFT.cpp.o
-devel/lib/libspuce.so: qt_ros/CMakeFiles/spuce.dir/build.make
-devel/lib/libspuce.so: qt_ros/CMakeFiles/spuce.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/wuyou/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX shared library ../devel/lib/libspuce.so"
+/home/wuyou/catkin_ws/devel/lib/libspuce.so: qt_ros/CMakeFiles/spuce.dir/src/chebyshev_iir.cpp.o
+/home/wuyou/catkin_ws/devel/lib/libspuce.so: qt_ros/CMakeFiles/spuce.dir/src/find_roots.cpp.o
+/home/wuyou/catkin_ws/devel/lib/libspuce.so: qt_ros/CMakeFiles/spuce.dir/src/iir_coeff.cpp.o
+/home/wuyou/catkin_ws/devel/lib/libspuce.so: qt_ros/CMakeFiles/spuce.dir/src/design_iir.cpp.o
+/home/wuyou/catkin_ws/devel/lib/libspuce.so: qt_ros/CMakeFiles/spuce.dir/src/FFT.cpp.o
+/home/wuyou/catkin_ws/devel/lib/libspuce.so: qt_ros/CMakeFiles/spuce.dir/build.make
+/home/wuyou/catkin_ws/devel/lib/libspuce.so: qt_ros/CMakeFiles/spuce.dir/link.txt
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/wuyou/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX shared library /home/wuyou/catkin_ws/devel/lib/libspuce.so"
 	cd /home/wuyou/catkin_ws/build/qt_ros && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/spuce.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
-qt_ros/CMakeFiles/spuce.dir/build: devel/lib/libspuce.so
+qt_ros/CMakeFiles/spuce.dir/build: /home/wuyou/catkin_ws/devel/lib/libspuce.so
 
 .PHONY : qt_ros/CMakeFiles/spuce.dir/build
 

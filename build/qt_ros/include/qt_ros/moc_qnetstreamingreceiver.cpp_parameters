@@ -1,7 +1,7 @@
 -I/home/wuyou/catkin_ws/src/qt_ros/include
 -I/opt/ros/melodic/include
--I/usr/include
 -I/opt/ros/melodic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp
+-I/usr/include
 -I/home/wuyou/Qt5.9.9/5.9.9/gcc_64/include
 -I/home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtCore
 -I/home/wuyou/Qt5.9.9/5.9.9/gcc_64/./mkspecs/linux-g++

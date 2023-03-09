@@ -4,8 +4,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/spuce.dir/src/iir_coeff.cpp.o"
   "CMakeFiles/spuce.dir/src/design_iir.cpp.o"
   "CMakeFiles/spuce.dir/src/FFT.cpp.o"
-  "../devel/lib/libspuce.pdb"
-  "../devel/lib/libspuce.so"
+  "/home/wuyou/catkin_ws/devel/lib/libspuce.pdb"
+  "/home/wuyou/catkin_ws/devel/lib/libspuce.so"
 )
 
 # Per-language clean rules from dependency scanning.

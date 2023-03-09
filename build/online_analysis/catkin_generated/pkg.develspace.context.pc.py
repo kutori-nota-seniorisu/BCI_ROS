@@ -4,5 +4,5 @@ PROJECT_PKG_CONFIG_INCLUDE_DIRS = "".split(';') if "" != "" else []
 PROJECT_CATKIN_DEPENDS = "".replace(';', ' ')
 PKG_CONFIG_LIBRARIES_WITH_PREFIX = "".split(';') if "" != "" else []
 PROJECT_NAME = "online_analysis"
-PROJECT_SPACE_DIR = "/home/wuyou/catkin_ws/build/devel"
+PROJECT_SPACE_DIR = "/home/wuyou/catkin_ws/devel"
 PROJECT_VERSION = "0.0.0"
