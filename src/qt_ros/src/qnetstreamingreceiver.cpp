@@ -252,8 +252,9 @@ namespace qt_ros
 					logChannel += m_pChannelInfoList[i].wcLabel[j];
 					++j;
 				}
-
 				logChannel += ' ';
+
+//                emit SendLabel(m_pChannelInfoList[i].wcLabel);
 			}
 			//		qDebug() << logChannel;
 			Log(Config, logChannel);
@@ -922,12 +923,12 @@ namespace qt_ros
 		if (!pNetStreamingChannelInfoList)
 		{
 			hr = E_OUTOFMEMORY;
-			//				break;
+            //break;
 		}
 		//	QThread::sleep(1);
 		if (FAILED(hr = ClientGetChannelInfoList(pNetStreamingChannelInfoList, nNetStreamingChannelInfoListSize)))
 		{
-			//				break;
+            //break;
 		}
 		for (long n = 0; n < m_basicInfo.nEegChan; ++n)
 		{

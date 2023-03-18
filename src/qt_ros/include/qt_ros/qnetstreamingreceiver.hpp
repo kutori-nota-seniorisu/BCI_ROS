@@ -82,6 +82,7 @@ signals:
 	void SendData(float* pfData, int nNumChannels, long nNumSamples);
 	void SendChan(int nNumChannels);
 	void SendRate(int nSampleRate);
+    void SendLabel(WCLABEL wclabel);//没用上
 	void LoggingConfigUpdated();
 	void LoggingComUpdated();
 	void LoggingEveUpdated();

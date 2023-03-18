@@ -57,25 +57,30 @@ include qt_ros/CMakeFiles/qt_ros.dir/progress.make
 # Include the compile flags for this target's objects.
 include qt_ros/CMakeFiles/qt_ros.dir/flags.make
 
+qt_ros/qrc_images.cpp: /home/wuyou/catkin_ws/src/qt_ros/resources/images/icon.png
+qt_ros/qrc_images.cpp: /home/wuyou/catkin_ws/src/qt_ros/resources/images.qrc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/wuyou/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating qrc_images.cpp"
+	cd /home/wuyou/catkin_ws/build/qt_ros && /home/wuyou/Qt5.9.9/5.9.9/gcc_64/bin/rcc --name images --output /home/wuyou/catkin_ws/build/qt_ros/qrc_images.cpp /home/wuyou/catkin_ws/src/qt_ros/resources/images.qrc
+
 qt_ros/ui_main_window.h: /home/wuyou/catkin_ws/src/qt_ros/ui/main_window.ui
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/wuyou/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating ui_main_window.h"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/wuyou/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating ui_main_window.h"
 	cd /home/wuyou/catkin_ws/build/qt_ros && /home/wuyou/Qt5.9.9/5.9.9/gcc_64/bin/uic -o /home/wuyou/catkin_ws/build/qt_ros/ui_main_window.h /home/wuyou/catkin_ws/src/qt_ros/ui/main_window.ui
 
 qt_ros/include/qt_ros/moc_main_window.cpp: /home/wuyou/catkin_ws/src/qt_ros/include/qt_ros/main_window.hpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/wuyou/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating include/qt_ros/moc_main_window.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/wuyou/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating include/qt_ros/moc_main_window.cpp"
 	cd /home/wuyou/catkin_ws/build/qt_ros/include/qt_ros && /home/wuyou/Qt5.9.9/5.9.9/gcc_64/bin/moc @/home/wuyou/catkin_ws/build/qt_ros/include/qt_ros/moc_main_window.cpp_parameters
 
 qt_ros/include/qt_ros/moc_qnetstreamingreceiver.cpp: /home/wuyou/catkin_ws/src/qt_ros/include/qt_ros/qnetstreamingreceiver.hpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/wuyou/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating include/qt_ros/moc_qnetstreamingreceiver.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/wuyou/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Generating include/qt_ros/moc_qnetstreamingreceiver.cpp"
 	cd /home/wuyou/catkin_ws/build/qt_ros/include/qt_ros && /home/wuyou/Qt5.9.9/5.9.9/gcc_64/bin/moc @/home/wuyou/catkin_ws/build/qt_ros/include/qt_ros/moc_qnetstreamingreceiver.cpp_parameters
 
 qt_ros/include/qt_ros/moc_qnode.cpp: /home/wuyou/catkin_ws/src/qt_ros/include/qt_ros/qnode.hpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/wuyou/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Generating include/qt_ros/moc_qnode.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/wuyou/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Generating include/qt_ros/moc_qnode.cpp"
 	cd /home/wuyou/catkin_ws/build/qt_ros/include/qt_ros && /home/wuyou/Qt5.9.9/5.9.9/gcc_64/bin/moc @/home/wuyou/catkin_ws/build/qt_ros/include/qt_ros/moc_qnode.cpp_parameters
 
 qt_ros/CMakeFiles/qt_ros.dir/src/FFT.cpp.o: qt_ros/CMakeFiles/qt_ros.dir/flags.make
 qt_ros/CMakeFiles/qt_ros.dir/src/FFT.cpp.o: /home/wuyou/catkin_ws/src/qt_ros/src/FFT.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wuyou/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object qt_ros/CMakeFiles/qt_ros.dir/src/FFT.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wuyou/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object qt_ros/CMakeFiles/qt_ros.dir/src/FFT.cpp.o"
 	cd /home/wuyou/catkin_ws/build/qt_ros && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/qt_ros.dir/src/FFT.cpp.o -c /home/wuyou/catkin_ws/src/qt_ros/src/FFT.cpp
 
 qt_ros/CMakeFiles/qt_ros.dir/src/FFT.cpp.i: cmake_force
@@ -99,7 +104,7 @@ qt_ros/CMakeFiles/qt_ros.dir/src/FFT.cpp.o.provides.build: qt_ros/CMakeFiles/qt_
 
 qt_ros/CMakeFiles/qt_ros.dir/src/chebyshev_iir.cpp.o: qt_ros/CMakeFiles/qt_ros.dir/flags.make
 qt_ros/CMakeFiles/qt_ros.dir/src/chebyshev_iir.cpp.o: /home/wuyou/catkin_ws/src/qt_ros/src/chebyshev_iir.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wuyou/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object qt_ros/CMakeFiles/qt_ros.dir/src/chebyshev_iir.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wuyou/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object qt_ros/CMakeFiles/qt_ros.dir/src/chebyshev_iir.cpp.o"
 	cd /home/wuyou/catkin_ws/build/qt_ros && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/qt_ros.dir/src/chebyshev_iir.cpp.o -c /home/wuyou/catkin_ws/src/qt_ros/src/chebyshev_iir.cpp
 
 qt_ros/CMakeFiles/qt_ros.dir/src/chebyshev_iir.cpp.i: cmake_force
@@ -123,7 +128,7 @@ qt_ros/CMakeFiles/qt_ros.dir/src/chebyshev_iir.cpp.o.provides.build: qt_ros/CMak
 
 qt_ros/CMakeFiles/qt_ros.dir/src/design_iir.cpp.o: qt_ros/CMakeFiles/qt_ros.dir/flags.make
 qt_ros/CMakeFiles/qt_ros.dir/src/design_iir.cpp.o: /home/wuyou/catkin_ws/src/qt_ros/src/design_iir.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wuyou/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object qt_ros/CMakeFiles/qt_ros.dir/src/design_iir.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wuyou/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object qt_ros/CMakeFiles/qt_ros.dir/src/design_iir.cpp.o"
 	cd /home/wuyou/catkin_ws/build/qt_ros && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/qt_ros.dir/src/design_iir.cpp.o -c /home/wuyou/catkin_ws/src/qt_ros/src/design_iir.cpp
 
 qt_ros/CMakeFiles/qt_ros.dir/src/design_iir.cpp.i: cmake_force
@@ -147,7 +152,7 @@ qt_ros/CMakeFiles/qt_ros.dir/src/design_iir.cpp.o.provides.build: qt_ros/CMakeFi
 
 qt_ros/CMakeFiles/qt_ros.dir/src/find_roots.cpp.o: qt_ros/CMakeFiles/qt_ros.dir/flags.make
 qt_ros/CMakeFiles/qt_ros.dir/src/find_roots.cpp.o: /home/wuyou/catkin_ws/src/qt_ros/src/find_roots.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wuyou/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object qt_ros/CMakeFiles/qt_ros.dir/src/find_roots.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wuyou/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object qt_ros/CMakeFiles/qt_ros.dir/src/find_roots.cpp.o"
 	cd /home/wuyou/catkin_ws/build/qt_ros && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/qt_ros.dir/src/find_roots.cpp.o -c /home/wuyou/catkin_ws/src/qt_ros/src/find_roots.cpp
 
 qt_ros/CMakeFiles/qt_ros.dir/src/find_roots.cpp.i: cmake_force
@@ -171,7 +176,7 @@ qt_ros/CMakeFiles/qt_ros.dir/src/find_roots.cpp.o.provides.build: qt_ros/CMakeFi
 
 qt_ros/CMakeFiles/qt_ros.dir/src/iir_coeff.cpp.o: qt_ros/CMakeFiles/qt_ros.dir/flags.make
 qt_ros/CMakeFiles/qt_ros.dir/src/iir_coeff.cpp.o: /home/wuyou/catkin_ws/src/qt_ros/src/iir_coeff.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wuyou/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object qt_ros/CMakeFiles/qt_ros.dir/src/iir_coeff.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wuyou/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object qt_ros/CMakeFiles/qt_ros.dir/src/iir_coeff.cpp.o"
 	cd /home/wuyou/catkin_ws/build/qt_ros && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/qt_ros.dir/src/iir_coeff.cpp.o -c /home/wuyou/catkin_ws/src/qt_ros/src/iir_coeff.cpp
 
 qt_ros/CMakeFiles/qt_ros.dir/src/iir_coeff.cpp.i: cmake_force
@@ -195,7 +200,7 @@ qt_ros/CMakeFiles/qt_ros.dir/src/iir_coeff.cpp.o.provides.build: qt_ros/CMakeFil
 
 qt_ros/CMakeFiles/qt_ros.dir/src/main.cpp.o: qt_ros/CMakeFiles/qt_ros.dir/flags.make
 qt_ros/CMakeFiles/qt_ros.dir/src/main.cpp.o: /home/wuyou/catkin_ws/src/qt_ros/src/main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wuyou/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object qt_ros/CMakeFiles/qt_ros.dir/src/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wuyou/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object qt_ros/CMakeFiles/qt_ros.dir/src/main.cpp.o"
 	cd /home/wuyou/catkin_ws/build/qt_ros && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/qt_ros.dir/src/main.cpp.o -c /home/wuyou/catkin_ws/src/qt_ros/src/main.cpp
 
 qt_ros/CMakeFiles/qt_ros.dir/src/main.cpp.i: cmake_force
@@ -219,7 +224,7 @@ qt_ros/CMakeFiles/qt_ros.dir/src/main.cpp.o.provides.build: qt_ros/CMakeFiles/qt
 
 qt_ros/CMakeFiles/qt_ros.dir/src/main_window.cpp.o: qt_ros/CMakeFiles/qt_ros.dir/flags.make
 qt_ros/CMakeFiles/qt_ros.dir/src/main_window.cpp.o: /home/wuyou/catkin_ws/src/qt_ros/src/main_window.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wuyou/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object qt_ros/CMakeFiles/qt_ros.dir/src/main_window.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wuyou/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object qt_ros/CMakeFiles/qt_ros.dir/src/main_window.cpp.o"
 	cd /home/wuyou/catkin_ws/build/qt_ros && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/qt_ros.dir/src/main_window.cpp.o -c /home/wuyou/catkin_ws/src/qt_ros/src/main_window.cpp
 
 qt_ros/CMakeFiles/qt_ros.dir/src/main_window.cpp.i: cmake_force
@@ -243,7 +248,7 @@ qt_ros/CMakeFiles/qt_ros.dir/src/main_window.cpp.o.provides.build: qt_ros/CMakeF
 
 qt_ros/CMakeFiles/qt_ros.dir/src/qnetstreamingreceiver.cpp.o: qt_ros/CMakeFiles/qt_ros.dir/flags.make
 qt_ros/CMakeFiles/qt_ros.dir/src/qnetstreamingreceiver.cpp.o: /home/wuyou/catkin_ws/src/qt_ros/src/qnetstreamingreceiver.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wuyou/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object qt_ros/CMakeFiles/qt_ros.dir/src/qnetstreamingreceiver.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wuyou/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object qt_ros/CMakeFiles/qt_ros.dir/src/qnetstreamingreceiver.cpp.o"
 	cd /home/wuyou/catkin_ws/build/qt_ros && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/qt_ros.dir/src/qnetstreamingreceiver.cpp.o -c /home/wuyou/catkin_ws/src/qt_ros/src/qnetstreamingreceiver.cpp
 
 qt_ros/CMakeFiles/qt_ros.dir/src/qnetstreamingreceiver.cpp.i: cmake_force
@@ -267,7 +272,7 @@ qt_ros/CMakeFiles/qt_ros.dir/src/qnetstreamingreceiver.cpp.o.provides.build: qt_
 
 qt_ros/CMakeFiles/qt_ros.dir/src/qnode.cpp.o: qt_ros/CMakeFiles/qt_ros.dir/flags.make
 qt_ros/CMakeFiles/qt_ros.dir/src/qnode.cpp.o: /home/wuyou/catkin_ws/src/qt_ros/src/qnode.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wuyou/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object qt_ros/CMakeFiles/qt_ros.dir/src/qnode.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wuyou/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object qt_ros/CMakeFiles/qt_ros.dir/src/qnode.cpp.o"
 	cd /home/wuyou/catkin_ws/build/qt_ros && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/qt_ros.dir/src/qnode.cpp.o -c /home/wuyou/catkin_ws/src/qt_ros/src/qnode.cpp
 
 qt_ros/CMakeFiles/qt_ros.dir/src/qnode.cpp.i: cmake_force
@@ -289,9 +294,33 @@ qt_ros/CMakeFiles/qt_ros.dir/src/qnode.cpp.o.provides: qt_ros/CMakeFiles/qt_ros.
 qt_ros/CMakeFiles/qt_ros.dir/src/qnode.cpp.o.provides.build: qt_ros/CMakeFiles/qt_ros.dir/src/qnode.cpp.o
 
 
+qt_ros/CMakeFiles/qt_ros.dir/qrc_images.cpp.o: qt_ros/CMakeFiles/qt_ros.dir/flags.make
+qt_ros/CMakeFiles/qt_ros.dir/qrc_images.cpp.o: qt_ros/qrc_images.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wuyou/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object qt_ros/CMakeFiles/qt_ros.dir/qrc_images.cpp.o"
+	cd /home/wuyou/catkin_ws/build/qt_ros && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/qt_ros.dir/qrc_images.cpp.o -c /home/wuyou/catkin_ws/build/qt_ros/qrc_images.cpp
+
+qt_ros/CMakeFiles/qt_ros.dir/qrc_images.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/qt_ros.dir/qrc_images.cpp.i"
+	cd /home/wuyou/catkin_ws/build/qt_ros && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wuyou/catkin_ws/build/qt_ros/qrc_images.cpp > CMakeFiles/qt_ros.dir/qrc_images.cpp.i
+
+qt_ros/CMakeFiles/qt_ros.dir/qrc_images.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/qt_ros.dir/qrc_images.cpp.s"
+	cd /home/wuyou/catkin_ws/build/qt_ros && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wuyou/catkin_ws/build/qt_ros/qrc_images.cpp -o CMakeFiles/qt_ros.dir/qrc_images.cpp.s
+
+qt_ros/CMakeFiles/qt_ros.dir/qrc_images.cpp.o.requires:
+
+.PHONY : qt_ros/CMakeFiles/qt_ros.dir/qrc_images.cpp.o.requires
+
+qt_ros/CMakeFiles/qt_ros.dir/qrc_images.cpp.o.provides: qt_ros/CMakeFiles/qt_ros.dir/qrc_images.cpp.o.requires
+	$(MAKE) -f qt_ros/CMakeFiles/qt_ros.dir/build.make qt_ros/CMakeFiles/qt_ros.dir/qrc_images.cpp.o.provides.build
+.PHONY : qt_ros/CMakeFiles/qt_ros.dir/qrc_images.cpp.o.provides
+
+qt_ros/CMakeFiles/qt_ros.dir/qrc_images.cpp.o.provides.build: qt_ros/CMakeFiles/qt_ros.dir/qrc_images.cpp.o
+
+
 qt_ros/CMakeFiles/qt_ros.dir/include/qt_ros/moc_main_window.cpp.o: qt_ros/CMakeFiles/qt_ros.dir/flags.make
 qt_ros/CMakeFiles/qt_ros.dir/include/qt_ros/moc_main_window.cpp.o: qt_ros/include/qt_ros/moc_main_window.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wuyou/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object qt_ros/CMakeFiles/qt_ros.dir/include/qt_ros/moc_main_window.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wuyou/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object qt_ros/CMakeFiles/qt_ros.dir/include/qt_ros/moc_main_window.cpp.o"
 	cd /home/wuyou/catkin_ws/build/qt_ros && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/qt_ros.dir/include/qt_ros/moc_main_window.cpp.o -c /home/wuyou/catkin_ws/build/qt_ros/include/qt_ros/moc_main_window.cpp
 
 qt_ros/CMakeFiles/qt_ros.dir/include/qt_ros/moc_main_window.cpp.i: cmake_force
@@ -315,7 +344,7 @@ qt_ros/CMakeFiles/qt_ros.dir/include/qt_ros/moc_main_window.cpp.o.provides.build
 
 qt_ros/CMakeFiles/qt_ros.dir/include/qt_ros/moc_qnetstreamingreceiver.cpp.o: qt_ros/CMakeFiles/qt_ros.dir/flags.make
 qt_ros/CMakeFiles/qt_ros.dir/include/qt_ros/moc_qnetstreamingreceiver.cpp.o: qt_ros/include/qt_ros/moc_qnetstreamingreceiver.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wuyou/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object qt_ros/CMakeFiles/qt_ros.dir/include/qt_ros/moc_qnetstreamingreceiver.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wuyou/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object qt_ros/CMakeFiles/qt_ros.dir/include/qt_ros/moc_qnetstreamingreceiver.cpp.o"
 	cd /home/wuyou/catkin_ws/build/qt_ros && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/qt_ros.dir/include/qt_ros/moc_qnetstreamingreceiver.cpp.o -c /home/wuyou/catkin_ws/build/qt_ros/include/qt_ros/moc_qnetstreamingreceiver.cpp
 
 qt_ros/CMakeFiles/qt_ros.dir/include/qt_ros/moc_qnetstreamingreceiver.cpp.i: cmake_force
@@ -339,7 +368,7 @@ qt_ros/CMakeFiles/qt_ros.dir/include/qt_ros/moc_qnetstreamingreceiver.cpp.o.prov
 
 qt_ros/CMakeFiles/qt_ros.dir/include/qt_ros/moc_qnode.cpp.o: qt_ros/CMakeFiles/qt_ros.dir/flags.make
 qt_ros/CMakeFiles/qt_ros.dir/include/qt_ros/moc_qnode.cpp.o: qt_ros/include/qt_ros/moc_qnode.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wuyou/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object qt_ros/CMakeFiles/qt_ros.dir/include/qt_ros/moc_qnode.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wuyou/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object qt_ros/CMakeFiles/qt_ros.dir/include/qt_ros/moc_qnode.cpp.o"
 	cd /home/wuyou/catkin_ws/build/qt_ros && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/qt_ros.dir/include/qt_ros/moc_qnode.cpp.o -c /home/wuyou/catkin_ws/build/qt_ros/include/qt_ros/moc_qnode.cpp
 
 qt_ros/CMakeFiles/qt_ros.dir/include/qt_ros/moc_qnode.cpp.i: cmake_force
@@ -372,6 +401,7 @@ qt_ros_OBJECTS = \
 "CMakeFiles/qt_ros.dir/src/main_window.cpp.o" \
 "CMakeFiles/qt_ros.dir/src/qnetstreamingreceiver.cpp.o" \
 "CMakeFiles/qt_ros.dir/src/qnode.cpp.o" \
+"CMakeFiles/qt_ros.dir/qrc_images.cpp.o" \
 "CMakeFiles/qt_ros.dir/include/qt_ros/moc_main_window.cpp.o" \
 "CMakeFiles/qt_ros.dir/include/qt_ros/moc_qnetstreamingreceiver.cpp.o" \
 "CMakeFiles/qt_ros.dir/include/qt_ros/moc_qnode.cpp.o"
@@ -388,6 +418,7 @@ qt_ros_EXTERNAL_OBJECTS =
 /home/wuyou/catkin_ws/devel/lib/qt_ros/qt_ros: qt_ros/CMakeFiles/qt_ros.dir/src/main_window.cpp.o
 /home/wuyou/catkin_ws/devel/lib/qt_ros/qt_ros: qt_ros/CMakeFiles/qt_ros.dir/src/qnetstreamingreceiver.cpp.o
 /home/wuyou/catkin_ws/devel/lib/qt_ros/qt_ros: qt_ros/CMakeFiles/qt_ros.dir/src/qnode.cpp.o
+/home/wuyou/catkin_ws/devel/lib/qt_ros/qt_ros: qt_ros/CMakeFiles/qt_ros.dir/qrc_images.cpp.o
 /home/wuyou/catkin_ws/devel/lib/qt_ros/qt_ros: qt_ros/CMakeFiles/qt_ros.dir/include/qt_ros/moc_main_window.cpp.o
 /home/wuyou/catkin_ws/devel/lib/qt_ros/qt_ros: qt_ros/CMakeFiles/qt_ros.dir/include/qt_ros/moc_qnetstreamingreceiver.cpp.o
 /home/wuyou/catkin_ws/devel/lib/qt_ros/qt_ros: qt_ros/CMakeFiles/qt_ros.dir/include/qt_ros/moc_qnode.cpp.o
@@ -416,7 +447,7 @@ qt_ros_EXTERNAL_OBJECTS =
 /home/wuyou/catkin_ws/devel/lib/qt_ros/qt_ros: /home/wuyou/Qt5.9.9/5.9.9/gcc_64/lib/libQt5Gui.so.5.9.9
 /home/wuyou/catkin_ws/devel/lib/qt_ros/qt_ros: /home/wuyou/Qt5.9.9/5.9.9/gcc_64/lib/libQt5Core.so.5.9.9
 /home/wuyou/catkin_ws/devel/lib/qt_ros/qt_ros: qt_ros/CMakeFiles/qt_ros.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/wuyou/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Linking CXX executable /home/wuyou/catkin_ws/devel/lib/qt_ros/qt_ros"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/wuyou/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Linking CXX executable /home/wuyou/catkin_ws/devel/lib/qt_ros/qt_ros"
 	cd /home/wuyou/catkin_ws/build/qt_ros && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/qt_ros.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -433,6 +464,7 @@ qt_ros/CMakeFiles/qt_ros.dir/requires: qt_ros/CMakeFiles/qt_ros.dir/src/main.cpp
 qt_ros/CMakeFiles/qt_ros.dir/requires: qt_ros/CMakeFiles/qt_ros.dir/src/main_window.cpp.o.requires
 qt_ros/CMakeFiles/qt_ros.dir/requires: qt_ros/CMakeFiles/qt_ros.dir/src/qnetstreamingreceiver.cpp.o.requires
 qt_ros/CMakeFiles/qt_ros.dir/requires: qt_ros/CMakeFiles/qt_ros.dir/src/qnode.cpp.o.requires
+qt_ros/CMakeFiles/qt_ros.dir/requires: qt_ros/CMakeFiles/qt_ros.dir/qrc_images.cpp.o.requires
 qt_ros/CMakeFiles/qt_ros.dir/requires: qt_ros/CMakeFiles/qt_ros.dir/include/qt_ros/moc_main_window.cpp.o.requires
 qt_ros/CMakeFiles/qt_ros.dir/requires: qt_ros/CMakeFiles/qt_ros.dir/include/qt_ros/moc_qnetstreamingreceiver.cpp.o.requires
 qt_ros/CMakeFiles/qt_ros.dir/requires: qt_ros/CMakeFiles/qt_ros.dir/include/qt_ros/moc_qnode.cpp.o.requires
@@ -443,6 +475,7 @@ qt_ros/CMakeFiles/qt_ros.dir/clean:
 	cd /home/wuyou/catkin_ws/build/qt_ros && $(CMAKE_COMMAND) -P CMakeFiles/qt_ros.dir/cmake_clean.cmake
 .PHONY : qt_ros/CMakeFiles/qt_ros.dir/clean
 
+qt_ros/CMakeFiles/qt_ros.dir/depend: qt_ros/qrc_images.cpp
 qt_ros/CMakeFiles/qt_ros.dir/depend: qt_ros/ui_main_window.h
 qt_ros/CMakeFiles/qt_ros.dir/depend: qt_ros/include/qt_ros/moc_main_window.cpp
 qt_ros/CMakeFiles/qt_ros.dir/depend: qt_ros/include/qt_ros/moc_qnetstreamingreceiver.cpp

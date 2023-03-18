@@ -15,6 +15,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QCheckBox>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QDoubleSpinBox>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QGroupBox>
@@ -49,7 +50,6 @@ public:
     QGroupBox *groupBox_com;
     QGridLayout *gridLayout_4;
     QListView *listView_com;
-    QChartView *chartwidget;
     QGroupBox *groupBox_eve;
     QGridLayout *gridLayout_5;
     QListView *listView_eve;
@@ -77,6 +77,11 @@ public:
     QGroupBox *groupBox_config;
     QGridLayout *gridLayout_3;
     QListView *listView_config;
+    QGridLayout *gridLayout_chartwidget;
+    QChartView *chartwidget;
+    QChartView *single_chartwidget;
+    QChartView *fft_chartwidget;
+    QComboBox *chan_comboBox;
     QMenuBar *menubar;
     QMenu *menu_File;
     QStatusBar *statusbar;
@@ -104,11 +109,13 @@ public:
         hboxLayout = new QHBoxLayout(centralwidget);
         hboxLayout->setObjectName(QStringLiteral("hboxLayout"));
         gridLayout = new QGridLayout();
+        gridLayout->setSpacing(0);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
         groupBox_com = new QGroupBox(centralwidget);
         groupBox_com->setObjectName(QStringLiteral("groupBox_com"));
         gridLayout_4 = new QGridLayout(groupBox_com);
         gridLayout_4->setObjectName(QStringLiteral("gridLayout_4"));
+        gridLayout_4->setContentsMargins(0, 0, 0, 0);
         listView_com = new QListView(groupBox_com);
         listView_com->setObjectName(QStringLiteral("listView_com"));
         QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
@@ -122,17 +129,11 @@ public:
 
         gridLayout->addWidget(groupBox_com, 2, 0, 1, 1);
 
-        chartwidget = new QChartView(centralwidget);
-        chartwidget->setObjectName(QStringLiteral("chartwidget"));
-        sizePolicy.setHeightForWidth(chartwidget->sizePolicy().hasHeightForWidth());
-        chartwidget->setSizePolicy(sizePolicy);
-
-        gridLayout->addWidget(chartwidget, 0, 2, 4, 1);
-
         groupBox_eve = new QGroupBox(centralwidget);
         groupBox_eve->setObjectName(QStringLiteral("groupBox_eve"));
         gridLayout_5 = new QGridLayout(groupBox_eve);
         gridLayout_5->setObjectName(QStringLiteral("gridLayout_5"));
+        gridLayout_5->setContentsMargins(0, 0, 0, 0);
         listView_eve = new QListView(groupBox_eve);
         listView_eve->setObjectName(QStringLiteral("listView_eve"));
         sizePolicy.setHeightForWidth(listView_eve->sizePolicy().hasHeightForWidth());
@@ -144,7 +145,9 @@ public:
         gridLayout->addWidget(groupBox_eve, 3, 0, 1, 1);
 
         gridLayout_2 = new QGridLayout();
+        gridLayout_2->setSpacing(0);
         gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
+        gridLayout_2->setSizeConstraint(QLayout::SetDefaultConstraint);
         label = new QLabel(centralwidget);
         label->setObjectName(QStringLiteral("label"));
 
@@ -176,6 +179,8 @@ public:
 
         gridLayout_2->addWidget(lineEdit_ip, 0, 1, 1, 1);
 
+        gridLayout_2->setColumnStretch(0, 1);
+        gridLayout_2->setColumnStretch(1, 2);
 
         gridLayout->addLayout(gridLayout_2, 0, 0, 1, 1);
 
@@ -192,6 +197,7 @@ public:
         gridLayout_6->addItem(verticalSpacer, 1, 0, 1, 1);
 
         verticalLayout = new QVBoxLayout();
+        verticalLayout->setSpacing(0);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         checkBox_notch = new QCheckBox(tab);
         checkBox_notch->setObjectName(QStringLiteral("checkBox_notch"));
@@ -205,6 +211,7 @@ public:
         verticalLayout->addWidget(checkBox_high);
 
         horizontalLayout = new QHBoxLayout();
+        horizontalLayout->setSpacing(0);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         label_3 = new QLabel(tab);
         label_3->setObjectName(QStringLiteral("label_3"));
@@ -226,6 +233,7 @@ public:
         verticalLayout->addWidget(checkBox_low);
 
         horizontalLayout_2 = new QHBoxLayout();
+        horizontalLayout_2->setSpacing(0);
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
         label_4 = new QLabel(tab);
         label_4->setObjectName(QStringLiteral("label_4"));
@@ -257,6 +265,8 @@ public:
         groupBox_config->setSizePolicy(sizePolicy);
         gridLayout_3 = new QGridLayout(groupBox_config);
         gridLayout_3->setObjectName(QStringLiteral("gridLayout_3"));
+        gridLayout_3->setHorizontalSpacing(6);
+        gridLayout_3->setContentsMargins(0, 0, 0, 0);
         listView_config = new QListView(groupBox_config);
         listView_config->setObjectName(QStringLiteral("listView_config"));
         sizePolicy.setHeightForWidth(listView_config->sizePolicy().hasHeightForWidth());
@@ -267,6 +277,50 @@ public:
 
         gridLayout->addWidget(groupBox_config, 1, 0, 1, 1);
 
+        gridLayout_chartwidget = new QGridLayout();
+        gridLayout_chartwidget->setSpacing(0);
+        gridLayout_chartwidget->setObjectName(QStringLiteral("gridLayout_chartwidget"));
+        chartwidget = new QChartView(centralwidget);
+        chartwidget->setObjectName(QStringLiteral("chartwidget"));
+        sizePolicy.setHeightForWidth(chartwidget->sizePolicy().hasHeightForWidth());
+        chartwidget->setSizePolicy(sizePolicy);
+
+        gridLayout_chartwidget->addWidget(chartwidget, 0, 0, 1, 1);
+
+        single_chartwidget = new QChartView(centralwidget);
+        single_chartwidget->setObjectName(QStringLiteral("single_chartwidget"));
+        sizePolicy.setHeightForWidth(single_chartwidget->sizePolicy().hasHeightForWidth());
+        single_chartwidget->setSizePolicy(sizePolicy);
+
+        gridLayout_chartwidget->addWidget(single_chartwidget, 2, 0, 1, 1);
+
+        fft_chartwidget = new QChartView(centralwidget);
+        fft_chartwidget->setObjectName(QStringLiteral("fft_chartwidget"));
+        sizePolicy.setHeightForWidth(fft_chartwidget->sizePolicy().hasHeightForWidth());
+        fft_chartwidget->setSizePolicy(sizePolicy);
+
+        gridLayout_chartwidget->addWidget(fft_chartwidget, 3, 0, 1, 1);
+
+        chan_comboBox = new QComboBox(centralwidget);
+        chan_comboBox->setObjectName(QStringLiteral("chan_comboBox"));
+        chan_comboBox->setEditable(false);
+
+        gridLayout_chartwidget->addWidget(chan_comboBox, 1, 0, 1, 1);
+
+        gridLayout_chartwidget->setRowStretch(0, 5);
+        gridLayout_chartwidget->setRowStretch(1, 1);
+        gridLayout_chartwidget->setRowStretch(2, 2);
+        gridLayout_chartwidget->setRowStretch(3, 2);
+
+        gridLayout->addLayout(gridLayout_chartwidget, 0, 2, 4, 1);
+
+        gridLayout->setRowStretch(0, 1);
+        gridLayout->setRowStretch(1, 2);
+        gridLayout->setRowStretch(2, 3);
+        gridLayout->setRowStretch(3, 3);
+        gridLayout->setColumnStretch(0, 1);
+        gridLayout->setColumnStretch(1, 1);
+        gridLayout->setColumnStretch(2, 5);
 
         hboxLayout->addLayout(gridLayout);
 

@@ -4410,6 +4410,10 @@ qbuttongroup.h
 qcheckbox.h
 /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/qcheckbox.h
 
+/home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QComboBox
+qcombobox.h
+/home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/qcombobox.h
+
 /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QCommonStyle
 qcommonstyle.h
 /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/qcommonstyle.h
@@ -5946,6 +5950,8 @@ QtCore/qbytearray.h
 QtCore/qmetatype.h
 -
 
+/home/wuyou/catkin_ws/build/qt_ros/qrc_images.cpp
+
 /home/wuyou/catkin_ws/src/qt_ros/include/qt_ros/FFT.h
 vector
 -
@@ -6942,6 +6948,8 @@ QtWidgets/QApplication
 QtWidgets/QButtonGroup
 -
 QtWidgets/QCheckBox
+-
+QtWidgets/QComboBox
 -
 QtWidgets/QDoubleSpinBox
 -

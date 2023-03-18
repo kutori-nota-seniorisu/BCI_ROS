@@ -6,6 +6,7 @@ from scipy import signal
 from sklearn.cross_decomposition import CCA
 from statistics import median
 from std_msgs.msg import UInt16
+from std_msgs.msg import Bool
 from std_msgs.msg import Float32MultiArray
 
 # 相关变量及参数设置
@@ -144,17 +145,26 @@ def callback_get_packet(data):
 		result = freqList[index_class_cca]
 		print('the result is', result)
 
-		if result == 20:
+		result_pub = rospy.Publisher("/ResultNode", UInt16, queue_size=10)
+		state_result_pub = rospy.Publisher("/StateResultNode", Bool, queue_size=10)
+		str = "the result is %u" % result
+		rospy.loginfo(str)
+		# pub.publish(result)
+
+		if result == 11:
 			# do something
 			print("the frequency to start camera is", result)
+			camera_state = Bool()
 			camera_on = True
+			camera_state.data = camera_on
+			state_result_pub.publish(camera_state)
 		if camera_on == True:
 			if result == 9:
 				print(9)
 			elif result == 10:
 				print(10)
-			elif result == 11:
-				print(11)
+			elif result == 20:
+				print(20)
 			elif result == 12:
 				print(12)
 			elif result == 13:
@@ -169,11 +179,12 @@ def callback_get_packet(data):
 				print(17)
 			else:
 				print("no")
+			res_pub = UInt16()
+			res_pub.data = result
+			result_pub.publish(res_pub)
+			# result_pub.publish(result)
 
-		# pub = rospy.Publisher("control", UInt16, queue_size=10)
-		# str = "the result is %u" % result
-		# rospy.loginfo(str)
-		# pub.publish(result)
+
 
 def listener():
 

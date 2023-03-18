@@ -460,6 +460,7 @@ qt_ros/CMakeFiles/qt_ros.dir/include/qt_ros/moc_main_window.cpp.o: /home/wuyou/Q
 qt_ros/CMakeFiles/qt_ros.dir/include/qt_ros/moc_main_window.cpp.o: /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QApplication
 qt_ros/CMakeFiles/qt_ros.dir/include/qt_ros/moc_main_window.cpp.o: /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QButtonGroup
 qt_ros/CMakeFiles/qt_ros.dir/include/qt_ros/moc_main_window.cpp.o: /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QCheckBox
+qt_ros/CMakeFiles/qt_ros.dir/include/qt_ros/moc_main_window.cpp.o: /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QComboBox
 qt_ros/CMakeFiles/qt_ros.dir/include/qt_ros/moc_main_window.cpp.o: /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QCommonStyle
 qt_ros/CMakeFiles/qt_ros.dir/include/qt_ros/moc_main_window.cpp.o: /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QDoubleSpinBox
 qt_ros/CMakeFiles/qt_ros.dir/include/qt_ros/moc_main_window.cpp.o: /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QGraphicsView
@@ -927,6 +928,8 @@ qt_ros/CMakeFiles/qt_ros.dir/include/qt_ros/moc_qnode.cpp.o: /opt/ros/melodic/in
 qt_ros/CMakeFiles/qt_ros.dir/include/qt_ros/moc_qnode.cpp.o: /opt/ros/melodic/include/rosconsole/macros_generated.h
 qt_ros/CMakeFiles/qt_ros.dir/include/qt_ros/moc_qnode.cpp.o: /opt/ros/melodic/include/xmlrpcpp/XmlRpcDecl.h
 qt_ros/CMakeFiles/qt_ros.dir/include/qt_ros/moc_qnode.cpp.o: /opt/ros/melodic/include/xmlrpcpp/XmlRpcValue.h
+
+qt_ros/CMakeFiles/qt_ros.dir/qrc_images.cpp.o: qt_ros/qrc_images.cpp
 
 qt_ros/CMakeFiles/qt_ros.dir/src/FFT.cpp.o: /home/wuyou/catkin_ws/src/qt_ros/include/qt_ros/FFT.h
 qt_ros/CMakeFiles/qt_ros.dir/src/FFT.cpp.o: /home/wuyou/catkin_ws/src/qt_ros/src/FFT.cpp
@@ -1421,6 +1424,7 @@ qt_ros/CMakeFiles/qt_ros.dir/src/main.cpp.o: /home/wuyou/Qt5.9.9/5.9.9/gcc_64/in
 qt_ros/CMakeFiles/qt_ros.dir/src/main.cpp.o: /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QApplication
 qt_ros/CMakeFiles/qt_ros.dir/src/main.cpp.o: /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QButtonGroup
 qt_ros/CMakeFiles/qt_ros.dir/src/main.cpp.o: /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QCheckBox
+qt_ros/CMakeFiles/qt_ros.dir/src/main.cpp.o: /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QComboBox
 qt_ros/CMakeFiles/qt_ros.dir/src/main.cpp.o: /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QCommonStyle
 qt_ros/CMakeFiles/qt_ros.dir/src/main.cpp.o: /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QDoubleSpinBox
 qt_ros/CMakeFiles/qt_ros.dir/src/main.cpp.o: /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QGraphicsView
@@ -2102,6 +2106,7 @@ qt_ros/CMakeFiles/qt_ros.dir/src/main_window.cpp.o: /home/wuyou/Qt5.9.9/5.9.9/gc
 qt_ros/CMakeFiles/qt_ros.dir/src/main_window.cpp.o: /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QApplication
 qt_ros/CMakeFiles/qt_ros.dir/src/main_window.cpp.o: /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QButtonGroup
 qt_ros/CMakeFiles/qt_ros.dir/src/main_window.cpp.o: /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QCheckBox
+qt_ros/CMakeFiles/qt_ros.dir/src/main_window.cpp.o: /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QComboBox
 qt_ros/CMakeFiles/qt_ros.dir/src/main_window.cpp.o: /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QCommonStyle
 qt_ros/CMakeFiles/qt_ros.dir/src/main_window.cpp.o: /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QDoubleSpinBox
 qt_ros/CMakeFiles/qt_ros.dir/src/main_window.cpp.o: /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QGraphicsView

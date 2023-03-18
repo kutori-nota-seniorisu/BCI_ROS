@@ -72,15 +72,19 @@ namespace qt_ros
 		connect(m_qNetStreaming, SIGNAL(LoggingComUpdated()), this, SLOT(UpdateLogCom()));
 		connect(m_qNetStreaming, SIGNAL(LoggingEveUpdated()), this, SLOT(UpdateLogEve()));
 
-        ui.gridLayout->setColumnStretch(0, 1);
-		ui.gridLayout->setColumnStretch(1, 2);
-		ui.gridLayout->setColumnStretch(2, 5);
-		ui.gridLayout->setRowStretch(0, 1);
-		ui.gridLayout->setRowStretch(1, 2);
-		ui.gridLayout->setRowStretch(2, 3);
-		ui.gridLayout->setRowStretch(3, 3);
-		// 初始化画布
+//      ui.gridLayout->setColumnStretch(0, 1);
+//      ui.gridLayout->setColumnStretch(1, 1);
+//		ui.gridLayout->setColumnStretch(2, 5);
+//		ui.gridLayout->setRowStretch(0, 1);
+//		ui.gridLayout->setRowStretch(1, 2);
+//		ui.gridLayout->setRowStretch(2, 3);
+//		ui.gridLayout->setRowStretch(3, 3);
+        // 初始化画布
 		InitDraw();
+        // 初始化傅立叶变换的画布
+        InitFFTDraw();
+        // 初始化单个波形的画布
+        InitSingleDraw();
 
         // 初始化滤波标志变量
 		notch_check = ui.checkBox_notch->isChecked();
@@ -167,6 +171,56 @@ namespace qt_ros
 		m_axisY->setGridLineVisible(false);
 	}
 
+    // 初始化傅立叶变换的画布
+    void MainWindow::InitFFTDraw()
+    {
+        // 初始化坐标轴与画布，并将画布设置到widget上
+        m_fft_axisX = new QValueAxis();
+        m_fft_axisY = new QValueAxis();
+        m_fft_chart = new QChart();
+        ui.fft_chartwidget->setChart(m_fft_chart);
+
+        m_fft_chart->setTitleBrush(QBrush(QColor(0, 0, 0))); // 设置标题Brush
+        m_fft_chart->setTitleFont(QFont("微软雅黑"));		 // 设置标题字体
+        m_fft_chart->setTitle("傅立叶");					 // 设置标题
+        m_fft_chart->legend()->hide();						 //隐藏图例
+        m_fft_chart->addAxis(m_fft_axisX, Qt::AlignBottom);		 //设置坐标轴位于chart中的位置
+        m_fft_chart->addAxis(m_fft_axisY, Qt::AlignLeft);
+
+        m_fft_axisX->setTitleText("x");
+        m_fft_axisX->setRange(0, 1);
+        m_fft_axisX->setGridLineVisible(false);
+
+        m_fft_axisY->setTitleText("y");
+        m_fft_axisY->setRange(0, 1);
+        m_fft_axisY->setGridLineVisible(false);
+    }
+
+    // 初始化单个波形的画布
+    void MainWindow::InitSingleDraw()
+    {
+        // 初始化坐标轴与画布，并将画布设置到widget上
+        m_single_axisX = new QValueAxis();
+        m_single_axisY = new QValueAxis();
+        m_single_chart = new QChart();
+        ui.single_chartwidget->setChart(m_single_chart);
+
+        m_single_chart->setTitleBrush(QBrush(QColor(0, 0, 0))); // 设置标题Brush
+        m_single_chart->setTitleFont(QFont("微软雅黑"));		 // 设置标题字体
+        m_single_chart->setTitle("单个通道波形");					 // 设置标题
+        m_single_chart->legend()->hide();						 //隐藏图例
+        m_single_chart->addAxis(m_single_axisX, Qt::AlignBottom);		 //设置坐标轴位于chart中的位置
+        m_single_chart->addAxis(m_single_axisY, Qt::AlignLeft);
+
+        m_single_axisX->setTitleText("x");
+        m_single_axisX->setRange(0, 1);
+        m_single_axisX->setGridLineVisible(false);
+
+        m_single_axisY->setTitleText("y");
+        m_single_axisY->setRange(0, 1);
+        m_single_axisY->setGridLineVisible(false);
+    }
+
     // 接收数据并绘制波形
 	void MainWindow::RecvAndDraw(float *pfData, int nEegChan, long nNumSamples)
 	{
@@ -222,7 +276,8 @@ namespace qt_ros
 		}
 
 		// 低通滤波
-		if (lp_check && ~hp_check)
+//		if (lp_check && ~hp_check)
+        if (lp_check)
 		{
 			// 滤波器阶数
 			long O = 6;
@@ -230,16 +285,17 @@ namespace qt_ros
 			spuce::float_type f_cutoff = ui.doubleSpinBox_low->value() / 1000;
 			// 通带波纹
 			spuce::float_type ripple = 0.5;
-			spuce::iir_coeff BPF(O);
-			chebyshev_iir(BPF, f_cutoff, ripple);
-			spuce::iir_df<spuce::float_type> LPF(BPF);
+            spuce::iir_coeff F(O);
+            chebyshev_iir(F, f_cutoff, ripple);
+            spuce::iir_df<spuce::float_type> LPF(F);
 			for (int i = 0; i < nEegChan; ++i)
 				for (int j = 0; j < nNumSamples; ++j)
 					packet[i][j] = LPF.clock(packet[i][j]);
 		}
 
 		// 高通滤波
-		if (hp_check && ~lp_check)
+//		if (hp_check && ~lp_check)
+        if (hp_check)
 		{
 			// 滤波器阶数
 			long O = 6;
@@ -247,9 +303,9 @@ namespace qt_ros
 			spuce::float_type f_cutoff = ui.doubleSpinBox_high->value() / 1000;
 			// 通带波纹
 			spuce::float_type ripple = 0.5;
-			spuce::iir_coeff BPF(O, spuce::filter_type::high);
-			chebyshev_iir(BPF, f_cutoff, ripple);
-			spuce::iir_df<spuce::float_type> HPF(BPF);
+            spuce::iir_coeff F(O, spuce::filter_type::high);
+            chebyshev_iir(F, f_cutoff, ripple);
+            spuce::iir_df<spuce::float_type> HPF(F);
 			for (int i = 0; i < nEegChan; ++i)
 				for (int j = 0; j < nNumSamples; ++j)
 					packet[i][j] = HPF.clock(packet[i][j]);

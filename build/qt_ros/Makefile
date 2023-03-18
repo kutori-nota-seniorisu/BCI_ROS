@@ -293,6 +293,33 @@ include/qt_ros/moc_qnode.cpp.s:
 	cd /home/wuyou/catkin_ws/build && $(MAKE) -f qt_ros/CMakeFiles/qt_ros.dir/build.make qt_ros/CMakeFiles/qt_ros.dir/include/qt_ros/moc_qnode.cpp.s
 .PHONY : include/qt_ros/moc_qnode.cpp.s
 
+qrc_images.o: qrc_images.cpp.o
+
+.PHONY : qrc_images.o
+
+# target to build an object file
+qrc_images.cpp.o:
+	cd /home/wuyou/catkin_ws/build && $(MAKE) -f qt_ros/CMakeFiles/qt_ros.dir/build.make qt_ros/CMakeFiles/qt_ros.dir/qrc_images.cpp.o
+.PHONY : qrc_images.cpp.o
+
+qrc_images.i: qrc_images.cpp.i
+
+.PHONY : qrc_images.i
+
+# target to preprocess a source file
+qrc_images.cpp.i:
+	cd /home/wuyou/catkin_ws/build && $(MAKE) -f qt_ros/CMakeFiles/qt_ros.dir/build.make qt_ros/CMakeFiles/qt_ros.dir/qrc_images.cpp.i
+.PHONY : qrc_images.cpp.i
+
+qrc_images.s: qrc_images.cpp.s
+
+.PHONY : qrc_images.s
+
+# target to generate assembly for a file
+qrc_images.cpp.s:
+	cd /home/wuyou/catkin_ws/build && $(MAKE) -f qt_ros/CMakeFiles/qt_ros.dir/build.make qt_ros/CMakeFiles/qt_ros.dir/qrc_images.cpp.s
+.PHONY : qrc_images.cpp.s
+
 src/FFT.o: src/FFT.cpp.o
 
 .PHONY : src/FFT.o
@@ -579,6 +606,9 @@ help:
 	@echo "... include/qt_ros/moc_qnode.o"
 	@echo "... include/qt_ros/moc_qnode.i"
 	@echo "... include/qt_ros/moc_qnode.s"
+	@echo "... qrc_images.o"
+	@echo "... qrc_images.i"
+	@echo "... qrc_images.s"
 	@echo "... src/FFT.o"
 	@echo "... src/FFT.i"
 	@echo "... src/FFT.s"
