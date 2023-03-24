@@ -1,5 +1,4 @@
 <launch>
     <node pkg="online_analysis" name="pub_packet"  type="chatpub.py" output="screen" />
     <node pkg="online_analysis" name="analysis" type="onlineanalysis.py" output="screen" />
-
 </launch>
