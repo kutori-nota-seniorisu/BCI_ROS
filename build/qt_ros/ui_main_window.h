@@ -15,7 +15,6 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QCheckBox>
-#include <QtWidgets/QComboBox>
 #include <QtWidgets/QDoubleSpinBox>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QGroupBox>
@@ -79,9 +78,6 @@ public:
     QListView *listView_config;
     QGridLayout *gridLayout_chartwidget;
     QChartView *chartwidget;
-    QChartView *single_chartwidget;
-    QChartView *fft_chartwidget;
-    QComboBox *chan_comboBox;
     QMenuBar *menubar;
     QMenu *menu_File;
     QStatusBar *statusbar;
@@ -287,30 +283,7 @@ public:
 
         gridLayout_chartwidget->addWidget(chartwidget, 0, 0, 1, 1);
 
-        single_chartwidget = new QChartView(centralwidget);
-        single_chartwidget->setObjectName(QStringLiteral("single_chartwidget"));
-        sizePolicy.setHeightForWidth(single_chartwidget->sizePolicy().hasHeightForWidth());
-        single_chartwidget->setSizePolicy(sizePolicy);
-
-        gridLayout_chartwidget->addWidget(single_chartwidget, 2, 0, 1, 1);
-
-        fft_chartwidget = new QChartView(centralwidget);
-        fft_chartwidget->setObjectName(QStringLiteral("fft_chartwidget"));
-        sizePolicy.setHeightForWidth(fft_chartwidget->sizePolicy().hasHeightForWidth());
-        fft_chartwidget->setSizePolicy(sizePolicy);
-
-        gridLayout_chartwidget->addWidget(fft_chartwidget, 3, 0, 1, 1);
-
-        chan_comboBox = new QComboBox(centralwidget);
-        chan_comboBox->setObjectName(QStringLiteral("chan_comboBox"));
-        chan_comboBox->setEditable(false);
-
-        gridLayout_chartwidget->addWidget(chan_comboBox, 1, 0, 1, 1);
-
-        gridLayout_chartwidget->setRowStretch(0, 5);
-        gridLayout_chartwidget->setRowStretch(1, 1);
-        gridLayout_chartwidget->setRowStretch(2, 2);
-        gridLayout_chartwidget->setRowStretch(3, 2);
+        gridLayout_chartwidget->setRowStretch(0, 1);
 
         gridLayout->addLayout(gridLayout_chartwidget, 0, 2, 4, 1);
 
@@ -320,7 +293,7 @@ public:
         gridLayout->setRowStretch(3, 3);
         gridLayout->setColumnStretch(0, 1);
         gridLayout->setColumnStretch(1, 1);
-        gridLayout->setColumnStretch(2, 5);
+        gridLayout->setColumnStretch(2, 8);
 
         hboxLayout->addLayout(gridLayout);
 

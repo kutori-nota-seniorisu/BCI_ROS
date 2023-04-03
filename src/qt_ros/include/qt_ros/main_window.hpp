@@ -46,9 +46,9 @@ public:
 	// 初始化画布
 	void InitDraw();
     // 初始化傅立叶变换的画布
-    void InitFFTDraw();
+//    void InitFFTDraw();
     // 初始化单个波形的画布
-    void InitSingleDraw();
+//    void InitSingleDraw();
 
 public Q_SLOTS:
 	/******************************************

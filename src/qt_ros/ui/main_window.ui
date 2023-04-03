@@ -23,7 +23,7 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QHBoxLayout">
     <item>
-     <layout class="QGridLayout" name="gridLayout" rowstretch="1,2,3,3" columnstretch="1,1,5">
+     <layout class="QGridLayout" name="gridLayout" rowstretch="1,2,3,3" columnstretch="1,1,8">
       <property name="spacing">
        <number>0</number>
       </property>
@@ -304,7 +304,7 @@
        </widget>
       </item>
       <item row="0" column="2" rowspan="4">
-       <layout class="QGridLayout" name="gridLayout_chartwidget" rowstretch="5,1,2,2">
+       <layout class="QGridLayout" name="gridLayout_chartwidget" rowstretch="1">
         <property name="spacing">
          <number>0</number>
         </property>
@@ -315,33 +315,6 @@
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="0">
-         <widget class="QChartView" name="single_chartwidget" native="true">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="0">
-         <widget class="QChartView" name="fft_chartwidget" native="true">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QComboBox" name="chan_comboBox">
-          <property name="editable">
-           <bool>false</bool>
           </property>
          </widget>
         </item>

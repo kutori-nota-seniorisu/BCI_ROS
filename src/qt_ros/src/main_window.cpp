@@ -82,9 +82,9 @@ namespace qt_ros
         // 初始化画布
 		InitDraw();
         // 初始化傅立叶变换的画布
-        InitFFTDraw();
+//        InitFFTDraw();
         // 初始化单个波形的画布
-        InitSingleDraw();
+//        InitSingleDraw();
 
         // 显示的时间长度
         t_show = 10;
@@ -177,54 +177,54 @@ namespace qt_ros
 	}
 
     // 初始化傅立叶变换的画布
-    void MainWindow::InitFFTDraw()
-    {
-        // 初始化坐标轴与画布，并将画布设置到widget上
-        m_fft_axisX = new QValueAxis();
-        m_fft_axisY = new QValueAxis();
-        m_fft_chart = new QChart();
-        ui.fft_chartwidget->setChart(m_fft_chart);
+//    void MainWindow::InitFFTDraw()
+//    {
+//        // 初始化坐标轴与画布，并将画布设置到widget上
+//        m_fft_axisX = new QValueAxis();
+//        m_fft_axisY = new QValueAxis();
+//        m_fft_chart = new QChart();
+//        ui.fft_chartwidget->setChart(m_fft_chart);
 
-        m_fft_chart->setTitleBrush(QBrush(QColor(0, 0, 0))); // 设置标题Brush
-        m_fft_chart->setTitleFont(QFont("微软雅黑"));		 // 设置标题字体
-        m_fft_chart->setTitle("傅立叶");					 // 设置标题
-        m_fft_chart->legend()->hide();						 //隐藏图例
-        m_fft_chart->addAxis(m_fft_axisX, Qt::AlignBottom);		 //设置坐标轴位于chart中的位置
-        m_fft_chart->addAxis(m_fft_axisY, Qt::AlignLeft);
+//        m_fft_chart->setTitleBrush(QBrush(QColor(0, 0, 0))); // 设置标题Brush
+//        m_fft_chart->setTitleFont(QFont("微软雅黑"));		 // 设置标题字体
+//        m_fft_chart->setTitle("傅立叶");					 // 设置标题
+//        m_fft_chart->legend()->hide();						 //隐藏图例
+//        m_fft_chart->addAxis(m_fft_axisX, Qt::AlignBottom);		 //设置坐标轴位于chart中的位置
+//        m_fft_chart->addAxis(m_fft_axisY, Qt::AlignLeft);
 
-        m_fft_axisX->setTitleText("x");
-        m_fft_axisX->setRange(0, 1);
-        m_fft_axisX->setGridLineVisible(false);
+//        m_fft_axisX->setTitleText("x");
+//        m_fft_axisX->setRange(0, 1);
+//        m_fft_axisX->setGridLineVisible(false);
 
-        m_fft_axisY->setTitleText("y");
-        m_fft_axisY->setRange(0, 1);
-        m_fft_axisY->setGridLineVisible(false);
-    }
+//        m_fft_axisY->setTitleText("y");
+//        m_fft_axisY->setRange(0, 1);
+//        m_fft_axisY->setGridLineVisible(false);
+//    }
 
     // 初始化单个波形的画布
-    void MainWindow::InitSingleDraw()
-    {
-        // 初始化坐标轴与画布，并将画布设置到widget上
-        m_single_axisX = new QValueAxis();
-        m_single_axisY = new QValueAxis();
-        m_single_chart = new QChart();
-        ui.single_chartwidget->setChart(m_single_chart);
+//    void MainWindow::InitSingleDraw()
+//    {
+//        // 初始化坐标轴与画布，并将画布设置到widget上
+//        m_single_axisX = new QValueAxis();
+//        m_single_axisY = new QValueAxis();
+//        m_single_chart = new QChart();
+//        ui.single_chartwidget->setChart(m_single_chart);
 
-        m_single_chart->setTitleBrush(QBrush(QColor(0, 0, 0))); // 设置标题Brush
-        m_single_chart->setTitleFont(QFont("微软雅黑"));		 // 设置标题字体
-        m_single_chart->setTitle("单个通道波形");					 // 设置标题
-        m_single_chart->legend()->hide();						 //隐藏图例
-        m_single_chart->addAxis(m_single_axisX, Qt::AlignBottom);		 //设置坐标轴位于chart中的位置
-        m_single_chart->addAxis(m_single_axisY, Qt::AlignLeft);
+//        m_single_chart->setTitleBrush(QBrush(QColor(0, 0, 0))); // 设置标题Brush
+//        m_single_chart->setTitleFont(QFont("微软雅黑"));		 // 设置标题字体
+//        m_single_chart->setTitle("单个通道波形");					 // 设置标题
+//        m_single_chart->legend()->hide();						 //隐藏图例
+//        m_single_chart->addAxis(m_single_axisX, Qt::AlignBottom);		 //设置坐标轴位于chart中的位置
+//        m_single_chart->addAxis(m_single_axisY, Qt::AlignLeft);
 
-        m_single_axisX->setTitleText("x");
-        m_single_axisX->setRange(0, 1);
-        m_single_axisX->setGridLineVisible(false);
+//        m_single_axisX->setTitleText("x");
+//        m_single_axisX->setRange(0, 1);
+//        m_single_axisX->setGridLineVisible(false);
 
-        m_single_axisY->setTitleText("y");
-        m_single_axisY->setRange(0, 1);
-        m_single_axisY->setGridLineVisible(false);
-    }
+//        m_single_axisY->setTitleText("y");
+//        m_single_axisY->setRange(0, 1);
+//        m_single_axisY->setGridLineVisible(false);
+//    }
 
     // 接收数据并绘制波形
 	void MainWindow::RecvAndDraw(float *pfData, int nEegChan, long nNumSamples)

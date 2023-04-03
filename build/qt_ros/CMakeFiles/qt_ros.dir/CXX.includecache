@@ -4410,10 +4410,6 @@ qbuttongroup.h
 qcheckbox.h
 /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/qcheckbox.h
 
-/home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QComboBox
-qcombobox.h
-/home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/qcombobox.h
-
 /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QCommonStyle
 qcommonstyle.h
 /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/qcommonstyle.h
@@ -6948,8 +6944,6 @@ QtWidgets/QApplication
 QtWidgets/QButtonGroup
 -
 QtWidgets/QCheckBox
--
-QtWidgets/QComboBox
 -
 QtWidgets/QDoubleSpinBox
 -
