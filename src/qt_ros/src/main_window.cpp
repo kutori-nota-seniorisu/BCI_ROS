@@ -86,6 +86,11 @@ namespace qt_ros
         // 初始化单个波形的画布
         InitSingleDraw();
 
+        // 显示的时间长度
+        t_show = 10;
+        // 显示的最大数据量
+        maxSize = 2000;
+
         // 初始化滤波标志变量
 		notch_check = ui.checkBox_notch->isChecked();
 		lp_check = ui.checkBox_low->isChecked();
@@ -319,17 +324,36 @@ namespace qt_ros
             // 偏移量
 			double nYOffset = (i + 0.5) * dDeltaY;
 
+//            qDebug() << data_show[i].size();
+            // 检测是否数据量到上限
+            if (data_show[i].size() == maxSize)
+            {
+                data_show[i].remove(0, nNumSamples);
+//                qDebug() << "I remove";
+
+                // 处理旧数据：横坐标减去一次样本数量的大小
+                QVector<QPointF>::iterator it;
+                for (it = data_show[i].begin(); it != data_show[i].end(); ++it)
+                    it->setX(it->x() - nNumSamples);
+            }
+//            qDebug() << data_show[i].size();
+
+            // 处理新数据
 			QVector<QPointF> aPoints;
 			aPoints.resize(nNumSamples);
-			for (int j = 0; j < nNumSamples; ++j)
+            for (int j = 0; j < nNumSamples; ++j)
 			{
-				aPoints[j].setX(j);
+                aPoints[j].setX(j + data_show[i].size());
 				aPoints[j].setY(nYOffset + packet[i][j] * dAutoScale);
 			}
-			m_spSeries[i]->replace(aPoints);
+
+            data_show[i].append(aPoints);
+
+            m_spSeries[i]->replace(data_show[i]);
 		}
+//        qDebug() << "data_show:" << 0 << data_show[0].size();
 		// 设置x轴刻度范围
-		m_axisX->setRange(0, nNumSamples);
+        m_axisX->setRange(0, data_show[0].size());
 	}
 
     // 初始化线条
@@ -350,6 +374,9 @@ namespace qt_ros
 			m_spSeries[i]->attachAxis(m_axisY);
 			// 设置曲线颜色
 			m_spSeries[i]->setColor(QColor(0, 0, 0));
+
+            QVector<QPointF> points;
+            data_show.append(points);
 		}
 	}
 } // namespace qt_ros

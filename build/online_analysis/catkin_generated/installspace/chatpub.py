@@ -28,18 +28,18 @@ def talker():
     #             rate.sleep()
         packet = eegdata[:, packet_i * packetSize : (packet_i + 1) * packetSize, target_i, exper_i]
         packet_pub.data = packet.reshape(35 * 512)
-        rospy.loginfo("I publish: %i exper, %i target, %i packet", exper_i, target_i, packet_i)
+        rospy.loginfo("I publish: %i exper, %i target, %i packet", exper_i + 1, target_i + 1, packet_i + 1)
         pub.publish(packet_pub)
         packet_i = packet_i + 1
         if packet_i % 36 == 0:
             packet_i = 0
             target_i = target_i + 1
-        if target_i % eegdata.shape[2] == 0:
-            target_i = 0
-            exper_i = exper_i + 1
-        if exper_i % eegdata.shape[3] == 0:
-            rospy.loginfo("data finished")
-            break
+            if target_i % eegdata.shape[2] == 0:
+                target_i = 0
+                exper_i = exper_i + 1
+                if exper_i % eegdata.shape[3] == 0:
+                    rospy.loginfo("data finished")
+                    break
         rate.sleep()
 
 		

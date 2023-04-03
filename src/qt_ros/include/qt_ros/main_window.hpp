@@ -82,10 +82,13 @@ private:
 
 	QChart* m_chart;
 	QList<QSplineSeries*> m_spSeries;
+    QList<QVector<QPointF>> data_show;
+    int maxSize;
 	QValueAxis* m_axisX;
 	QValueAxis* m_axisY;
 	int nNumChannels;
 	double dDeltaY;
+    double t_show;
 	QThread* m_thread;
 
     QChart* m_fft_chart;
