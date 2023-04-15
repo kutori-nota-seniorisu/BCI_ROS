@@ -72,6 +72,10 @@ private slots:
 	void on_checkBox_notch_stateChanged(int arg1);
 	void on_checkBox_low_stateChanged(int arg1);
 	void on_checkBox_high_stateChanged(int arg1);
+	void on_checkBox_notch_2_stateChanged(int arg1);
+    void on_checkBox_high_2_stateChanged(int arg1);
+    void on_checkBox_low_2_stateChanged(int arg1);
+    void on_tabWidget_currentChanged(int index);
 
 private:
 	Ui::MainWindowDesign ui;

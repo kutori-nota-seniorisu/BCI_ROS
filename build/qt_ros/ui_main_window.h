@@ -44,7 +44,7 @@ public:
     QAction *actionAbout;
     QAction *actionAbout_Qt;
     QWidget *centralwidget;
-    QHBoxLayout *hboxLayout;
+    QGridLayout *gridLayout_7;
     QGridLayout *gridLayout;
     QGroupBox *groupBox_com;
     QGridLayout *gridLayout_4;
@@ -73,6 +73,18 @@ public:
     QLabel *label_4;
     QDoubleSpinBox *doubleSpinBox_low;
     QWidget *tab_2;
+    QGridLayout *gridLayout_8;
+    QVBoxLayout *verticalLayout_3;
+    QCheckBox *checkBox_notch_2;
+    QCheckBox *checkBox_high_2;
+    QHBoxLayout *horizontalLayout_3;
+    QLabel *label_5;
+    QDoubleSpinBox *doubleSpinBox_high_2;
+    QCheckBox *checkBox_low_2;
+    QHBoxLayout *horizontalLayout_4;
+    QLabel *label_6;
+    QDoubleSpinBox *doubleSpinBox_low_2;
+    QSpacerItem *verticalSpacer_2;
     QGroupBox *groupBox_config;
     QGridLayout *gridLayout_3;
     QListView *listView_config;
@@ -102,8 +114,8 @@ public:
         actionAbout_Qt->setObjectName(QStringLiteral("actionAbout_Qt"));
         centralwidget = new QWidget(MainWindowDesign);
         centralwidget->setObjectName(QStringLiteral("centralwidget"));
-        hboxLayout = new QHBoxLayout(centralwidget);
-        hboxLayout->setObjectName(QStringLiteral("hboxLayout"));
+        gridLayout_7 = new QGridLayout(centralwidget);
+        gridLayout_7->setObjectName(QStringLiteral("gridLayout_7"));
         gridLayout = new QGridLayout();
         gridLayout->setSpacing(0);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
@@ -187,7 +199,9 @@ public:
         tab = new QWidget();
         tab->setObjectName(QStringLiteral("tab"));
         gridLayout_6 = new QGridLayout(tab);
+        gridLayout_6->setSpacing(6);
         gridLayout_6->setObjectName(QStringLiteral("gridLayout_6"));
+        gridLayout_6->setContentsMargins(9, 9, 9, 9);
         verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
         gridLayout_6->addItem(verticalSpacer, 1, 0, 1, 1);
@@ -251,6 +265,68 @@ public:
         tabWidget->addTab(tab, QString());
         tab_2 = new QWidget();
         tab_2->setObjectName(QStringLiteral("tab_2"));
+        gridLayout_8 = new QGridLayout(tab_2);
+        gridLayout_8->setObjectName(QStringLiteral("gridLayout_8"));
+        verticalLayout_3 = new QVBoxLayout();
+        verticalLayout_3->setSpacing(0);
+        verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
+        checkBox_notch_2 = new QCheckBox(tab_2);
+        checkBox_notch_2->setObjectName(QStringLiteral("checkBox_notch_2"));
+        checkBox_notch_2->setChecked(false);
+
+        verticalLayout_3->addWidget(checkBox_notch_2);
+
+        checkBox_high_2 = new QCheckBox(tab_2);
+        checkBox_high_2->setObjectName(QStringLiteral("checkBox_high_2"));
+
+        verticalLayout_3->addWidget(checkBox_high_2);
+
+        horizontalLayout_3 = new QHBoxLayout();
+        horizontalLayout_3->setSpacing(0);
+        horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
+        label_5 = new QLabel(tab_2);
+        label_5->setObjectName(QStringLiteral("label_5"));
+
+        horizontalLayout_3->addWidget(label_5);
+
+        doubleSpinBox_high_2 = new QDoubleSpinBox(tab_2);
+        doubleSpinBox_high_2->setObjectName(QStringLiteral("doubleSpinBox_high_2"));
+        doubleSpinBox_high_2->setMaximum(1000);
+
+        horizontalLayout_3->addWidget(doubleSpinBox_high_2);
+
+
+        verticalLayout_3->addLayout(horizontalLayout_3);
+
+        checkBox_low_2 = new QCheckBox(tab_2);
+        checkBox_low_2->setObjectName(QStringLiteral("checkBox_low_2"));
+
+        verticalLayout_3->addWidget(checkBox_low_2);
+
+        horizontalLayout_4 = new QHBoxLayout();
+        horizontalLayout_4->setSpacing(0);
+        horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
+        label_6 = new QLabel(tab_2);
+        label_6->setObjectName(QStringLiteral("label_6"));
+
+        horizontalLayout_4->addWidget(label_6);
+
+        doubleSpinBox_low_2 = new QDoubleSpinBox(tab_2);
+        doubleSpinBox_low_2->setObjectName(QStringLiteral("doubleSpinBox_low_2"));
+        doubleSpinBox_low_2->setMaximum(1000);
+
+        horizontalLayout_4->addWidget(doubleSpinBox_low_2);
+
+
+        verticalLayout_3->addLayout(horizontalLayout_4);
+
+
+        gridLayout_8->addLayout(verticalLayout_3, 0, 0, 1, 1);
+
+        verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        gridLayout_8->addItem(verticalSpacer_2, 1, 0, 1, 1);
+
         tabWidget->addTab(tab_2, QString());
 
         gridLayout->addWidget(tabWidget, 0, 1, 4, 1);
@@ -295,7 +371,7 @@ public:
         gridLayout->setColumnStretch(1, 1);
         gridLayout->setColumnStretch(2, 8);
 
-        hboxLayout->addLayout(gridLayout);
+        gridLayout_7->addLayout(gridLayout, 0, 0, 1, 1);
 
         MainWindowDesign->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindowDesign);
@@ -348,6 +424,11 @@ public:
         checkBox_low->setText(QApplication::translate("MainWindowDesign", "Low Pass", Q_NULLPTR));
         label_4->setText(QApplication::translate("MainWindowDesign", "Freq.[Hz]", Q_NULLPTR));
         tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("MainWindowDesign", "Tab 1", Q_NULLPTR));
+        checkBox_notch_2->setText(QApplication::translate("MainWindowDesign", "50 Hz", Q_NULLPTR));
+        checkBox_high_2->setText(QApplication::translate("MainWindowDesign", "High Pass", Q_NULLPTR));
+        label_5->setText(QApplication::translate("MainWindowDesign", "Freq.[Hz]", Q_NULLPTR));
+        checkBox_low_2->setText(QApplication::translate("MainWindowDesign", "Low Pass", Q_NULLPTR));
+        label_6->setText(QApplication::translate("MainWindowDesign", "Freq.[Hz]", Q_NULLPTR));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("MainWindowDesign", "Tab 2", Q_NULLPTR));
         groupBox_config->setTitle(QApplication::translate("MainWindowDesign", "Configuration Log", Q_NULLPTR));
         menu_File->setTitle(QApplication::translate("MainWindowDesign", "&App", Q_NULLPTR));

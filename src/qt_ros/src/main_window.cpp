@@ -385,8 +385,8 @@ namespace qt_ros
 void qt_ros::MainWindow::on_button_connect_clicked()
 {
 	qnode.init();
-	QThread::sleep(2);
-	qDebug() << "Main wait 1 2s";
+//	QThread::sleep(2);
+//	qDebug() << "Main wait 1 2s";
 	QString sIP = ui.lineEdit_ip->text();
 	QString sPort = ui.lineEdit_port->text();
 	qDebug() << "Get connect" << sIP << "  " << sPort;
@@ -424,4 +424,35 @@ void qt_ros::MainWindow::on_checkBox_low_stateChanged(int arg1)
 void qt_ros::MainWindow::on_checkBox_high_stateChanged(int arg1)
 {
 	hp_check = arg1;
+}
+
+void qt_ros::MainWindow::on_checkBox_notch_2_stateChanged(int arg1)
+{
+    notch_check = arg1;
+}
+
+void qt_ros::MainWindow::on_checkBox_high_2_stateChanged(int arg1)
+{
+    hp_check = arg1;
+}
+
+void qt_ros::MainWindow::on_checkBox_low_2_stateChanged(int arg1)
+{
+    lp_check = arg1;
+}
+
+void qt_ros::MainWindow::on_tabWidget_currentChanged(int index)
+{
+    if (index == 0)
+    {
+        notch_check = ui.checkBox_notch->isChecked();
+        hp_check = ui.checkBox_high->isChecked();
+        lp_check = ui.checkBox_low->isChecked();
+    }
+    else if (index == 1)
+    {
+        notch_check = ui.checkBox_notch_2->isChecked();
+        hp_check = ui.checkBox_high_2->isChecked();
+        lp_check = ui.checkBox_low_2->isChecked();
+    }
 }
