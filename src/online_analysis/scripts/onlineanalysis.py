@@ -4,7 +4,7 @@ import rospy
 import numpy as np
 from scipy import signal
 from sklearn.cross_decomposition import CCA
-from statistics import median
+import basic_filterbank
 from std_msgs.msg import UInt16
 from std_msgs.msg import Bool
 from std_msgs.msg import Float32MultiArray
@@ -18,6 +18,8 @@ sampleRate = 2048
 freqList = [9, 10, 11, 12, 13, 14, 15, 16, 17]
 # 每个数据包大小
 packetSize = 512
+# 选用分析方法，method = 1:CCA，method = 2:FBCCA
+method = 2
 
 # 参数：降采样
 downSamplingNum = 8
@@ -46,6 +48,16 @@ N, Wn = signal.cheb1ord(Wp, Ws, Rp, Rs)
 # peak-to-peak ripple with R dB in the passband
 bp_R = 0.5
 B, A = signal.cheby1(N, bp_R, Wn, "bandpass")
+
+# FBCCA：滤波器组设计
+passband = [6, 14, 22, 30, 38, 46, 54, 62, 70, 78]
+stopband = [4, 10, 16, 24, 32, 40, 48, 56, 64, 72]
+# 五个子带
+num_fbs = 5
+# 权重系数
+a_fbcca = 1.25
+b_fbcca = 0.25
+fb_coefs = np.array([(n + 1.0)**(-a_fbcca) + b_fbcca for n in range(0, num_fbs)])
 
 # 生成参考信号
 num_harms = 4
@@ -76,6 +88,8 @@ for freq_i in range(0, num_freqs):
 
 # 标志相机启动与否的变量，为 false 时未启动，为 true 时启动
 camera_on = False
+
+result = 0
 
 # 用于分析的数据数组
 data_used = np.array([])
@@ -110,66 +124,102 @@ def callback_get_packet(data):
 		# the number of channels usd
 		channel_usedNum = len(ch_used)
 
-		# 构造数组，存储处理的数据
-		data_downSample = np.zeros((channel_usedNum, downBuffSize))
-		data_50hz = np.zeros((channel_usedNum, downBuffSize))
-		data_removeBaseline = np.zeros((channel_usedNum, downBuffSize))
-		data_bandpass = np.zeros((channel_usedNum, downBuffSize))
+		## data pre-processing
+		# downsampling
+		data_downSample = signal.decimate(data_chused, downSamplingNum, ftype='fir')
+		# 50Hz notch filter
+		data_50hz = signal.filtfilt(notch_b, notch_a, data_downSample)
+		# remove baseline
+		data_removeBaseline = data_50hz - np.median(data_50hz, -1).reshape(channel_usedNum, 1)
+		# bandpass filter
+		data_bandpass = signal.filtfilt(B, A, data_removeBaseline)
 
-		# data pre-processing
-		for chan_th in range(0, channel_usedNum):
-			# downsampling
-			data_downSample[chan_th, :] = signal.decimate(data_chused[chan_th, :], downSamplingNum, ftype='fir')
-			# 50Hz notch filter
-			data_50hz[chan_th, :] = signal.filtfilt(notch_b, notch_a, data_downSample[chan_th, :])
-			# remove baseline
-			data_removeBaseline[chan_th, :] = data_50hz[chan_th,:] - median(data_50hz[chan_th, :])
-			# bandpass filter
-			data_bandpass[chan_th, :] = signal.filtfilt(B, A, data_removeBaseline[chan_th, :])
+		# 现在方法二的用时是方法一的十倍
+		if method == 1:
+			# print("进入方法一")
+			# start = time.perf_counter()
 
-		# Intercept a data segment
-		ref_data = y_ref
-		test_data = data_bandpass.T
-		# CCA
-		num_class_cca = len(freqList)
-		# 用于存储数据与参考信号的相关系数
-		r_cca = np.zeros((num_class_cca))
-		for class_i in range(0, num_class_cca):
-			refdata_cca = ref_data[class_i].T
-			cca = CCA(n_components=1)
-			cca.fit(test_data, refdata_cca)
-			U, V = cca.transform(test_data, refdata_cca)
-			r_cca[class_i] = np.corrcoef(U[:, 0], V[:, 0])[0, 1]
-		# 获取相关系数值最大的序号
-		index_class_cca = np.argmax(r_cca)
-		result = freqList[index_class_cca]
+			# CCA
+			num_class_cca = len(freqList)
+			# 用于存储数据与参考信号的相关系数
+			r_cca = np.zeros((num_class_cca))
+			for class_i in range(0, num_class_cca):
+				refdata_cca = y_ref[class_i].T
+				cca = CCA(n_components=1)
+				cca.fit(data_bandpass.T, refdata_cca)
+				U, V = cca.transform(data_bandpass.T, refdata_cca)
+				r_cca[class_i] = np.corrcoef(U[:, 0], V[:, 0])[0, 1]
+			# 获取相关系数值最大的序号
+			index_class_cca = np.argmax(r_cca)
+			result = freqList[index_class_cca]
+
+			# print("退出方法一")
+			# end = time.perf_counter()
+			# print("执行一次方法一需用时", end - start)
+		elif method == 2:
+			# print("进入方法二")
+			# start = time.perf_counter()
+
+			num_class_fbcca = len(freqList)
+			# eigenvalue_r_fbcca:存储子带数据与各个参考信号的相关系数，num_fbs x num_class_fbcca的数组
+			eigenvalue_r_fbcca = np.zeros((num_fbs, num_class_fbcca))
+
+			# print("FBCCA start")
+			# start1 = time.perf_counter()
+
+			# num_fbs:子带数量
+			for fb_i in range(0, num_fbs):
+				data_fbcca = basic_filterbank.filterbank(data_bandpass, downSampleRate, fb_i)
+				# 子带数据与参考数据进行CCA分析
+				for class_i in range(0, num_class_fbcca):
+					refdata_fbcca = y_ref[class_i].T
+					fbcca = CCA(n_components=1)
+					fbcca.fit(data_fbcca.T, refdata_fbcca)
+					U, V = fbcca.transform(data_fbcca.T, refdata_fbcca)
+					eigenvalue_r_fbcca[fb_i, class_i] = np.corrcoef(U[:, 0], V[:, 0])[0, 1]
+			# 计算加权后的相关系数
+			r_fbcca = fb_coefs @ (eigenvalue_r_fbcca ** 2)
+
+			# print("FBCCA finish")
+			# end1 = time.perf_counter()
+			# print("FBCCA time", end1 - start1)
+
+			index_class_cca = np.argmax(r_fbcca)
+			result = freqList[index_class_cca]
+
+			# print("退出方法二")
+			# end = time.perf_counter()
+			# print("执行一次方法二需用时", end - start)
+
 		print('the result is', result)
 
 		result_pub = rospy.Publisher("/ResultNode", UInt16, queue_size=10)
 		state_result_pub = rospy.Publisher("/StateResultNode", Bool, queue_size=10)
+		camera_on_pub = rospy.Publisher("/PicSubSig", Bool, queue_size=10)
 		str = "the result is %u" % result
 		rospy.loginfo(str)
 		# pub.publish(result)
 
-		if result == 11:
+		if result == 14:
 			# do something
 			print("the frequency to start camera is", result)
 			camera_state = Bool()
 			camera_on = True
 			camera_state.data = camera_on
 			state_result_pub.publish(camera_state)
+			camera_on_pub.publish(camera_state)
 		if camera_on == True:
 			if result == 9:
 				print(9)
 			elif result == 10:
 				print(10)
-			elif result == 20:
+			elif result == 11:
 				print(20)
 			elif result == 12:
 				print(12)
 			elif result == 13:
 				print(13)
-			elif result == 14:
+			elif result == 20:
 				print(14)
 			elif result == 15:
 				print(15)
