@@ -2,7 +2,7 @@
 # -*- coding: UTF-8 -*-
 import rospy
 import numpy as np
-import h5py as h5
+import scipy.io as scio
 from std_msgs.msg import Float32MultiArray
 
 packetSize = 512
@@ -12,20 +12,14 @@ def talker():
     rospy.init_node('pub_packet', anonymous=True)
     rate = rospy.Rate(4)
 
-    eegdata = np.array(h5.File('/home/wuyou/eegdata.mat', 'r')['eegdata']).T
+    rawdata =  scio.loadmat('/home/wuyou/eegdata_v7.mat')
+    eegdata = np.array(rawdata['eegdata'])
+    # eegdata = np.array(h5.File('/home/sd/eegdata.mat', 'r')['eegdata']).T
     packet_pub = Float32MultiArray()
     exper_i = 0
     target_i = 0
     packet_i = 0
     while not rospy.is_shutdown():
-    # for exper_i in range(0, eegdata.shape[3]):
-    #     for target_i in range(0, eegdata.shape[2]):
-    #         for packet_i in range(0, 36):
-    #             packet = eegdata[:, packet_i * packetSize : (packet_i + 1) * packetSize, target_i, exper_i]
-    #             packet_pub.data = packet.reshape(35 * 512)
-    #             rospy.loginfo("I publish")
-    #             pub.publish(packet_pub)
-    #             rate.sleep()
         packet = eegdata[:, packet_i * packetSize : (packet_i + 1) * packetSize, target_i, exper_i]
         packet_pub.data = packet.reshape(35 * 512)
         rospy.loginfo("I publish: %i exper, %i target, %i packet", exper_i + 1, target_i + 1, packet_i + 1)

@@ -1,2 +1,2 @@
-online_analysis:qt_ros
+key_read:online_analysis:qt_ros
 -DCATKIN_DEVEL_PREFIX=/home/wuyou/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/wuyou/catkin_ws/install -G Unix Makefiles

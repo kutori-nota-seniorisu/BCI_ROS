@@ -5,17 +5,18 @@ import numpy as np
 from scipy import signal
 from sklearn.cross_decomposition import CCA
 import basic_filterbank
+import sincos_ref
 from std_msgs.msg import UInt16
 from std_msgs.msg import Bool
 from std_msgs.msg import Float32MultiArray
 
 # 相关变量及参数设置
-# 数组缓存区大小
-BUFFSIZE = 8192
 # 采样频率，默认为2048Hz
 sampleRate = 2048
+# 数组缓存区大小
+BUFFSIZE = sampleRate * 2
 # 频率序列
-freqList = [9, 10, 11, 12, 13, 14, 15, 16, 17]
+freqList = [9, 10, 11, 12, 13, 14, 15, 16, 17, 19]
 # 每个数据包大小
 packetSize = 512
 # 选用分析方法，method = 1:CCA，method = 2:FBCCA
@@ -49,9 +50,6 @@ N, Wn = signal.cheb1ord(Wp, Ws, Rp, Rs)
 bp_R = 0.5
 B, A = signal.cheby1(N, bp_R, Wn, "bandpass")
 
-# FBCCA：滤波器组设计
-passband = [6, 14, 22, 30, 38, 46, 54, 62, 70, 78]
-stopband = [4, 10, 16, 24, 32, 40, 48, 56, 64, 72]
 # 五个子带
 num_fbs = 5
 # 权重系数
@@ -85,14 +83,17 @@ for freq_i in range(0, num_freqs):
 		tmp[2 * harm_i] = (np.sin(2 * np.pi * (harm_i + 1) *stim_freq * t) + w_sincos * temp_d_sin)
 		tmp[2 * harm_i + 1] = (np.cos(2 * np.pi * (harm_i + 1) *stim_freq * t) + w_sincos * temp_d_cos)
 	y_ref[freq_i] = tmp
-
+# y_ref = sincos_ref.sincosref(freqList, downSampleRate, downBuffSize, 4, 0)
 # 标志相机启动与否的变量，为 false 时未启动，为 true 时启动
 camera_on = False
 
-result = 0
-
 # 用于分析的数据数组
 data_used = np.array([])
+
+# 用于记录已经分析的结果
+pre_res = 0
+# 用于记录结果相同的次数
+eq_cnt = 0
 
 def callback_get_rate(rate):
 	global sampleRate
@@ -101,11 +102,11 @@ def callback_get_rate(rate):
 
 def callback_get_packet(data):
 	# print("I subscibe")
-
 	# 把一维数组转换成二维数组
 	rawdata = np.array(data.data[:]).reshape(35, 512)
 	# 判断，是初始化，还是将数据拼接
 	global data_used, camera_on
+	global pre_res, eq_cnt
 	if data_used.size == 0:
 		data_used = rawdata
 	else:
@@ -114,8 +115,10 @@ def callback_get_packet(data):
 		if delta >= 0:
 			if (delta / packetSize) % 2 == 0:
 				data_used = data_used[:, -BUFFSIZE : ]
-	rospy.loginfo("data_used samples: %f", data_used.shape[1])
+	
 	if data_used.shape[1] == BUFFSIZE:
+		print("analysis start")
+		print('data used samples', data_used.shape[1])
 		# 当数组长度超过缓存长度，则进行处理
 		# 选择导联
 		ch_used = [20, 24, 25, 26, 27, 28, 29, 30, 31]
@@ -134,11 +137,11 @@ def callback_get_packet(data):
 		# bandpass filter
 		data_bandpass = signal.filtfilt(B, A, data_removeBaseline)
 
+		# 存储分类结果
+		result = 0
+
 		# 现在方法二的用时是方法一的十倍
 		if method == 1:
-			# print("进入方法一")
-			# start = time.perf_counter()
-
 			# CCA
 			num_class_cca = len(freqList)
 			# 用于存储数据与参考信号的相关系数
@@ -149,26 +152,20 @@ def callback_get_packet(data):
 				cca.fit(data_bandpass.T, refdata_cca)
 				U, V = cca.transform(data_bandpass.T, refdata_cca)
 				r_cca[class_i] = np.corrcoef(U[:, 0], V[:, 0])[0, 1]
+			# print("rcca:", r_cca)
 			# 获取相关系数值最大的序号
 			index_class_cca = np.argmax(r_cca)
 			result = freqList[index_class_cca]
 
-			# print("退出方法一")
-			# end = time.perf_counter()
-			# print("执行一次方法一需用时", end - start)
 		elif method == 2:
-			# print("进入方法二")
-			# start = time.perf_counter()
-
+			# FBCCA
 			num_class_fbcca = len(freqList)
 			# eigenvalue_r_fbcca:存储子带数据与各个参考信号的相关系数，num_fbs x num_class_fbcca的数组
 			eigenvalue_r_fbcca = np.zeros((num_fbs, num_class_fbcca))
 
-			# print("FBCCA start")
-			# start1 = time.perf_counter()
-
 			# num_fbs:子带数量
 			for fb_i in range(0, num_fbs):
+				# 生成滤波器
 				data_fbcca = basic_filterbank.filterbank(data_bandpass, downSampleRate, fb_i)
 				# 子带数据与参考数据进行CCA分析
 				for class_i in range(0, num_class_fbcca):
@@ -179,28 +176,27 @@ def callback_get_packet(data):
 					eigenvalue_r_fbcca[fb_i, class_i] = np.corrcoef(U[:, 0], V[:, 0])[0, 1]
 			# 计算加权后的相关系数
 			r_fbcca = fb_coefs @ (eigenvalue_r_fbcca ** 2)
-
-			# print("FBCCA finish")
-			# end1 = time.perf_counter()
-			# print("FBCCA time", end1 - start1)
+			# print("rfbcca:", r_fbcca)
 
 			index_class_cca = np.argmax(r_fbcca)
 			result = freqList[index_class_cca]
-
-			# print("退出方法二")
-			# end = time.perf_counter()
-			# print("执行一次方法二需用时", end - start)
-
 		print('the result is', result)
+		# print("the pre result is", pre_res)
+
+		if result == pre_res:
+			eq_cnt = eq_cnt + 1
+		else:
+			eq_cnt = 0
+		pre_res = result
+		
+		if eq_cnt == 4:
+			print("the result is", result, ", the result is accurate!")
 
 		result_pub = rospy.Publisher("/ResultNode", UInt16, queue_size=10)
 		state_result_pub = rospy.Publisher("/StateResultNode", Bool, queue_size=10)
 		camera_on_pub = rospy.Publisher("/PicSubSig", Bool, queue_size=10)
-		str = "the result is %u" % result
-		rospy.loginfo(str)
-		# pub.publish(result)
 
-		if result == 14:
+		if result == 19:
 			# do something
 			print("the frequency to start camera is", result)
 			camera_state = Bool()
@@ -208,36 +204,32 @@ def callback_get_packet(data):
 			camera_state.data = camera_on
 			state_result_pub.publish(camera_state)
 			camera_on_pub.publish(camera_state)
-		if camera_on == True:
-			if result == 9:
-				print(9)
-			elif result == 10:
-				print(10)
-			elif result == 11:
-				print(20)
-			elif result == 12:
-				print(12)
-			elif result == 13:
-				print(13)
-			elif result == 20:
-				print(14)
-			elif result == 15:
-				print(15)
-			elif result == 16:
-				print(16)
-			elif result == 17:
-				print(17)
-			else:
-				print("no")
-			res_pub = UInt16()
-			res_pub.data = result
-			result_pub.publish(res_pub)
-			# result_pub.publish(result)
-
-
+		# if camera_on == True:
+		# 	if result == 9:
+		# 		print(9)
+		# 	elif result == 10:
+		# 		print(10)
+		# 	elif result == 11:
+		# 		print(11)
+		# 	elif result == 12:
+		# 		print(12)
+		# 	elif result == 13:
+		# 		print(13)
+		# 	elif result == 14:
+		# 		print(14)
+		# 	elif result == 15:
+		# 		print(15)
+		# 	elif result == 16:
+		# 		print(16)
+		# 	elif result == 17:
+		# 		print(17)
+		# 	else:
+		# 		print("no")
+		# 	res_pub = UInt16()
+		# 	res_pub.data = result
+		# 	result_pub.publish(res_pub)
 
 def listener():
-
     # In ROS, nodes are uniquely named. If two nodes with the same
     # name are launched, the previous one is kicked off. The
     # anonymous=True flag means that rospy will choose a unique

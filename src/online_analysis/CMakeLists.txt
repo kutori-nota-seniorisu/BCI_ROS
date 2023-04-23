@@ -164,11 +164,11 @@ include_directories(
 #   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 # )
 catkin_install_python(PROGRAMS
-	scripts/chatsub.py
 	scripts/chatpub.py
   scripts/onlineanalysis.py
   scripts/talker.py
   scripts/listener.py
+  scripts/eeg_pub.py
 	DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
