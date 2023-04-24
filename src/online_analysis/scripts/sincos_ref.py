@@ -25,4 +25,4 @@ def sincosref(list_freqs, fs, num_smpls, num_harms, w_sincos):
             tmp[2 * harm_i + 1] = (np.cos(2 * np.pi * (harm_i + 1) *stim_freq * t) + w_sincos * temp_d_cos)
         y_ref[freq_i] = tmp
 
-        return y_ref
+    return y_ref

@@ -56,7 +56,6 @@ def callback_get_keys(msg):
     packet_i = 0
 		
 if __name__ == '__main__':
-    # listener()
     rospy.init_node('pub_packet', anonymous=True)
     rospy.Subscriber('keys', String, callback_get_keys)
     talker()
