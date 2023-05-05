@@ -169,6 +169,7 @@ catkin_install_python(PROGRAMS
   scripts/talker.py
   scripts/listener.py
   scripts/eeg_pub.py
+  scripts/key_read.py
 	DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 

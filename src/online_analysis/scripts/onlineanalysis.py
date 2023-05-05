@@ -69,11 +69,6 @@ camera_on = False
 # 用于分析的数据数组
 data_used = np.array([])
 
-# 用于记录已经分析的结果
-pre_res = 0
-# 用于记录结果相同的次数
-eq_cnt = 0
-
 # 获取采样频率
 def callback_get_rate(rate):
 	global sampleRate
@@ -99,7 +94,6 @@ def callback_get_packet(data):
 	
 	if data_used.shape[1] == BUFFSIZE:
 		print("analysis start")
-		print('data used samples', data_used.shape[1])
 		# 当数组长度超过缓存长度，则进行处理
 		# 选择导联
 		ch_used = [20, 24, 25, 26, 27, 28, 29, 30, 31]
@@ -156,27 +150,28 @@ def callback_get_packet(data):
 					eigenvalue_r_fbcca[fb_i, class_i] = np.corrcoef(U[:, 0], V[:, 0])[0, 1]
 			# 计算加权后的相关系数
 			r_fbcca = fb_coefs @ (eigenvalue_r_fbcca ** 2)
+			print("FBCCA:", r_fbcca)
+			r_fbcca_S = r_fbcca / np.sum(r_fbcca)
+			print("Sum R:", r_fbcca_S)
+			r_fbcca_E = np.exp(r_fbcca) / np.sum(np.exp(r_fbcca))
+			print("Exp R:", r_fbcca_E)
+			r_fbcca_2E = np.exp(2 * r_fbcca) / np.sum(np.exp(2 * r_fbcca))
+			print("2 Exp R:", r_fbcca_2E)
+			
 
 			index_class_cca = np.argmax(r_fbcca)
 			result = freqList[index_class_cca]
 		print('the result is', result)
 
-		if result == pre_res:
-			eq_cnt = eq_cnt + 1
-		else:
-			eq_cnt = 0
-		pre_res = result
+		print("analysis finish\n")
 		
-		if eq_cnt == 4:
-			print("the result is", result, ", the result is accurate!")
-
 		result_pub = rospy.Publisher("/ResultNode", UInt16, queue_size=10)
 		state_result_pub = rospy.Publisher("/StateResultNode", Bool, queue_size=10)
 		camera_on_pub = rospy.Publisher("/PicSubSig", Bool, queue_size=10)
 
 		if result == 19:
 			# do something
-			print("the frequency to start camera is", result)
+			# print("the frequency to start camera is", result)
 			camera_state = Bool()
 			camera_on = True
 			camera_state.data = camera_on
