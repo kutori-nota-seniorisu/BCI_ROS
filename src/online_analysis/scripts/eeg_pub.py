@@ -15,7 +15,7 @@ rawdata =  scio.loadmat('/home/wuyou/eegdata_del3s_dim2cat_v7.mat')
 eegdata = np.array(rawdata['eegdata']) # 35x122880x9
 print("I read finish")
 
-# 生成19Hz噪声信号
+# 生成19Hz信号
 t = np.array([(i * 1.0) / 2048 for i in range(0, 122880)])
 sin30ref = np.sin(2 * np.pi * 19 * t)
 sin30ref = np.tile(sin30ref, (35, 1))
