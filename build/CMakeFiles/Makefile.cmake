@@ -76,6 +76,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/home/wuyou/catkin_ws/src/online_analysis/package.xml"
   "/home/wuyou/catkin_ws/src/online_analysis/scripts/chatpub.py"
   "/home/wuyou/catkin_ws/src/online_analysis/scripts/eeg_pub.py"
+  "/home/wuyou/catkin_ws/src/online_analysis/scripts/key_read.py"
   "/home/wuyou/catkin_ws/src/online_analysis/scripts/listener.py"
   "/home/wuyou/catkin_ws/src/online_analysis/scripts/onlineanalysis.py"
   "/home/wuyou/catkin_ws/src/online_analysis/scripts/talker.py"

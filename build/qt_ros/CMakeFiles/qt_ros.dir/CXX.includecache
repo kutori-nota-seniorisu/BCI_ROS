@@ -4406,17 +4406,9 @@ qapplication.h
 qbuttongroup.h
 /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/qbuttongroup.h
 
-/home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QCheckBox
-qcheckbox.h
-/home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/qcheckbox.h
-
 /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QCommonStyle
 qcommonstyle.h
 /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/qcommonstyle.h
-
-/home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QDoubleSpinBox
-qspinbox.h
-/home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/qspinbox.h
 
 /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QGraphicsView
 qgraphicsview.h
@@ -4433,10 +4425,6 @@ qgridlayout.h
 /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QGroupBox
 qgroupbox.h
 /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/qgroupbox.h
-
-/home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QHBoxLayout
-qboxlayout.h
-/home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/qboxlayout.h
 
 /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QHeaderView
 qheaderview.h
@@ -4482,21 +4470,9 @@ qpushbutton.h
 qscrollerproperties.h
 /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/qscrollerproperties.h
 
-/home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QSpacerItem
-qlayoutitem.h
-/home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/qlayoutitem.h
-
 /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QStatusBar
 qstatusbar.h
 /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/qstatusbar.h
-
-/home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QTabWidget
-qtabwidget.h
-/home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/qtabwidget.h
-
-/home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QVBoxLayout
-qboxlayout.h
-/home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/qboxlayout.h
 
 /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QWidget
 qwidget.h
@@ -6943,15 +6919,9 @@ QtWidgets/QApplication
 -
 QtWidgets/QButtonGroup
 -
-QtWidgets/QCheckBox
--
-QtWidgets/QDoubleSpinBox
--
 QtWidgets/QGridLayout
 -
 QtWidgets/QGroupBox
--
-QtWidgets/QHBoxLayout
 -
 QtWidgets/QHeaderView
 -
@@ -6969,16 +6939,8 @@ QtWidgets/QMenuBar
 -
 QtWidgets/QPushButton
 -
-QtWidgets/QSpacerItem
--
 QtWidgets/QStatusBar
 -
-QtWidgets/QTabWidget
--
-QtWidgets/QVBoxLayout
--
 QtWidgets/QWidget
--
-qchartview.h
 -
 

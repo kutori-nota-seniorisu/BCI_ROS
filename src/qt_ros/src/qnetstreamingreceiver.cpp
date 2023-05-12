@@ -91,11 +91,8 @@ namespace qt_ros
 		{
 			qDebug() << "Closing Client";
 
-			//    m_Thread.End();
-
 			m_bClientInited = false;
 			m_SocketClient->close();
-			//    WSACleanup();
 
 			m_bBasicInfoValid = false;
 			m_nChannelInfoListSize = 0;
@@ -132,7 +129,6 @@ namespace qt_ros
 		while (m_nNetStreamingVersion == -1 && nCounter < 10)
 		{
 			m_SocketClient->waitForReadyRead(200);
-			// usleep(50);
 			if (FAILED(ListenClient(1, NULL)))
 			{
 				qDebug() << "Failed to receive NetStreaming Version";
@@ -140,8 +136,6 @@ namespace qt_ros
 			}
 			++nCounter;
 		}
-
-		//	qDebug() << m_nNetStreamingVersion;
 
 		Log(Config, "NetStreaming Version " + QString::number(m_nNetStreamingVersion));
 
@@ -181,8 +175,6 @@ namespace qt_ros
 			}
 			++nCounter;
 		}
-
-		//	qDebug() << "pnBasicInfo Rate: " + QString::number(m_BasicInfo.nRate);
 
 		if (m_bBasicInfoValid)
 		{
@@ -254,9 +246,7 @@ namespace qt_ros
 				}
 				logChannel += ' ';
 
-//                emit SendLabel(m_pChannelInfoList[i].wcLabel);
 			}
-			//		qDebug() << logChannel;
 			Log(Config, logChannel);
 
 			return S_OK;
@@ -343,7 +333,6 @@ namespace qt_ros
 		DWORD dwSize = pMessage->m_dwSize;
 
 		pMessage->Convert();
-		//  pMessage->Convert(true);	应该用不到了
 
 		if (socket->write(pMessage->m_chId, pMessage->GetHeaderSize()) == -1)
 		{
@@ -406,8 +395,6 @@ namespace qt_ros
 				free(pMessage->m_pBody);
 				pMessage->m_pBody = NULL;
 			}
-
-			// ASSERT(pMessage->m_dwSize < 10 * 1024 * 1024); //we don't really expect more than 10 MB of data per block
 
 			if (!(pMessage->m_pBody = (char *)calloc(pMessage->m_dwSize, SIZE_C)))
 			{
@@ -502,7 +489,6 @@ namespace qt_ros
 					bMessageHandled = true;
 					break;
 				default:
-					// ASSERT(false);
 					break;
 				}
 				break;
@@ -536,7 +522,6 @@ namespace qt_ros
 					else
 					{
 						m_nNetStreamingVersion = -1;
-						//	          ASSERT(false);
 					}
 				}
 				break;
@@ -550,10 +535,6 @@ namespace qt_ros
 						m_bBasicInfoValid = (m_BasicInfo.nEegChan > 0 && m_BasicInfo.nEegChan < MAX_CHANNELS && m_BasicInfo.nRate > 0) ||
 											(m_BasicInfo.nEegChan == -1 && m_BasicInfo.nRate == -1); // if values are -1, the amplifier is not connected yet
 						bMessageHandled = true;
-					}
-					else
-					{
-						//	          ASSERT(false);
 					}
 				}
 				break;
@@ -578,12 +559,7 @@ namespace qt_ros
 						else
 						{
 							hr = E_OUTOFMEMORY;
-							//	            ASSERT(false);
 						}
-					}
-					else
-					{
-						//	          ASSERT(false);
 					}
 				}
 				break;
@@ -594,10 +570,6 @@ namespace qt_ros
 					{
 						memcpy((void *)&m_nServerAmpStatus, pMessage->m_pBody, sizeof(m_nServerAmpStatus));
 						bMessageHandled = true;
-					}
-					else
-					{
-						//	          ASSERT(false);
 					}
 				}
 				break;
@@ -612,13 +584,11 @@ namespace qt_ros
 					else
 					{
 						m_dTimePackageReceived = 0;
-						//	          ASSERT(false);
 					}
 				}
 				break;
 
 				default:
-					//	        ASSERT(false); //unexpected request
 					break;
 				}
 				break;
@@ -663,7 +633,6 @@ namespace qt_ros
 					}
 					break;
 				default:
-					//				ASSERT(false);
 					break;
 				}
 				break;
@@ -680,13 +649,11 @@ namespace qt_ros
 					}
 					break;
 				default:
-					//				ASSERT(false);
 					break;
 				}
 				break;
 
 			default:
-				//	      ASSERT(false);
 				break;
 			}
 		}
@@ -731,28 +698,8 @@ namespace qt_ros
 		}
 
 		s = "Received Data (StartSample: " + QString::number(unBlockStartSample) + ", " + QString::number(nNumSamples) + " samples)";
-
-		//	qDebug() << "Received Data (StartSample: " << unBlockStartSample << ", " << nNumSamples << " samples)";
-		//	qDebug() << s;
 		Log(Commu, s);
 
-		/*
-		QString path = "/home/wuyou/out_raw.txt";
-		QFile file(path);
-		file.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Append);
-		QTextStream out(&file);
-		for (int i = 0; i < m_BasicInfo.nEegChan; ++i)
-		{
-			for (int j = 0; j < nNumSamples; ++j)
-			{
-				out << pfData[i * m_BasicInfo.nEegChan + j] << '\t';
-			}
-			out << '\n';
-		}
-		file.close();
-		*/
-
-		emit SendData(pfData, m_BasicInfo.nEegChan, nNumSamples);
 		return S_OK;
 	}
 
@@ -783,13 +730,8 @@ namespace qt_ros
 									   : fImp;
 			sTmp = QString::number(n + 1) + ": " + QString::number(re) + '\t';
 			s += sTmp;
-			//		sTmp.Format(L"%d: %.1f\t", n+1,   fImp < 0.0f	? 0.0f
-			//										: fImp > 250.0f	? 250.0f
-			//										: fImp);
-			//		s.Append(sTmp);
 		}
 		Log(Events, s);
-		//	AddLogLine(s,1);
 
 		return S_OK;
 	}
@@ -813,7 +755,6 @@ namespace qt_ros
 				if (pEventData[n].wcEventAnnotation[i] != '\0')
 					++len;
 			}
-			// if (wcslen(pEventData[n].wcEventAnnotation) > 0)
 			if (len > 0)
 			{
 				int j = 0;
@@ -824,15 +765,12 @@ namespace qt_ros
 					++j;
 				}
 				s = "Event: " + QString::number(pEventData[n].nEventType) + " (" + EventAnnotation + ")\t sample: " + QString::number(pEventData[n].nEventStart) + "\n";
-				//			s.Format(L"Event: %d (%s)\t sample: %d\n", pEventData[n].nEventType, pEventData[n].wcEventAnnotation, pEventData[n].nEventStart);
 			}
 			else
 			{
 				s = "Event: " + QString::number(pEventData[n].nEventType) + "\t sample: " + QString::number(pEventData[n].nEventStart) + "\n";
-				//			s.Format(L"Event: %d\t sample: %d\n", pEventData[n].nEventType, pEventData[n].nEventStart);
 			}
 
-			//		AddLogLine(s,2);
 			qDebug() << s;
 			Log(Events, s);
 		}
@@ -883,18 +821,6 @@ namespace qt_ros
 		BasicInfoAcq m_basicInfo;
 
 		m_SocketClient = new QTcpSocket;
-		//	QThread::sleep(2);
-		//	qDebug() << "QNetStream Run, wait 2s";
-		//	qDebug() << m_sNetstreamClientServerIP;
-		//	qDebug() << m_usNetstreamPort;
-
-		//	if (SUCCEEDED(hr = OpenClient()))
-		//		qDebug() << "Open Success";
-		//	else
-		//	{
-		//		qDebug() << "Open Failed";
-		//		//				break;
-		//	}
 		hr = OpenClient();
 
 		if (SUCCEEDED(ClientCheckNetStreamingVersion()))
@@ -902,7 +828,6 @@ namespace qt_ros
 		else
 		{
 			qDebug() << "Check Failed";
-			//				break;
 		}
 
 		if (SUCCEEDED(hr = ClientGetBasicInfo(&m_basicInfo)))
@@ -913,7 +838,6 @@ namespace qt_ros
 		else
 		{
 			qDebug() << "Get Basic Info Failed";
-			//				break;
 		}
 
 		// get channel properties (label, group, 3D position, etc)
@@ -923,12 +847,9 @@ namespace qt_ros
 		if (!pNetStreamingChannelInfoList)
 		{
 			hr = E_OUTOFMEMORY;
-            //break;
-		}
-		//	QThread::sleep(1);
+        }
 		if (FAILED(hr = ClientGetChannelInfoList(pNetStreamingChannelInfoList, nNetStreamingChannelInfoListSize)))
 		{
-            //break;
 		}
 		for (long n = 0; n < m_basicInfo.nEegChan; ++n)
 		{
@@ -937,11 +858,9 @@ namespace qt_ros
 					 << pNetStreamingChannelInfoList[n].wcLabel[2]
 					 << pNetStreamingChannelInfoList[n].wcLabel[3];
 		}
-		//	QThread::sleep(1);
 		// notify server to start sending data
 		if (FAILED(hr = ClientRequestStreamData(true)))
 		{
-			//	break;
 		}
 		std::atomic<bool> m_bActive;
 		m_bActive = true;

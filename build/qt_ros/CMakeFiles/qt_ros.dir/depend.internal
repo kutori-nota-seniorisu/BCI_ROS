@@ -460,14 +460,11 @@ qt_ros/CMakeFiles/qt_ros.dir/include/qt_ros/moc_main_window.cpp.o
  /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QAction
  /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QApplication
  /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QButtonGroup
- /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QCheckBox
  /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QCommonStyle
- /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QDoubleSpinBox
  /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QGraphicsView
  /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QGraphicsWidget
  /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QGridLayout
  /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QGroupBox
- /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QHBoxLayout
  /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QHeaderView
  /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QLabel
  /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QLayout
@@ -478,10 +475,7 @@ qt_ros/CMakeFiles/qt_ros.dir/include/qt_ros/moc_main_window.cpp.o
  /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QMenuBar
  /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QPushButton
  /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QScrollerProperties
- /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QSpacerItem
  /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QStatusBar
- /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QTabWidget
- /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QVBoxLayout
  /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QWidget
  /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QtWidgets
  /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QtWidgetsDepends
@@ -1423,14 +1417,11 @@ qt_ros/CMakeFiles/qt_ros.dir/src/main.cpp.o
  /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QAction
  /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QApplication
  /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QButtonGroup
- /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QCheckBox
  /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QCommonStyle
- /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QDoubleSpinBox
  /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QGraphicsView
  /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QGraphicsWidget
  /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QGridLayout
  /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QGroupBox
- /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QHBoxLayout
  /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QHeaderView
  /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QLabel
  /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QLayout
@@ -1441,10 +1432,7 @@ qt_ros/CMakeFiles/qt_ros.dir/src/main.cpp.o
  /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QMenuBar
  /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QPushButton
  /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QScrollerProperties
- /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QSpacerItem
  /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QStatusBar
- /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QTabWidget
- /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QVBoxLayout
  /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QWidget
  /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QtWidgets
  /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QtWidgetsDepends
@@ -2104,14 +2092,11 @@ qt_ros/CMakeFiles/qt_ros.dir/src/main_window.cpp.o
  /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QAction
  /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QApplication
  /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QButtonGroup
- /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QCheckBox
  /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QCommonStyle
- /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QDoubleSpinBox
  /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QGraphicsView
  /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QGraphicsWidget
  /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QGridLayout
  /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QGroupBox
- /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QHBoxLayout
  /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QHeaderView
  /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QLabel
  /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QLayout
@@ -2123,10 +2108,7 @@ qt_ros/CMakeFiles/qt_ros.dir/src/main_window.cpp.o
  /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QMessageBox
  /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QPushButton
  /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QScrollerProperties
- /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QSpacerItem
  /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QStatusBar
- /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QTabWidget
- /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QVBoxLayout
  /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QWidget
  /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QtWidgets
  /home/wuyou/Qt5.9.9/5.9.9/gcc_64/include/QtWidgets/QtWidgetsDepends

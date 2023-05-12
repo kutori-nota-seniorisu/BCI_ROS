@@ -14,11 +14,8 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
-#include <QtWidgets/QCheckBox>
-#include <QtWidgets/QDoubleSpinBox>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QGroupBox>
-#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
@@ -27,12 +24,8 @@
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
-#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QStatusBar>
-#include <QtWidgets/QTabWidget>
-#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
-#include <qchartview.h>
 
 QT_BEGIN_NAMESPACE
 
@@ -46,6 +39,9 @@ public:
     QWidget *centralwidget;
     QGridLayout *gridLayout_7;
     QGridLayout *gridLayout;
+    QGroupBox *groupBox_config;
+    QGridLayout *gridLayout_3;
+    QListView *listView_config;
     QGroupBox *groupBox_com;
     QGridLayout *gridLayout_4;
     QListView *listView_com;
@@ -58,38 +54,6 @@ public:
     QLineEdit *lineEdit_port;
     QPushButton *button_connect;
     QLineEdit *lineEdit_ip;
-    QTabWidget *tabWidget;
-    QWidget *tab;
-    QGridLayout *gridLayout_6;
-    QSpacerItem *verticalSpacer;
-    QVBoxLayout *verticalLayout;
-    QCheckBox *checkBox_notch;
-    QCheckBox *checkBox_high;
-    QHBoxLayout *horizontalLayout;
-    QLabel *label_3;
-    QDoubleSpinBox *doubleSpinBox_high;
-    QCheckBox *checkBox_low;
-    QHBoxLayout *horizontalLayout_2;
-    QLabel *label_4;
-    QDoubleSpinBox *doubleSpinBox_low;
-    QWidget *tab_2;
-    QGridLayout *gridLayout_8;
-    QVBoxLayout *verticalLayout_3;
-    QCheckBox *checkBox_notch_2;
-    QCheckBox *checkBox_high_2;
-    QHBoxLayout *horizontalLayout_3;
-    QLabel *label_5;
-    QDoubleSpinBox *doubleSpinBox_high_2;
-    QCheckBox *checkBox_low_2;
-    QHBoxLayout *horizontalLayout_4;
-    QLabel *label_6;
-    QDoubleSpinBox *doubleSpinBox_low_2;
-    QSpacerItem *verticalSpacer_2;
-    QGroupBox *groupBox_config;
-    QGridLayout *gridLayout_3;
-    QListView *listView_config;
-    QGridLayout *gridLayout_chartwidget;
-    QChartView *chartwidget;
     QMenuBar *menubar;
     QMenu *menu_File;
     QStatusBar *statusbar;
@@ -119,6 +83,27 @@ public:
         gridLayout = new QGridLayout();
         gridLayout->setSpacing(0);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
+        groupBox_config = new QGroupBox(centralwidget);
+        groupBox_config->setObjectName(QStringLiteral("groupBox_config"));
+        QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(groupBox_config->sizePolicy().hasHeightForWidth());
+        groupBox_config->setSizePolicy(sizePolicy);
+        gridLayout_3 = new QGridLayout(groupBox_config);
+        gridLayout_3->setObjectName(QStringLiteral("gridLayout_3"));
+        gridLayout_3->setHorizontalSpacing(6);
+        gridLayout_3->setContentsMargins(0, 0, 0, 0);
+        listView_config = new QListView(groupBox_config);
+        listView_config->setObjectName(QStringLiteral("listView_config"));
+        sizePolicy.setHeightForWidth(listView_config->sizePolicy().hasHeightForWidth());
+        listView_config->setSizePolicy(sizePolicy);
+
+        gridLayout_3->addWidget(listView_config, 0, 0, 1, 1);
+
+
+        gridLayout->addWidget(groupBox_config, 1, 0, 1, 1);
+
         groupBox_com = new QGroupBox(centralwidget);
         groupBox_com->setObjectName(QStringLiteral("groupBox_com"));
         gridLayout_4 = new QGridLayout(groupBox_com);
@@ -126,9 +111,6 @@ public:
         gridLayout_4->setContentsMargins(0, 0, 0, 0);
         listView_com = new QListView(groupBox_com);
         listView_com->setObjectName(QStringLiteral("listView_com"));
-        QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-        sizePolicy.setHorizontalStretch(0);
-        sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(listView_com->sizePolicy().hasHeightForWidth());
         listView_com->setSizePolicy(sizePolicy);
 
@@ -192,184 +174,8 @@ public:
 
         gridLayout->addLayout(gridLayout_2, 0, 0, 1, 1);
 
-        tabWidget = new QTabWidget(centralwidget);
-        tabWidget->setObjectName(QStringLiteral("tabWidget"));
-        sizePolicy.setHeightForWidth(tabWidget->sizePolicy().hasHeightForWidth());
-        tabWidget->setSizePolicy(sizePolicy);
-        tab = new QWidget();
-        tab->setObjectName(QStringLiteral("tab"));
-        gridLayout_6 = new QGridLayout(tab);
-        gridLayout_6->setSpacing(6);
-        gridLayout_6->setObjectName(QStringLiteral("gridLayout_6"));
-        gridLayout_6->setContentsMargins(9, 9, 9, 9);
-        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        gridLayout_6->addItem(verticalSpacer, 1, 0, 1, 1);
-
-        verticalLayout = new QVBoxLayout();
-        verticalLayout->setSpacing(0);
-        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        checkBox_notch = new QCheckBox(tab);
-        checkBox_notch->setObjectName(QStringLiteral("checkBox_notch"));
-        checkBox_notch->setChecked(false);
-
-        verticalLayout->addWidget(checkBox_notch);
-
-        checkBox_high = new QCheckBox(tab);
-        checkBox_high->setObjectName(QStringLiteral("checkBox_high"));
-
-        verticalLayout->addWidget(checkBox_high);
-
-        horizontalLayout = new QHBoxLayout();
-        horizontalLayout->setSpacing(0);
-        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        label_3 = new QLabel(tab);
-        label_3->setObjectName(QStringLiteral("label_3"));
-
-        horizontalLayout->addWidget(label_3);
-
-        doubleSpinBox_high = new QDoubleSpinBox(tab);
-        doubleSpinBox_high->setObjectName(QStringLiteral("doubleSpinBox_high"));
-        doubleSpinBox_high->setMaximum(1000);
-
-        horizontalLayout->addWidget(doubleSpinBox_high);
-
-
-        verticalLayout->addLayout(horizontalLayout);
-
-        checkBox_low = new QCheckBox(tab);
-        checkBox_low->setObjectName(QStringLiteral("checkBox_low"));
-
-        verticalLayout->addWidget(checkBox_low);
-
-        horizontalLayout_2 = new QHBoxLayout();
-        horizontalLayout_2->setSpacing(0);
-        horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
-        label_4 = new QLabel(tab);
-        label_4->setObjectName(QStringLiteral("label_4"));
-
-        horizontalLayout_2->addWidget(label_4);
-
-        doubleSpinBox_low = new QDoubleSpinBox(tab);
-        doubleSpinBox_low->setObjectName(QStringLiteral("doubleSpinBox_low"));
-        doubleSpinBox_low->setMaximum(1000);
-
-        horizontalLayout_2->addWidget(doubleSpinBox_low);
-
-
-        verticalLayout->addLayout(horizontalLayout_2);
-
-
-        gridLayout_6->addLayout(verticalLayout, 0, 0, 1, 1);
-
-        tabWidget->addTab(tab, QString());
-        tab_2 = new QWidget();
-        tab_2->setObjectName(QStringLiteral("tab_2"));
-        gridLayout_8 = new QGridLayout(tab_2);
-        gridLayout_8->setObjectName(QStringLiteral("gridLayout_8"));
-        verticalLayout_3 = new QVBoxLayout();
-        verticalLayout_3->setSpacing(0);
-        verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
-        checkBox_notch_2 = new QCheckBox(tab_2);
-        checkBox_notch_2->setObjectName(QStringLiteral("checkBox_notch_2"));
-        checkBox_notch_2->setChecked(false);
-
-        verticalLayout_3->addWidget(checkBox_notch_2);
-
-        checkBox_high_2 = new QCheckBox(tab_2);
-        checkBox_high_2->setObjectName(QStringLiteral("checkBox_high_2"));
-
-        verticalLayout_3->addWidget(checkBox_high_2);
-
-        horizontalLayout_3 = new QHBoxLayout();
-        horizontalLayout_3->setSpacing(0);
-        horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
-        label_5 = new QLabel(tab_2);
-        label_5->setObjectName(QStringLiteral("label_5"));
-
-        horizontalLayout_3->addWidget(label_5);
-
-        doubleSpinBox_high_2 = new QDoubleSpinBox(tab_2);
-        doubleSpinBox_high_2->setObjectName(QStringLiteral("doubleSpinBox_high_2"));
-        doubleSpinBox_high_2->setMaximum(1000);
-
-        horizontalLayout_3->addWidget(doubleSpinBox_high_2);
-
-
-        verticalLayout_3->addLayout(horizontalLayout_3);
-
-        checkBox_low_2 = new QCheckBox(tab_2);
-        checkBox_low_2->setObjectName(QStringLiteral("checkBox_low_2"));
-
-        verticalLayout_3->addWidget(checkBox_low_2);
-
-        horizontalLayout_4 = new QHBoxLayout();
-        horizontalLayout_4->setSpacing(0);
-        horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
-        label_6 = new QLabel(tab_2);
-        label_6->setObjectName(QStringLiteral("label_6"));
-
-        horizontalLayout_4->addWidget(label_6);
-
-        doubleSpinBox_low_2 = new QDoubleSpinBox(tab_2);
-        doubleSpinBox_low_2->setObjectName(QStringLiteral("doubleSpinBox_low_2"));
-        doubleSpinBox_low_2->setMaximum(1000);
-
-        horizontalLayout_4->addWidget(doubleSpinBox_low_2);
-
-
-        verticalLayout_3->addLayout(horizontalLayout_4);
-
-
-        gridLayout_8->addLayout(verticalLayout_3, 0, 0, 1, 1);
-
-        verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        gridLayout_8->addItem(verticalSpacer_2, 1, 0, 1, 1);
-
-        tabWidget->addTab(tab_2, QString());
-
-        gridLayout->addWidget(tabWidget, 0, 1, 4, 1);
-
-        groupBox_config = new QGroupBox(centralwidget);
-        groupBox_config->setObjectName(QStringLiteral("groupBox_config"));
-        sizePolicy.setHeightForWidth(groupBox_config->sizePolicy().hasHeightForWidth());
-        groupBox_config->setSizePolicy(sizePolicy);
-        gridLayout_3 = new QGridLayout(groupBox_config);
-        gridLayout_3->setObjectName(QStringLiteral("gridLayout_3"));
-        gridLayout_3->setHorizontalSpacing(6);
-        gridLayout_3->setContentsMargins(0, 0, 0, 0);
-        listView_config = new QListView(groupBox_config);
-        listView_config->setObjectName(QStringLiteral("listView_config"));
-        sizePolicy.setHeightForWidth(listView_config->sizePolicy().hasHeightForWidth());
-        listView_config->setSizePolicy(sizePolicy);
-
-        gridLayout_3->addWidget(listView_config, 0, 0, 1, 1);
-
-
-        gridLayout->addWidget(groupBox_config, 1, 0, 1, 1);
-
-        gridLayout_chartwidget = new QGridLayout();
-        gridLayout_chartwidget->setSpacing(0);
-        gridLayout_chartwidget->setObjectName(QStringLiteral("gridLayout_chartwidget"));
-        chartwidget = new QChartView(centralwidget);
-        chartwidget->setObjectName(QStringLiteral("chartwidget"));
-        sizePolicy.setHeightForWidth(chartwidget->sizePolicy().hasHeightForWidth());
-        chartwidget->setSizePolicy(sizePolicy);
-
-        gridLayout_chartwidget->addWidget(chartwidget, 0, 0, 1, 1);
-
-        gridLayout_chartwidget->setRowStretch(0, 1);
-
-        gridLayout->addLayout(gridLayout_chartwidget, 0, 2, 4, 1);
-
         gridLayout->setRowStretch(0, 1);
-        gridLayout->setRowStretch(1, 2);
-        gridLayout->setRowStretch(2, 3);
-        gridLayout->setRowStretch(3, 3);
         gridLayout->setColumnStretch(0, 1);
-        gridLayout->setColumnStretch(1, 1);
-        gridLayout->setColumnStretch(2, 8);
 
         gridLayout_7->addLayout(gridLayout, 0, 0, 1, 1);
 
@@ -395,9 +201,6 @@ public:
         retranslateUi(MainWindowDesign);
         QObject::connect(action_Quit, SIGNAL(triggered()), MainWindowDesign, SLOT(close()));
 
-        tabWidget->setCurrentIndex(0);
-
-
         QMetaObject::connectSlotsByName(MainWindowDesign);
     } // setupUi
 
@@ -411,6 +214,7 @@ public:
         action_Preferences->setText(QApplication::translate("MainWindowDesign", "&Preferences", Q_NULLPTR));
         actionAbout->setText(QApplication::translate("MainWindowDesign", "&About", Q_NULLPTR));
         actionAbout_Qt->setText(QApplication::translate("MainWindowDesign", "About &Qt", Q_NULLPTR));
+        groupBox_config->setTitle(QApplication::translate("MainWindowDesign", "Configuration Log", Q_NULLPTR));
         groupBox_com->setTitle(QApplication::translate("MainWindowDesign", "Communication Log", Q_NULLPTR));
         groupBox_eve->setTitle(QApplication::translate("MainWindowDesign", "Events Log", Q_NULLPTR));
         label->setText(QApplication::translate("MainWindowDesign", "IP", Q_NULLPTR));
@@ -418,19 +222,6 @@ public:
         lineEdit_port->setText(QApplication::translate("MainWindowDesign", "4455", Q_NULLPTR));
         button_connect->setText(QApplication::translate("MainWindowDesign", "Connect", Q_NULLPTR));
         lineEdit_ip->setText(QApplication::translate("MainWindowDesign", "127.0.0.1", Q_NULLPTR));
-        checkBox_notch->setText(QApplication::translate("MainWindowDesign", "50 Hz", Q_NULLPTR));
-        checkBox_high->setText(QApplication::translate("MainWindowDesign", "High Pass", Q_NULLPTR));
-        label_3->setText(QApplication::translate("MainWindowDesign", "Freq.[Hz]", Q_NULLPTR));
-        checkBox_low->setText(QApplication::translate("MainWindowDesign", "Low Pass", Q_NULLPTR));
-        label_4->setText(QApplication::translate("MainWindowDesign", "Freq.[Hz]", Q_NULLPTR));
-        tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("MainWindowDesign", "Tab 1", Q_NULLPTR));
-        checkBox_notch_2->setText(QApplication::translate("MainWindowDesign", "50 Hz", Q_NULLPTR));
-        checkBox_high_2->setText(QApplication::translate("MainWindowDesign", "High Pass", Q_NULLPTR));
-        label_5->setText(QApplication::translate("MainWindowDesign", "Freq.[Hz]", Q_NULLPTR));
-        checkBox_low_2->setText(QApplication::translate("MainWindowDesign", "Low Pass", Q_NULLPTR));
-        label_6->setText(QApplication::translate("MainWindowDesign", "Freq.[Hz]", Q_NULLPTR));
-        tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("MainWindowDesign", "Tab 2", Q_NULLPTR));
-        groupBox_config->setTitle(QApplication::translate("MainWindowDesign", "Configuration Log", Q_NULLPTR));
         menu_File->setTitle(QApplication::translate("MainWindowDesign", "&App", Q_NULLPTR));
     } // retranslateUi
 

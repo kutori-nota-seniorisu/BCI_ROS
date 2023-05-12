@@ -72,3 +72,7 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/online_analysis" TYPE PROGRAM FILES "/home/wuyou/catkin_ws/build/online_analysis/catkin_generated/installspace/eeg_pub.py")
 endif()
 
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/online_analysis" TYPE PROGRAM FILES "/home/wuyou/catkin_ws/build/online_analysis/catkin_generated/installspace/key_read.py")
+endif()
+
