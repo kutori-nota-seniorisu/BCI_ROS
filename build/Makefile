@@ -402,6 +402,19 @@ roscpp_generate_messages_cpp/fast:
 .PHONY : roscpp_generate_messages_cpp/fast
 
 #=============================================================================
+# Target rules for targets named rosgraph_msgs_generate_messages_eus
+
+# Build rule for target.
+rosgraph_msgs_generate_messages_eus: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 rosgraph_msgs_generate_messages_eus
+.PHONY : rosgraph_msgs_generate_messages_eus
+
+# fast build rule for target.
+rosgraph_msgs_generate_messages_eus/fast:
+	$(MAKE) -f online_analysis/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make online_analysis/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build
+.PHONY : rosgraph_msgs_generate_messages_eus/fast
+
+#=============================================================================
 # Target rules for targets named rosgraph_msgs_generate_messages_lisp
 
 # Build rule for target.
@@ -467,17 +480,30 @@ roscpp_generate_messages_lisp/fast:
 .PHONY : roscpp_generate_messages_lisp/fast
 
 #=============================================================================
-# Target rules for targets named rosgraph_msgs_generate_messages_eus
+# Target rules for targets named rnetstreamingreceiver
 
 # Build rule for target.
-rosgraph_msgs_generate_messages_eus: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 rosgraph_msgs_generate_messages_eus
-.PHONY : rosgraph_msgs_generate_messages_eus
+rnetstreamingreceiver: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 rnetstreamingreceiver
+.PHONY : rnetstreamingreceiver
 
 # fast build rule for target.
-rosgraph_msgs_generate_messages_eus/fast:
-	$(MAKE) -f online_analysis/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make online_analysis/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build
-.PHONY : rosgraph_msgs_generate_messages_eus/fast
+rnetstreamingreceiver/fast:
+	$(MAKE) -f online_analysis/CMakeFiles/rnetstreamingreceiver.dir/build.make online_analysis/CMakeFiles/rnetstreamingreceiver.dir/build
+.PHONY : rnetstreamingreceiver/fast
+
+#=============================================================================
+# Target rules for targets named datareceive
+
+# Build rule for target.
+datareceive: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 datareceive
+.PHONY : datareceive
+
+# fast build rule for target.
+datareceive/fast:
+	$(MAKE) -f online_analysis/CMakeFiles/datareceive.dir/build.make online_analysis/CMakeFiles/datareceive.dir/build
+.PHONY : datareceive/fast
 
 #=============================================================================
 # Target rules for targets named QNetStreamingReceiver
@@ -549,12 +575,14 @@ help:
 	@echo "... roscpp_generate_messages_eus"
 	@echo "... rosgraph_msgs_generate_messages_cpp"
 	@echo "... roscpp_generate_messages_cpp"
+	@echo "... rosgraph_msgs_generate_messages_eus"
 	@echo "... rosgraph_msgs_generate_messages_lisp"
 	@echo "... roscpp_generate_messages_py"
 	@echo "... rosgraph_msgs_generate_messages_nodejs"
 	@echo "... rosgraph_msgs_generate_messages_py"
 	@echo "... roscpp_generate_messages_lisp"
-	@echo "... rosgraph_msgs_generate_messages_eus"
+	@echo "... rnetstreamingreceiver"
+	@echo "... datareceive"
 	@echo "... QNetStreamingReceiver"
 	@echo "... spuce"
 	@echo "... qt_ros"

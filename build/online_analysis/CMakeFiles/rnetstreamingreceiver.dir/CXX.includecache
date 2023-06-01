@@ -1,0 +1,40 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/wuyou/catkin_ws/src/online_analysis/include/online_analysis/Packets.h
+string.h
+-
+stdio.h
+-
+
+/home/wuyou/catkin_ws/src/online_analysis/include/online_analysis/rnetstreamingreceiver.h
+string
+-
+atomic
+-
+Packets.h
+/home/wuyou/catkin_ws/src/online_analysis/include/online_analysis/Packets.h
+
+/home/wuyou/catkin_ws/src/online_analysis/src/rnetstreamingreceiver.cpp
+online_analysis/rnetstreamingreceiver.h
+/home/wuyou/catkin_ws/src/online_analysis/src/online_analysis/rnetstreamingreceiver.h
+arpa/inet.h
+-
+winsock.h
+-
+winsock2.h
+-
+stdlib.h
+-
+stdio.h
+-
+string.h
+-
+time.h
+-
+

@@ -1,3 +1,4 @@
+import numpy as np
 from scipy import signal
 
 # FBCCA：滤波器组设计

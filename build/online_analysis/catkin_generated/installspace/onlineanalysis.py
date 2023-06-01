@@ -6,6 +6,8 @@ from scipy import signal
 from sklearn.cross_decomposition import CCA
 import basic_filterbank
 import sincos_ref
+import find
+import time
 from std_msgs.msg import UInt16
 from std_msgs.msg import Bool
 from std_msgs.msg import Float32MultiArray
@@ -16,11 +18,13 @@ sampleRate = 2048
 # 数组缓存区大小
 BUFFSIZE = sampleRate * 2
 # 频率序列
-freqList = [9, 10, 11, 12, 13, 14, 15, 16, 17, 19]
+freqList = [9, 10, 11, 12, 13, 14, 15, 16, 17]
 # 每个数据包大小
 packetSize = 512
 # 分析间隔：0.5s
 anaInter = 0.5
+# 分类结果阈值
+r_threshold = 0.6
 # 选用分析方法，method = 1:CCA，method = 2:FBCCA
 method = 2
 
@@ -69,6 +73,13 @@ camera_on = False
 # 用于分析的数据数组
 data_used = np.array([])
 
+# 用于存储分析结果
+res_arr = np.zeros(4)
+
+result_pub = rospy.Publisher("/ResultNode", UInt16, queue_size=10)
+state_result_pub = rospy.Publisher("/StateResultNode", Bool, queue_size=10)
+camera_on_pub = rospy.Publisher("/PicSubSig", Bool, queue_size=10)
+
 # 获取采样频率
 def callback_get_rate(rate):
 	global sampleRate
@@ -78,10 +89,10 @@ def callback_get_rate(rate):
 # 获取数据包
 def callback_get_packet(data):
 	# 把一维数组转换成二维数组
-	rawdata = np.array(data.data[:]).reshape(35, 512)
+	rawdata = np.array(data.data[:]).reshape(512, 35).T
 	# 判断，是进行初始化，还是将数据拼接
 	global data_used, camera_on
-	global pre_res, eq_cnt
+	global res_arr
 	if data_used.size == 0:
 		data_used = rawdata
 	else:
@@ -117,7 +128,7 @@ def callback_get_packet(data):
 
 		# 现在方法二的用时是方法一的十倍
 		if method == 1:
-			# CCA
+			# CCA分析
 			num_class_cca = len(freqList)
 			# 用于存储数据与参考信号的相关系数
 			r_cca = np.zeros((num_class_cca))
@@ -127,9 +138,23 @@ def callback_get_packet(data):
 				cca.fit(data_bandpass.T, refdata_cca)
 				U, V = cca.transform(data_bandpass.T, refdata_cca)
 				r_cca[class_i] = np.corrcoef(U[:, 0], V[:, 0])[0, 1]
-			# 获取相关系数值最大的序号
-			index_class_cca = np.argmax(r_cca)
-			result = freqList[index_class_cca]
+			print("CCA:", r_cca)
+
+			# 获取相关系数排序
+			index_rcca = np.argsort(r_cca)
+			# 判断本次分类是否有效
+			d = r_cca[index_rcca[-1]] - r_cca[index_rcca[-2]]
+			print("差值：", d)
+			if d > 0:
+				# 获取相关系数最大的索引并查找对应频率
+				# 将查找到的频率添加到结果数组中
+				# 四次中三次相同则可确定
+				i_rcca = np.argmax(r_cca)
+				result = freqList[i_rcca]
+				print("本次分类有效，结果为", result)
+			else:
+				print("本次分类无效")
+				# 跳过下面所有环节
 
 		elif method == 2:
 			# FBCCA
@@ -139,7 +164,7 @@ def callback_get_packet(data):
 
 			# num_fbs:子带数量
 			for fb_i in range(0, num_fbs):
-				# 生成滤波器
+				# 生成滤波器并对原始数据滤波
 				data_fbcca = basic_filterbank.filterbank(data_bandpass, downSampleRate, fb_i)
 				# 子带数据与参考数据进行CCA分析
 				for class_i in range(0, num_class_fbcca):
@@ -151,56 +176,58 @@ def callback_get_packet(data):
 			# 计算加权后的相关系数
 			r_fbcca = fb_coefs @ (eigenvalue_r_fbcca ** 2)
 			print("FBCCA:", r_fbcca)
-			r_fbcca_S = r_fbcca / np.sum(r_fbcca)
-			print("Sum R:", r_fbcca_S)
-			r_fbcca_E = np.exp(r_fbcca) / np.sum(np.exp(r_fbcca))
-			print("Exp R:", r_fbcca_E)
-			r_fbcca_2E = np.exp(2 * r_fbcca) / np.sum(np.exp(2 * r_fbcca))
-			print("2 Exp R:", r_fbcca_2E)
-			
+			# r_fbcca_S = r_fbcca / np.sum(r_fbcca)
+			# print("Sum R:", r_fbcca_S)
+			# r_fbcca_E = np.exp(r_fbcca) / np.sum(np.exp(r_fbcca))
+			# print("Exp R:", r_fbcca_E)
+			# r_fbcca_2E = np.exp(2 * r_fbcca) / np.sum(np.exp(2 * r_fbcca))
+			# print("2 Exp R:", r_fbcca_2E)
+			# print("rfbcca:", r_fbcca)
+			# r_fbcca_sum = np.sum(r_fbcca)
+			# r_fbcca_normal = r_fbcca / r_fbcca_sum
+			# print("r_fbcca_normal:", r_fbcca_normal)
 
+			# m_rfbcca = np.max(r_fbcca)
+			# if m_rfbcca > r_threshold:
 			index_class_cca = np.argmax(r_fbcca)
 			result = freqList[index_class_cca]
-		print('the result is', result)
+			# else:
+			# 	result = 0
 
-		print("analysis finish\n")
-		
-		result_pub = rospy.Publisher("/ResultNode", UInt16, queue_size=10)
-		state_result_pub = rospy.Publisher("/StateResultNode", Bool, queue_size=10)
-		camera_on_pub = rospy.Publisher("/PicSubSig", Bool, queue_size=10)
+		# 四次中三次相同
+		res_arr = np.append(res_arr, result)[1:]
+		print("res array:", res_arr)
+		real_res = int(find.find(res_arr))
+		if real_res == 0:
+			print("本次未分析出结果！！")
+		else:
+			print("分析成功！！")
+			print("real result is", real_res)
 
-		if result == 19:
+		# with open("result_out.txt", "a+") as f:
+		# 	f.write("FBCCA:\n")
+		# 	for r in r_fbcca:
+		# 		f.write(str(r) + "\n")
+		# 	f.write("real result:\n")
+		# 	f.write(str(real_res) + "\n")
+
+		if real_res == 17:
 			# do something
-			# print("the frequency to start camera is", result)
+			print("相机启动频率为", real_res)
 			camera_state = Bool()
 			camera_on = True
 			camera_state.data = camera_on
 			state_result_pub.publish(camera_state)
 			camera_on_pub.publish(camera_state)
-		# if camera_on == True:
-		# 	if result == 9:
-		# 		print(9)
-		# 	elif result == 10:
-		# 		print(10)
-		# 	elif result == 11:
-		# 		print(11)
-		# 	elif result == 12:
-		# 		print(12)
-		# 	elif result == 13:
-		# 		print(13)
-		# 	elif result == 14:
-		# 		print(14)
-		# 	elif result == 15:
-		# 		print(15)
-		# 	elif result == 16:
-		# 		print(16)
-		# 	elif result == 17:
-		# 		print(17)
-		# 	else:
-		# 		print("no")
-		# 	res_pub = UInt16()
-		# 	res_pub.data = result
-		# 	result_pub.publish(res_pub)
+			time.sleep(0.5)
+			print("延时0.5")
+		if camera_on == True and real_res != 0 and real_res != 17:
+			print("本次实验结果为", real_res)
+			res_pub = UInt16()
+			res_pub.data = real_res
+			result_pub.publish(res_pub)
+
+		print("analysis finish\n")
 
 def listener():
     # In ROS, nodes are uniquely named. If two nodes with the same
@@ -209,6 +236,10 @@ def listener():
     # name for our 'listener' node so that multiple listeners can
     # run simultaneously.
 	rospy.init_node('analysis', anonymous=True)
+
+	camera_init = Bool()
+	camera_init.data = False
+	state_result_pub.publish(camera_init)
 
 	rospy.Subscriber("samplerate", UInt16, callback_get_rate)
 	rospy.Subscriber("packet", Float32MultiArray, callback_get_packet)
