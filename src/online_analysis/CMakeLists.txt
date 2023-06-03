@@ -158,10 +158,6 @@ add_executable(datareceive src/datareceive.cpp)
 #   ${catkin_LIBRARIES}
 # )
 
-target_link_libraries(rnetstreamingreceiver
-	${catkin_LIBRARIES}
-)
-
 target_link_libraries(datareceive
 	rnetstreamingreceiver
 	${catkin_LIBRARIES}

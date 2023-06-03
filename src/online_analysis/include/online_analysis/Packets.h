@@ -5,8 +5,11 @@
 // Do not change any structs or enums in this file!
 //****************************************************************************
 
+#include <arpa/inet.h>
 #include <string.h>
 #include <stdio.h>
+// #include <unistd.h>
+// #include <stdlib.h>
 
 #define SIZE_C (sizeof(char))
 #define SIZE_F (sizeof(float))
@@ -21,7 +24,7 @@
 // typedef wchar_t WCLABEL[ 40 ];						//wchar for labels
 typedef char16_t WCLABEL[40];
 typedef unsigned short WORD;
-typedef unsigned long DWORD;
+typedef unsigned DWORD;
 typedef int BOOL;
 typedef long HRESULT;
 
@@ -141,13 +144,35 @@ public:
 
 	~AcqMessage() { m_pBody = NULL; }
 
-	void Convert()
-	{
+	// void Convert()
+	// {
 		// m_wCode = qToBigEndian<WORD>(m_wCode);
 		// m_wRequest = qToBigEndian<WORD>(m_wRequest);
 		// m_dwSize = qToBigEndian<DWORD>(m_dwSize);
 		// m_dwSizeUncompressed = qToBigEndian<DWORD>(m_dwSizeUncompressed);
 		// m_unSample = qToBigEndian<DWORD>(m_unSample);
+	// }
+
+	void Convert(BOOL bSending)
+	{
+		if (bSending) 
+		{
+			// Convert from host byte order to network  byte order (Little-Endian to Big-Endian)
+			m_wCode					= htons(m_wCode);
+			m_wRequest				= htons(m_wRequest);
+			m_dwSize				= htonl(m_dwSize); 
+			m_dwSizeUncompressed	= htonl(m_dwSizeUncompressed); 
+			m_unSample				= htonl(m_unSample); 
+		} 
+		else 
+		{
+			// Convert from network byte order to host byte order (Big-Endian to Little-Endian)
+			m_wCode					= ntohs(m_wCode);
+			m_wRequest				= ntohs(m_wRequest);
+			m_dwSize				= ntohl(m_dwSize);
+			m_dwSizeUncompressed	= ntohl(m_dwSizeUncompressed); 
+			m_unSample				= ntohl(m_unSample); 
+		}
 	}
 
 	void SetID(char const *id)

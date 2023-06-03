@@ -3,7 +3,10 @@
 
 #include <string>
 #include <atomic>
-
+#include <ros/ros.h>
+#include <std_msgs/String.h>
+#include <std_msgs/Float32MultiArray.h>
+#include <std_msgs/UInt16.h>
 #include "Packets.h"
 typedef int SOCKET;
 using namespace std;
@@ -57,13 +60,10 @@ protected:
 	unsigned short						m_usNetstreamPort;
 	string								m_sNetstreamClientServerIP;
 
-	// IAddLogLine*						m_pAddLogLine;
-	// ICtrlWaveforms*						m_pCtrlWaveforms;
-
 	SOCKET								m_SocketClient;
 	bool								m_bClientInited;
 
-	volatile long						m_nNetStreamingVersion;
+	volatile int						m_nNetStreamingVersion;
 
 	volatile BasicInfoAcq				m_BasicInfo;
 	volatile bool						m_bBasicInfoValid;
@@ -74,7 +74,11 @@ protected:
 
 	volatile double						m_dTimePackageReceived;
 
-	// CListenThread						m_Thread;
+private:
+	ros::NodeHandle n;
+	ros::Publisher data_pub;
+	ros::Publisher rate_pub;
+
 };
 
 #endif
