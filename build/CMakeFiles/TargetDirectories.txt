@@ -66,3 +66,10 @@
 /home/wuyou/BCI_ROS/build/online_analysis/CMakeFiles/rosgraph_msgs_generate_messages_py.dir
 /home/wuyou/BCI_ROS/build/online_analysis/CMakeFiles/test.dir
 /home/wuyou/BCI_ROS/build/online_analysis/CMakeFiles/rnetstreamingreceiver.dir
+/home/wuyou/BCI_ROS/build/ptb_show/CMakeFiles/install/strip.dir
+/home/wuyou/BCI_ROS/build/ptb_show/CMakeFiles/install/local.dir
+/home/wuyou/BCI_ROS/build/ptb_show/CMakeFiles/install.dir
+/home/wuyou/BCI_ROS/build/ptb_show/CMakeFiles/list_install_components.dir
+/home/wuyou/BCI_ROS/build/ptb_show/CMakeFiles/rebuild_cache.dir
+/home/wuyou/BCI_ROS/build/ptb_show/CMakeFiles/edit_cache.dir
+/home/wuyou/BCI_ROS/build/ptb_show/CMakeFiles/test.dir

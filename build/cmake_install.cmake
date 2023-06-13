@@ -133,6 +133,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("/home/wuyou/BCI_ROS/build/gtest/cmake_install.cmake")
   include("/home/wuyou/BCI_ROS/build/key_read/cmake_install.cmake")
   include("/home/wuyou/BCI_ROS/build/online_analysis/cmake_install.cmake")
+  include("/home/wuyou/BCI_ROS/build/ptb_show/cmake_install.cmake")
 
 endif()
 

@@ -56,6 +56,7 @@ CMAKE_BINARY_DIR = /home/wuyou/BCI_ROS/build
 all: gtest/all
 all: key_read/all
 all: online_analysis/all
+all: ptb_show/all
 
 .PHONY : all
 
@@ -63,6 +64,7 @@ all: online_analysis/all
 preinstall: gtest/preinstall
 preinstall: key_read/preinstall
 preinstall: online_analysis/preinstall
+preinstall: ptb_show/preinstall
 
 .PHONY : preinstall
 
@@ -75,6 +77,7 @@ clean: CMakeFiles/download_extra_data.dir/clean
 clean: gtest/clean
 clean: key_read/clean
 clean: online_analysis/clean
+clean: ptb_show/clean
 
 .PHONY : clean
 
@@ -186,6 +189,24 @@ online_analysis/clean: online_analysis/CMakeFiles/rosgraph_msgs_generate_message
 online_analysis/clean: online_analysis/CMakeFiles/rnetstreamingreceiver.dir/clean
 
 .PHONY : online_analysis/clean
+
+#=============================================================================
+# Directory level rules for directory ptb_show
+
+# Recursive "all" directory target.
+ptb_show/all:
+
+.PHONY : ptb_show/all
+
+# Recursive "preinstall" directory target.
+ptb_show/preinstall:
+
+.PHONY : ptb_show/preinstall
+
+# Recursive "clean" directory target.
+ptb_show/clean:
+
+.PHONY : ptb_show/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/doxygen.dir
