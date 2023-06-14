@@ -165,6 +165,8 @@ include_directories(
 # )
 catkin_install_python(PROGRAMS
 	scripts/ssvep_ptb.py
+  scripts/image_pub.py
+  scripts/image_sub.py
 	DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
