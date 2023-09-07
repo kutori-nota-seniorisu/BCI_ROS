@@ -1,6 +1,5 @@
 import numpy as np
 
-
 def find(res_array):
 	for item in res_array:
 		a = res_array - item

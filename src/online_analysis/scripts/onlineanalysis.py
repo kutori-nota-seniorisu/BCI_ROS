@@ -98,7 +98,6 @@ def callback_get_rate(rate):
 
 # 获取数据包
 
-
 def callback_get_packet(data):
 	# 把一维数组转换成二维数组
 	rawdata = np.array(data.data[:]).reshape(512, 35).T

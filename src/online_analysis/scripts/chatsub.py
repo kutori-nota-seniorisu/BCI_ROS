@@ -4,16 +4,13 @@ import rospy
 from std_msgs.msg import UInt16
 from std_msgs.msg import Float32MultiArray
 
-
 def callback_get_rate(rate):
 	sampleRate = rate.data
 	rospy.loginfo("I receive sample rate")
 	rospy.loginfo("sample rate is : %f", sampleRate)
 
-
 def callback_get_packet(data):
 	rospy.loginfo("I receive packet")
-
 
 def listener():
 

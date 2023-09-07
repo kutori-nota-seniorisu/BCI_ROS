@@ -1,6 +1,5 @@
 import numpy as np
 
-
 def sincosref(list_freqs, fs, num_smpls, num_harms, w_sincos):
 	num_freqs = len(list_freqs)
 	y_ref = np.zeros((num_freqs, 2 * num_harms, num_smpls))

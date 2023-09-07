@@ -29,7 +29,6 @@ target = 0
 # 记录数据包个数
 packet_i = 0
 
-
 def talker():
 	global packet_i
 
@@ -52,14 +51,12 @@ def talker():
 		packet_i = packet_i + 1
 		rate.sleep()
 
-
 def callback_get_keys(msg):
 	global target
 	global packet_i
 	print("I receive", msg.data)
 	target = int(msg.data)
 	packet_i = 0
-
 
 if __name__ == '__main__':
 	rospy.init_node('eeg_pub', anonymous=True)

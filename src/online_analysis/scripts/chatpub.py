@@ -7,7 +7,6 @@ from std_msgs.msg import Float32MultiArray
 
 packetSize = 512
 
-
 def talker():
 	pub = rospy.Publisher('packet', Float32MultiArray, queue_size=10)
 	rospy.init_node('pub_packet', anonymous=True)
@@ -52,7 +51,6 @@ def talker():
 					rospy.loginfo("data finished")
 					break
 		rate.sleep()
-
 
 if __name__ == '__main__':
 	try:
