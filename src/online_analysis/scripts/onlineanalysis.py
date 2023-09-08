@@ -89,15 +89,12 @@ state_result_pub = rospy.Publisher("/StateResultNode", Bool, queue_size=10)
 camera_on_pub = rospy.Publisher("/PicSubSig", Bool, queue_size=10)
 
 # 获取采样频率
-
-
 def callback_get_rate(rate):
 	global sampleRate
 	sampleRate = rate.data
 	rospy.loginfo("sample rate is : %f", sampleRate)
 
 # 获取数据包
-
 def callback_get_packet(data):
 	# 把一维数组转换成二维数组
 	rawdata = np.array(data.data[:]).reshape(512, 35).T
