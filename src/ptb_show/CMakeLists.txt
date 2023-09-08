@@ -11,6 +11,7 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   std_msgs
+  sensor_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -105,7 +106,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES ptb_show
-#  CATKIN_DEPENDS roscpp rospy std_msgs
+   CATKIN_DEPENDS roscpp rospy std_msgs sensor_msgs
 #  DEPENDS system_lib
 )
 
@@ -167,6 +168,7 @@ catkin_install_python(PROGRAMS
 	scripts/ssvep_ptb.py
   scripts/image_pub.py
   scripts/image_sub.py
+  scripts/test_pub.py
 	DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
