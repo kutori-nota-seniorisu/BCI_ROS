@@ -6,6 +6,8 @@
 
 本机ubuntu版本 20.04
 
+pip更新: `python3 -m pip install --upgrade pip`
+
 ## 工控机配置指南
 
 ubuntu版本 18.04
