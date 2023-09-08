@@ -2,8 +2,8 @@
 
 ## 切记切记切记
 
-没有push！没有push！！没有push！！！
-新建分支push！新建分支push！！新建分支push！！！
+~~没有push！没有push！！没有push！！！
+新建分支push！新建分支push！！新建分支push！！！~~
 
 在终端输入`env`可以查看环境变量，其中PYTHONPATH对应的就是python的路径（废话）
 
