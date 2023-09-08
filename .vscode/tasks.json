@@ -5,17 +5,13 @@
 			"type": "catkin_make",
 			"args": [
 				"--directory",
-				"/home/wuyou/BCI_ROS",
+				"/home/sd/BCI_ROS",
 				"-DCMAKE_BUILD_TYPE=RelWithDebInfo"
 			],
 			"problemMatcher": [
 				"$catkin-gcc"
 			],
-			// "group": "build",
-			"group": {
-				"kind": "build",
-				"isDefault": true
-			},
+			"group": "build",
 			"label": "catkin_make: build"
 		}
 	]

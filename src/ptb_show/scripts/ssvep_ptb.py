@@ -3,9 +3,10 @@
 import random
 import numpy as np
 import rospy
-import scipy.signal as signal
+# import scipy.signal as signal
 from psychopy import visual, event, core
-import scipy.signal as signal
+# import scipy.signal as signal
+from scipy import signal
 import cv2
 import sys
 import math
@@ -21,20 +22,25 @@ def mstoframe(ms, fps):
 
 def StateResult_Callback(msg):
 	global sig
+	# print(msg.data)
 	if msg.data == True:
 		sig = 1
 
 def Picture_Callback(msg):
 	global Pic
-	Pic = CvBridge.imgmsg_to_cv2(msg, "bgr8")
+	bridge = CvBridge()
+	print("received!")
+	Pic = bridge.imgmsg_to_cv2(msg, "bgr8")
 
 def PositionLength_Callback(msg):
 	global Pos
 	ReceivePosLen = np.array(msg.data)
 	# 将 ReceivePosLen 重构为 (length(ReceivePosLen)/3,3) 的新的矩阵 Pos
 	# len(ReceivePosLen)/3为物块个数，3表示位置x、y和矩形边长
-	Pos = ReceivePosLen.reshape(3, ReceivePosLen.shape[0] / 3)
-	Pos = Pos.T
+	Pos = ReceivePosLen.reshape(int(ReceivePosLen.shape[0] / 3), 3)
+	print(Pos)
+	# Pos = Pos.T
+	# print(Pos)
 	
 def GripSig_Callback(msg):
 	global changesig
@@ -61,7 +67,7 @@ def ssvep_pre():
 	print("your screen's fps is ", fps)
 	
 	# Load the PseudoKey Picture
-	path = '/home/wuyou/BCI_ROS/src/ptb_show/scripts/' 
+	path = '/home/sd/BCI_ROS/src/ptb_show/scripts/' 
 	theImage_PseudoKey = path + 'PseudoKey.jpg'
 	Image_PseudoKey = cv2.imread(theImage_PseudoKey, cv2.IMREAD_UNCHANGED)
 	Image_PseudoKey = cv2.resize(Image_PseudoKey, [200,200], cv2.INTER_CUBIC)    # 双三次样条插值
@@ -132,6 +138,7 @@ def ssvep_pre():
 			break
 	# 伪密钥阶段
 	while 1:
+		# print(sig)
 		if event.getKeys(keyList=['space', 'escape']) or sig == 1:
 			break
 		for num in range(4):
@@ -148,7 +155,7 @@ def ssvep_pre():
 	Pic = cv2.imread(path+ 'CameraShooting.jpg')  # 初始化一下Pic 690x690x3 uint8
 	Pos = np.array([[-50, 0, 50], [0, 0, 50], [50, 0, 50]])
 	# 等待图片何位置信息的订阅
-	duration_s = 3.0  
+	duration_s = 4.0  
 	clock = core.Clock()
 	while clock.getTime() < duration_s:
 		wait_text_2.draw()
@@ -161,7 +168,7 @@ def ssvep_pre():
 	resize_y = 200
 	resize_x = 200
 	ratio_x = resize_x / width  # 如果需要放大图像，则计算图像放大的比例
-	ratio_y = resize_y / height
+	ratio_y = resize_y / height 
 	ExpScene = cv2.resize(Pic, [resize_y, resize_x], cv2.INTER_CUBIC)   # [480,640]--->[720,960]
 	cv2.imwrite(path + 'pic_rs.jpg', ExpScene)
 	ExpSceneLocation = path + 'pic_rs.jpg'
@@ -202,7 +209,7 @@ def ssvep_pre():
 		if event.getKeys(keyList=['space', 'escape']):
 			break
 		object_num = Pos.shape[0]
-		# print("Number of objects identified is ", object_num)
+		print("Number of objects identified is ", object_num)
 		if object_num==0:   # 如果未识别到物体，说明场景中物块都已经抓取完毕，则跳出循环
 			break
 		# 在一轮小循环中，如果没有抓取完毕，则changesig仍为0，只有在changesig为1时（抓取完毕）才会切换图片
@@ -211,13 +218,16 @@ def ssvep_pre():
 			height, width, chan = Pic.shape   # 读取图片三维矩阵大小，顺序为 高度 宽度 通道数
 			resize_y2 = height  # 480
 			resize_x2 = width   # 640
+			print("x", resize_x2)
+			print("y", resize_y2)
 			ratio_x = resize_x2 / width
 			ratio_y = resize_y2 / height
+			delta_pos = np.array([-resize_x2 / 2, resize_y2 / 2, 0, 0])    # 图像中物块的位置相对屏幕中心的图像的偏移量
 			Flash_Position_Black = np.zeros((object_num, 4))
 			imageTexture_Black = visual.ImageStim(win=win, image=BlackImageLocation)
 			for i in range(object_num):
-				Flash_Position_Black[i][:] = [ratio_x * Pos[i][0], ratio_y * Pos[i][1], 10, 20] + delta_pos # 每一个物块的位置
-			ExpScene = cv2.resize(Pic, [resize_y2, resize_x2], cv2.INTER_CUBIC)   # [480,640]--->[720,960]
+				Flash_Position_Black[i][:] = [ratio_x * Pos[i][0], -ratio_y * Pos[i][1], 10, 20] + delta_pos # 每一个物块的位置
+			ExpScene = cv2.resize(Pic, [resize_x2, resize_y2], cv2.INTER_CUBIC)   # [480,640]--->[720,960]
 			cv2.imwrite(path + 'pic_rs.jpg', ExpScene)
 			ExpSceneLocation = path + 'pic_rs.jpg'
 			ExpSceneTexture = visual.ImageStim(win=win, image=ExpSceneLocation)
@@ -235,17 +245,19 @@ def ssvep_pre():
 		for i in range(object_num):
 			if red != 0:    # 如果red非0，即已经接收到结果信息
 				if i == red:
-					imageTexture_Red.pos = [Flash_Position_Black[i][0], Flash_Position_Black[i][1]]
+					imageTexture_Red.pos = [Flash_Position_Black[i][1], Flash_Position_Black[i][0]]
 					imageTexture_Red.size = [Flash_Position_Black[i][2], Flash_Position_Black[i][3]]
 					imageTexture_Red.opacity = seq1[i][t % fps]
 					imageTexture_Red.draw()
 				else:
-					imageTexture_Black.pos = [Flash_Position_Black[i][0], Flash_Position_Black[i][1]]
+					imageTexture_Black.pos = [Flash_Position_Black[i][1], Flash_Position_Black[i][0]]
+					print("imageTexture_Black.pos:", imageTexture_Black.pos)
 					imageTexture_Black.size = [Flash_Position_Black[i][2], Flash_Position_Black[i][3]]
 					imageTexture_Black.opacity = seq1[i][t % fps]
 					imageTexture_Black.draw()
 			else:
 				imageTexture_Black.pos = [Flash_Position_Black[i][0], Flash_Position_Black[i][1]]
+				print("imageTexture_Black.pos:", imageTexture_Black.pos)
 				imageTexture_Black.size = [Flash_Position_Black[i][2], Flash_Position_Black[i][3]]
 				imageTexture_Black.opacity = seq1[i][t % fps]
 				imageTexture_Black.draw()
@@ -272,4 +284,4 @@ if __name__ == '__main__':
 		thread_ssvep.start()
 		rospy.spin()
 	except rospy.ROSInterruptException:
-		print("program interrupted before completion", file=sys.stderr)
+		print("program interrupted before completion")#, file=sys.stderr)
