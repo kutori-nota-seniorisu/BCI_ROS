@@ -8,8 +8,8 @@ project(wave_show)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  ros_cpp
-  ros_py
+  roscpp
+  rospy
   std_msgs
 )
 
