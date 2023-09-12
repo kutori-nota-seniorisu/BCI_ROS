@@ -4,11 +4,20 @@
 from PySide2.QtWidgets import QApplication, QMainWindow
 from test1 import Ui_MainWindow
 
-app = QApplication([])
-window = QMainWindow()
-ui = Ui_MainWindow()
-ui.setupUi(window)
-ui.pushButton.setText("hello world")
-window.show()
-
-app.exec_()
+class Stats:
+    def __init__(self):
+        self.window = QMainWindow()
+        self.ui = Ui_MainWindow()
+        self.ui.setupUi(self.window)
+        self.window.show()
+        
+if __name__=='__main__':
+    
+    app = QApplication([])
+    stats = Stats()
+    stats.ui.pushButton.setText("hello world")
+# window = QMainWindow()
+# ui = Ui_MainWindow()
+# ui.setupUi(window)
+# window.show()
+    app.exec_()

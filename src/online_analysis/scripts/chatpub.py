@@ -8,6 +8,7 @@ from std_msgs.msg import Float32MultiArray
 packetSize = 512
 
 def talker():
+	# 定义发布对象，话题名称为 packet
 	pub = rospy.Publisher('packet', Float32MultiArray, queue_size=10)
 	rospy.init_node('pub_packet', anonymous=True)
 	rate = rospy.Rate(4)

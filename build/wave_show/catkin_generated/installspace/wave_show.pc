@@ -1,8 +1,0 @@
-prefix=/home/wuyou/BCI_ROS/install
-
-Name: wave_show
-Description: Description of wave_show
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 

@@ -32,7 +32,7 @@ packet_i = 0
 def talker():
 	global packet_i
 
-	# 定义发布对象
+	# 定义发布对象，话题名称为 packet
 	pub = rospy.Publisher('packet', Float32MultiArray, queue_size=10)
 	# 设置发布频率
 	rate = rospy.Rate(4)

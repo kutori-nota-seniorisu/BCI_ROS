@@ -3,6 +3,11 @@
 from std_msgs.msg import Float32MultiArray
 from std_msgs.msg import Bool
 from std_msgs.msg import UInt16
+
+# 需要添加路径
+import sys
+sys.path.append("/home/wuyou/BCI_ROS/src/online_analysis/scripts")
+
 import find
 import sincos_ref
 import basic_filterbank
@@ -10,9 +15,7 @@ import rospy
 import numpy as np
 from scipy import signal
 from sklearn.cross_decomposition import CCA
-# 需要添加路径
-import sys
-sys.path.append("/home/wuyou/BCI_ROS/src/online_analysis/scripts")
+
 
 # 相关变量及参数设置
 # 采样频率，默认为2048Hz

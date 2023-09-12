@@ -1,2 +1,0 @@
-online_analysis:ptb_show:wave_show
--DCATKIN_DEVEL_PREFIX=/home/wuyou/BCI_ROS/devel -DCMAKE_INSTALL_PREFIX=/home/wuyou/BCI_ROS/install -G Unix Makefiles
