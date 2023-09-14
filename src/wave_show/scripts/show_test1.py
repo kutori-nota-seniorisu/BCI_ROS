@@ -10,30 +10,39 @@ from PySide2.QtCore import Signal, QObject
 import pyqtgraph as pg
 import numpy as np
 count = 0
+# t 为时间刻度
 t = np.arange(0,512)
 
+# 需要手动创建信号的类，然后才可将信号与槽相互连接
 class MySignal(QObject):
 	signal = Signal(Float32MultiArray)
 
+# 定义了一个槽函数，绘制波形
 def test_func1(val):
-	print("I get signal",val)
-	pw.clear()
-	pw.plot(t,val)
+	print("I get rawdata",val.shape)
+	nEegChan = val.shape[0]
+	
+	# pw.clear()
+	# pw.plot(t,val)
 
+# 实例化信号类的对象，然后将该对象的信号与对应的槽函数连接，此处槽函数为 test_func1
 mysi = MySignal()
 mysi.signal.connect(test_func1)
 
+# 定义了 ros 接收节点的回调函数，接收到数据包后发送信号，由槽函数进行绘制
 def callback_get_packet(data):
 	global mysi
 	# 把一维数组转换成二维数组
 	rawdata = np.array(data.data[:]).reshape(512, 35).T
 	print(rawdata.shape)
-	wave1 = rawdata[0]
-	print("wave1:", wave1.shape[0])
-	mysi.signal.emit(wave1)
-	print("I send wave1")
+	# wave1 = rawdata[0]
+	# print("wave1:", wave1.shape[0])
+	mysi.signal.emit(rawdata)
+	print("I send rawdata")
+
 rospy.init_node('listener', anonymous=True)
 rospy.Subscriber("packet", Float32MultiArray, callback_get_packet)
+
 
 app = QApplication([])
 loader = QUiLoader()
@@ -47,6 +56,7 @@ pw = ui.widget
 pw.setBackground('w')
 pw.setLabel('left', '幅值')
 pw.setLabel('bottom', '弧度')
+pw.setYRange(-100, 100)
 
 
 ui.show()
