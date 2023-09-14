@@ -21,18 +21,21 @@ class MySignal(QObject):
 def test_func1(val):
 	print("I get rawdata",val.shape)
 	nEegChan = val.shape[0]
+	dDeltaY = 1.0 / nEegChan
+
 	aAvg = np.mean(val, -1)
 	aMax = np.max(val, -1)
 	aMin = np.min(val, -1)
 	
-	## 曲线绘制
-	# 自适应范围
-	dAutoScale = 1.0 / ((aMax[0] - aMin[0]) * 1.25)
-	# 偏移量
-	
 	pw.clear()
-	pw.plot(t, val[0] * dAutoScale) 
-	pw.plot(t, val[1] * dAutoScale + 2)
+	# 曲线绘制
+	for i in range(0, nEegChan):
+		# 自适应范围
+		dAutoScale = dDeltaY / ((aMax[0] - aMin[0]) * 1.25)
+		# 偏移量
+		nYOffset = (i + 0.5) * dDeltaY
+		# 绘制
+		pw.plot(t, val[i] * dAutoScale + nYOffset)
 
 # 实例化信号类的对象，然后将该对象的信号与对应的槽函数连接，此处槽函数为 test_func1
 mysi = MySignal()
@@ -52,7 +55,6 @@ def callback_get_packet(data):
 rospy.init_node('listener', anonymous=True)
 rospy.Subscriber("packet", Float32MultiArray, callback_get_packet)
 
-
 app = QApplication([])
 loader = QUiLoader()
 # pyside2 一定要使用registerCustomWidget 
@@ -65,8 +67,7 @@ pw = ui.widget
 pw.setBackground('w')
 pw.setLabel('left', '幅值')
 pw.setLabel('bottom', '弧度')
-pw.setYRange(-1, 3)
-
+pw.setYRange(0, 1)
 
 ui.show()
 app.exec_()
