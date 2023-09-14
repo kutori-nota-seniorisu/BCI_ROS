@@ -6,16 +6,20 @@ from std_msgs.msg import Float32MultiArray
 
 from PySide2.QtWidgets import QApplication
 from PySide2.QtUiTools import QUiLoader
+from PySide2.QtCore import Signal, QObject
 import pyqtgraph as pg
 import numpy as np
 count = 0
+class MySignal(QObject):
+	signal = Signal(Float32MultiArray)
+mysi = MySignal()
 
+def callback(data):
+	rospy.loginfo(rospy.get_caller_id() + "I heard %s", data.data)
+	mysi.signal.emit([1,2,3])
+	
 class WaveShow:
 	def __init__(self):
-
-		rospy.init_node('listener', anonymous=True)
-		rospy.Subscriber("chatter", String, callback)
-
 		# 从文件中加载UI定义
 		loader = QUiLoader()
 		# pyside2 一定要使用registerCustomWidget 
@@ -23,12 +27,19 @@ class WaveShow:
 		# loader才知道第三方控件对应的类，才能实例化对象
 		loader.registerCustomWidget(pg.PlotWidget)
 		self.ui = loader.load('/home/wuyou/BCI_ROS/src/wave_show/scripts/ui_waveshow.ui')
+
+		self.si = MySignal(self)
+		self.si.signal.connect(self.test_slot)
+
 		# widget 是控件名称，需要注意
 		self.pw = self.ui.widget
 		self.pw.setBackground('w')
 		self.pw.setLabel('left', '幅值')
 		self.pw.setLabel('bottom', '弧度')
 		self.ui.pushButton.clicked.connect(self.sin_curv)
+	
+	def test_slot(self, signal):
+		print("hello world")
 
 	def sin_curv(self):
 		global count
@@ -50,15 +61,14 @@ class WaveShow:
 	# spin() simply keeps python from exiting until this node is stopped
 	# 为什么没有 spin 也没事？？？
 	# rospy.spin()
-app = QApplication([])
-stats = WaveShow()
-def callback(data):
-	rospy.loginfo(rospy.get_caller_id() + "I heard %s", data.data)
+
 if __name__ == '__main__':
 	# listener()
+	rospy.init_node('listener', anonymous=True)
+	rospy.Subscriber("chatter", String, callback)
 
-	
-
+	app = QApplication([])
+	stats = WaveShow()
 	stats.ui.show()
 	app.exec_()
 

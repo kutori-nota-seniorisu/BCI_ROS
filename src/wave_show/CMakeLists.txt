@@ -165,6 +165,7 @@ include_directories(
 # )
 catkin_install_python(PROGRAMS
   scripts/wave_show.py
+  scripts/show_test1.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
   )
 
