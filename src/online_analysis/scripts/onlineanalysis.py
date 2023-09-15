@@ -8,14 +8,11 @@ from std_msgs.msg import UInt16
 import sys
 sys.path.append("/home/wuyou/BCI_ROS/src/online_analysis/scripts")
 
-import find
-import sincos_ref
-import basic_filterbank
+import my_function
 import rospy
 import numpy as np
 from scipy import signal
 from sklearn.cross_decomposition import CCA
-
 
 # 相关变量及参数设置
 # 采样频率，默认为2048Hz
@@ -72,7 +69,7 @@ fb_coefs = np.array(
 # 生成参考信号
 num_harms = 4
 w_sincos = 0
-y_ref = sincos_ref.sincosref(
+y_ref = my_function.sincosref(
 	freqList,
 	downSampleRate,
 	downBuffSize,
@@ -179,7 +176,7 @@ def callback_get_packet(data):
 			# num_fbs:子带数量
 			for fb_i in range(0, num_fbs):
 				# 生成滤波器并对原始数据滤波
-				data_fbcca = basic_filterbank.filterbank(
+				data_fbcca = my_function.filterbank(
 					data_bandpass, downSampleRate, fb_i)
 				# 子带数据与参考数据进行CCA分析
 				for class_i in range(0, num_class_fbcca):
@@ -198,7 +195,7 @@ def callback_get_packet(data):
 		# 四次中三次相同
 		res_arr = np.append(res_arr, result)[1:]
 		print("res array:", res_arr)
-		real_res = int(find.find(res_arr))
+		real_res = int(my_function.find(res_arr))
 		if real_res == 0:
 			print("本次未分析出结果！！")
 		else:
