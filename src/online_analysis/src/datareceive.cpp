@@ -3,8 +3,8 @@
 #include <string>
 int main(int argc, char *argv[])
 {
-	ros::init(argc, argv, "hello");
-	ROS_INFO("hello");
+	ros::init(argc, argv, "datareceive");
+	// ROS_INFO("hello");
 
 	HRESULT hr = S_OK;
 	BasicInfoAcq m_basicInfo;
@@ -56,10 +56,18 @@ int main(int argc, char *argv[])
 
 	for (long n = 0; n < m_basicInfo.nEegChan; ++n)
 	{
-		std::cout << char(pNetStreamingChannelInfoList[n].wcLabel[0])
-					<< char(pNetStreamingChannelInfoList[n].wcLabel[1])
-					<< char(pNetStreamingChannelInfoList[n].wcLabel[2])
-					<< char(pNetStreamingChannelInfoList[n].wcLabel[3]) << std::endl;
+		// 这样就可以自动检测标签长度
+		int iii = 0;
+		while (pNetStreamingChannelInfoList[n].wcLabel[iii])
+		{
+			std::cout << char(pNetStreamingChannelInfoList[n].wcLabel[iii]);
+			++iii;
+		}
+		std::cout << std::endl;
+		// std::cout << char(pNetStreamingChannelInfoList[n].wcLabel[0])
+		// 			<< char(pNetStreamingChannelInfoList[n].wcLabel[1])
+		// 			<< char(pNetStreamingChannelInfoList[n].wcLabel[2])
+		// 			<< char(pNetStreamingChannelInfoList[n].wcLabel[3]) << std::endl;
 	}
 
 	// free(pNetStreamingChannelInfoList);

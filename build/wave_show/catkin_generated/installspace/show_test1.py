@@ -2,6 +2,7 @@
 # -*- coding: UTF-8 -*-
 import rospy
 from std_msgs.msg import String
+from std_msgs.msg import UInt16
 from std_msgs.msg import Float32MultiArray
 from scipy import signal
 
@@ -18,7 +19,8 @@ notch_check = False
 low_check = False
 high_check = False
 
-sampleRate = 2048
+# 采样频率，默认为1000Hz
+sampleRate = 1000
 
 # 参数：50Hz陷波滤波器
 # 将要被移除的频率 (Hz)
@@ -59,18 +61,17 @@ def test_func1(val):
 		wave_data = signal.filtfilt(notch_b, notch_a, wave_data)
 	# 低通滤波
 	if low_check:
-		Wp = 35 / (sampleRate / 2)
-		Ws = 40 / (sampleRate / 2)
-		Rp = 3
-		Rs = 60
-		N, Wn = signal.cheb1ord(Wp, Ws, Rp, Rs)
+		N = 8
+		Wn = ui.spinBox_low.value() / (sampleRate / 2)
 		B, A = signal.cheby1(N, 0.5, Wn, "low")
-		# cutoff_freq = ui.spinBox_low.value() / (sampleRate / 2)
-		# print("low value:", cutoff_freq)
-		# B, A = signal.cheby1(4, 0.5, cutoff_freq, btype = 'low', fs = sampleRate)
+		wave_data = signal.filtfilt(B, A, wave_data)
+	# 高通滤波
+	if high_check:
+		N = 8
+		Wn = ui.spinBox_high.value() / (sampleRate / 2)
+		B, A = signal.cheby1(N, 0.5, Wn, "high")
 		wave_data = signal.filtfilt(B, A, wave_data)
 
-	# 高通滤波
 	pw.clear()
 	# 曲线绘制
 	for i in range(0, nEegChan):
@@ -93,8 +94,15 @@ def callback_get_packet(data):
 	print(rawdata.shape)
 	mysi.signal.emit(rawdata)
 
+# 获取采样频率
+def callback_get_rate(rate):
+	global sampleRate
+	sampleRate = rate.data
+	print("采样频率为：", sampleRate)
+
 rospy.init_node('listener', anonymous=True)
 rospy.Subscriber("packet", Float32MultiArray, callback_get_packet)
+rospy.Subscriber("samplerate", UInt16, callback_get_rate)
 
 def on_checkBox_base_stateChanged(state):
 	global base_check
@@ -107,13 +115,12 @@ def	on_checkBox_notch_stateChanged(state):
 def on_checkBox_low_stateChanged(state):
 	global low_check
 	low_check = state
-	# print("before change:", ui.spinBox_low.isEnabled())
 	ui.spinBox_low.setEnabled(state)
-	# print("after change:", ui.spinBox_low.isEnabled())
 
 def	on_checkBox_high_stateChanged(state):
 	global high_check
 	high_check = state
+	ui.spinBox_high.setEnabled(state)
 
 app = QApplication([])
 loader = QUiLoader()

@@ -63,6 +63,7 @@ RNetStreamingReceiver::RNetStreamingReceiver()
 	// data_pub = n.advertise<PUBLISHED_MESSAGE_TYPE>("/published_topic", 1);
 	data_pub = n.advertise<std_msgs::Float32MultiArray>("/packet", 10);
 	rate_pub = n.advertise<std_msgs::UInt16>("/samplerate", 10);
+	chan_pub = n.advertise<std_msgs::String>("/chanlabel", 10);
 }
 
 RNetStreamingReceiver::~RNetStreamingReceiver(void)
@@ -935,6 +936,21 @@ HRESULT RNetStreamingReceiver::ClientGetChannelInfoList(NetStreamingChannelInfo*
 	{
 		//copy channel info list
 		memcpy(pChannelInfoList, (NetStreamingChannelInfo*)m_pChannelInfoList, nSize); //should be save to cast away the volatile here, but it's still ugly
+		for (long n = 0; n < m_BasicInfo.nEegChan; ++n)
+		{
+			std::string str;
+			// 这样就可以自动检测标签长度
+			int iii = 0;
+			while (m_pChannelInfoList[n].wcLabel[iii])
+			{
+				str = str + char(m_pChannelInfoList[n].wcLabel[iii]);
+				++iii;
+			}
+			std_msgs::String msg;
+			msg.data = str;
+			chan_pub.publish(msg);
+		}
+		
 		return S_OK;
 	}
 
