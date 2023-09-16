@@ -19,6 +19,9 @@ notch_check = False
 low_check = False
 high_check = False
 
+# combo box 当前索引
+current_index = -1
+
 # 采样频率，默认为1000Hz
 sampleRate = 1000
 
@@ -40,8 +43,9 @@ class MySignal(QObject):
 	signal = Signal(Float32MultiArray)
 
 # 定义了一个槽函数，绘制波形
-def test_func1(val):
-	global base_check
+def wave_draw(val):
+	global base_check#, notch_check, high_check, low_check
+	global current_index
 	nEegChan = val.shape[0]
 	dDeltaY = 1.0 / nEegChan
 
@@ -76,15 +80,23 @@ def test_func1(val):
 	# 曲线绘制
 	for i in range(0, nEegChan):
 		# 自适应范围
-		dAutoScale = dDeltaY / ((aMax[0] - aMin[0]) * 1.25)
+		dAutoScale = dDeltaY / ((aMax[i] - aMin[i]) * 1.25)
 		# 偏移量
 		nYOffset = (i + 0.5) * dDeltaY
 		# 绘制
 		p1.plot(t, wave_data[i] * dAutoScale + nYOffset)
+	
+	p2.clear()
+	# 曲线绘制
+	if current_index != -1:
+		print("I draw picture 2")
+		auto_scale_single = dDeltaY / ((aMax[current_index] - aMin[current_index]) * 1.25)
+		p2.plot(t, wave_data[current_index] * auto_scale_single)
+
 
 # 实例化信号类的对象，然后将该对象的信号与对应的槽函数连接，此处槽函数为 test_func1
 mysi = MySignal()
-mysi.signal.connect(test_func1)
+mysi.signal.connect(wave_draw)
 
 # 定义了 ros 接收节点的回调函数，接收到数据包后发送信号，由槽函数进行绘制
 def callback_get_packet(data):
@@ -128,6 +140,11 @@ def	on_checkBox_high_stateChanged(state):
 	high_check = state
 	ui.spinBox_high.setEnabled(state)
 
+def on_comboBox_indexChanged(index):
+	global current_index
+	current_index = index
+	print("the index is changed:", index)
+
 app = QApplication([])
 loader = QUiLoader()
 # pyside2 一定要使用registerCustomWidget 
@@ -158,6 +175,7 @@ ui.checkBox_base.stateChanged.connect(on_checkBox_base_stateChanged)
 ui.checkBox_notch.stateChanged.connect(on_checkBox_notch_stateChanged)
 ui.checkBox_low.stateChanged.connect(on_checkBox_low_stateChanged)
 ui.checkBox_high.stateChanged.connect(on_checkBox_high_stateChanged)
+ui.comboBox.currentIndexChanged.connect(on_comboBox_indexChanged)
 
 ui.show()
 app.exec_()
