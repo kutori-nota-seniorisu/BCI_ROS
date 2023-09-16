@@ -181,6 +181,8 @@ catkin_install_python(PROGRAMS
 	scripts/eeg_pub_man.py
 	scripts/onlineanalysis.py
 	scripts/key_read.py
+	scripts/exp_pub.py
+	scripts/exp_sub.py
 	DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
