@@ -72,7 +72,7 @@ def test_func1(val):
 		B, A = signal.cheby1(N, 0.5, Wn, "high")
 		wave_data = signal.filtfilt(B, A, wave_data)
 
-	pw.clear()
+	p1.clear()
 	# 曲线绘制
 	for i in range(0, nEegChan):
 		# 自适应范围
@@ -80,7 +80,7 @@ def test_func1(val):
 		# 偏移量
 		nYOffset = (i + 0.5) * dDeltaY
 		# 绘制
-		pw.plot(t, wave_data[i] * dAutoScale + nYOffset)
+		p1.plot(t, wave_data[i] * dAutoScale + nYOffset)
 
 # 实例化信号类的对象，然后将该对象的信号与对应的槽函数连接，此处槽函数为 test_func1
 mysi = MySignal()
@@ -103,6 +103,7 @@ def callback_get_rate(rate):
 # 获取通道标签
 def callback_get_chan(chan):
 	print("收到标签：", chan.data)
+	ui.comboBox.addItem(chan.data)
 
 rospy.init_node('listener', anonymous=True)
 rospy.Subscriber("packet", Float32MultiArray, callback_get_packet)
@@ -132,14 +133,26 @@ loader = QUiLoader()
 # pyside2 一定要使用registerCustomWidget 
 # 来注册 ui 文件中的第三方控件，这样加载的时候
 # loader才知道第三方控件对应的类，才能实例化对象
-loader.registerCustomWidget(pg.PlotWidget)
+loader.registerCustomWidget(pg.GraphicsLayoutWidget)
 ui = loader.load('/home/wuyou/BCI_ROS/src/wave_show/scripts/ui_waveshow.ui')
 # widget 是控件名称，需要注意
 pw = ui.widget
 pw.setBackground('w')
-pw.setLabel('left', '幅值')
-pw.setLabel('bottom', 'time')
-pw.setYRange(0, 1)
+p1 = pw.addPlot(left = "labels", bottom = "time", title = "all channels", row = 0, col = 0, colspan = 2)
+p1.showGrid(x = True, y = True)
+p1.getAxis('left').setPen('#000000') # 坐标轴上色
+p1.getAxis('bottom').setPen('#000000') # 坐标轴上色
+p2 = pw.addPlot(left = "label", bottom = "time", title = "single channel", row = 1, col = 0)
+p2.showGrid(x = True, y = True)
+p2.getAxis('left').setPen('#000000') # 坐标轴上色
+p2.getAxis('bottom').setPen('#000000') # 坐标轴上色
+p3 = pw.addPlot(left = "label", bottom = "time", title = "fft", row = 1, col = 1)
+p3.showGrid(x = True, y = True)
+p3.getAxis('left').setPen('#000000') # 坐标轴上色
+p3.getAxis('bottom').setPen('#000000') # 坐标轴上色
+# pw.setLabel('left', 'label')
+# pw.setLabel('bottom', 'time')
+# pw.setYRange(0, 1)
 
 ui.checkBox_base.stateChanged.connect(on_checkBox_base_stateChanged)
 ui.checkBox_notch.stateChanged.connect(on_checkBox_notch_stateChanged)

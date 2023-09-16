@@ -177,11 +177,9 @@ target_link_libraries(datareceive
 #   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 # )
 catkin_install_python(PROGRAMS
-	scripts/chatpub.py
+	scripts/eeg_pub_auto.py
+	scripts/eeg_pub_man.py
 	scripts/onlineanalysis.py
-	scripts/talker.py
-	scripts/listener.py
-	scripts/eeg_pub.py
 	scripts/key_read.py
 	DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
