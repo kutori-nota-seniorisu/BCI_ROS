@@ -4,7 +4,7 @@ import rospy
 from std_msgs.msg import String
 from std_msgs.msg import UInt16
 from std_msgs.msg import Float32MultiArray
-from scipy import signal
+from scipy import signal, fft
 
 from PySide2.QtWidgets import QApplication
 from PySide2.QtUiTools import QUiLoader
@@ -44,7 +44,7 @@ class MySignal(QObject):
 
 # 定义了一个槽函数，绘制波形
 def wave_draw(val):
-	global base_check#, notch_check, high_check, low_check
+	global base_check, notch_check, high_check, low_check
 	global current_index
 	nEegChan = val.shape[0]
 	dDeltaY = 1.0 / nEegChan
@@ -93,6 +93,24 @@ def wave_draw(val):
 		auto_scale_single = dDeltaY / ((aMax[current_index] - aMin[current_index]) * 1.25)
 		p2.plot(t, wave_data[current_index] * auto_scale_single)
 
+	p3.clear()
+	# 曲线绘制
+	if current_index != -1:
+		print("I draw picture 3")
+		Ts = 1 / sampleRate
+		L = 500
+		# 频率分辨率
+		delta_f = sampleRate / L
+		# 傅里叶变换
+		fft_x = fft.fft(wave_data[current_index])
+		# 双边谱的幅值恢复
+		pows2_x = np.abs(fft_x / L)
+		# 双边谱转单边谱
+		fft_wave = pows2_x[0 : int(L / 2)]
+		fft_wave[1 : int(L / 2)] = 2 * fft_wave[1 : int(L / 2)]
+		# 频率坐标
+		freqs_x = np.arange(0, int(L / 2)) * delta_f
+		p3.plot(freqs_x, fft_wave)
 
 # 实例化信号类的对象，然后将该对象的信号与对应的槽函数连接，此处槽函数为 test_func1
 mysi = MySignal()
@@ -117,7 +135,7 @@ def callback_get_chan(chan):
 	print("收到标签：", chan.data)
 	ui.comboBox.addItem(chan.data)
 
-rospy.init_node('listener', anonymous=True)
+rospy.init_node('wave_show', anonymous=True)
 rospy.Subscriber("packet", Float32MultiArray, callback_get_packet)
 rospy.Subscriber("samplerate", UInt16, callback_get_rate)
 rospy.Subscriber("chanlabel", String, callback_get_chan)
@@ -155,7 +173,7 @@ ui = loader.load('/home/wuyou/BCI_ROS/src/wave_show/scripts/ui_waveshow.ui')
 # widget 是控件名称，需要注意
 pw = ui.widget
 pw.setBackground('w')
-p1 = pw.addPlot(left = "labels", bottom = "time", title = "all channels", row = 0, col = 0, colspan = 2)
+p1 = pw.addPlot(left = "labels", bottom = "time", title = "all channels", row = 0, col = 0)
 p1.showGrid(x = True, y = True)
 p1.getAxis('left').setPen('#000000') # 坐标轴上色
 p1.getAxis('bottom').setPen('#000000') # 坐标轴上色
@@ -163,14 +181,12 @@ p2 = pw.addPlot(left = "label", bottom = "time", title = "single channel", row =
 p2.showGrid(x = True, y = True)
 p2.getAxis('left').setPen('#000000') # 坐标轴上色
 p2.getAxis('bottom').setPen('#000000') # 坐标轴上色
-p3 = pw.addPlot(left = "label", bottom = "time", title = "fft", row = 1, col = 1)
+p3 = pw.addPlot(left = "label", bottom = "freq", title = "fft", row = 3, col = 0)
 p3.showGrid(x = True, y = True)
 p3.getAxis('left').setPen('#000000') # 坐标轴上色
 p3.getAxis('bottom').setPen('#000000') # 坐标轴上色
-# pw.setLabel('left', 'label')
-# pw.setLabel('bottom', 'time')
-# pw.setYRange(0, 1)
 
+# 信号与槽的连接
 ui.checkBox_base.stateChanged.connect(on_checkBox_base_stateChanged)
 ui.checkBox_notch.stateChanged.connect(on_checkBox_notch_stateChanged)
 ui.checkBox_low.stateChanged.connect(on_checkBox_low_stateChanged)
