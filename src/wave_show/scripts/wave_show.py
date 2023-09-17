@@ -56,12 +56,12 @@ def wave_draw(val):
 	wave_data = val
 	# 基线移动
 	if base_check:
-		print("in base check")
+		# print("in base check")
 		for i in range(0, nEegChan):
 			wave_data[i] = wave_data[i] - aAvg[i]
 	# 50Hz陷波滤波
 	if notch_check:
-		print("in notch check")
+		# print("in notch check")
 		wave_data = signal.filtfilt(notch_b, notch_a, wave_data)
 	# 低通滤波
 	if low_check:
@@ -89,14 +89,14 @@ def wave_draw(val):
 	p2.clear()
 	# 曲线绘制
 	if current_index != -1:
-		print("I draw picture 2")
+		# print("I draw picture 2")
 		auto_scale_single = dDeltaY / ((aMax[current_index] - aMin[current_index]) * 1.25)
 		p2.plot(t, wave_data[current_index] * auto_scale_single)
 
 	p3.clear()
 	# 曲线绘制
 	if current_index != -1:
-		print("I draw picture 3")
+		# print("I draw picture 3")
 		Ts = 1 / sampleRate
 		L = 500
 		# 频率分辨率
@@ -116,14 +116,6 @@ def wave_draw(val):
 mysi = MySignal()
 mysi.signal.connect(wave_draw)
 
-# 定义了 ros 接收节点的回调函数，接收到数据包后发送信号，由槽函数进行绘制
-def callback_get_packet(data):
-	global mysi
-	# 把一维数组转换成二维数组
-	rawdata = np.array(data.data[:]).reshape(500, 10).T
-	print(rawdata.shape)
-	mysi.signal.emit(rawdata)
-
 # 获取采样频率
 def callback_get_rate(rate):
 	global sampleRate
@@ -134,6 +126,15 @@ def callback_get_rate(rate):
 def callback_get_chan(chan):
 	print("收到标签：", chan.data)
 	ui.comboBox.addItem(chan.data)
+	ui.comboBox_2.addItem(chan.data)
+
+# 定义了 ros 接收节点的回调函数，接收到数据包后发送信号，由槽函数进行绘制
+def callback_get_packet(data):
+	global mysi
+	# 把一维数组转换成二维数组
+	rawdata = np.array(data.data[:]).reshape(500, 10).T
+	# print(rawdata.shape)
+	mysi.signal.emit(rawdata)
 
 rospy.init_node('wave_show', anonymous=True)
 rospy.Subscriber("packet", Float32MultiArray, callback_get_packet)
@@ -158,10 +159,50 @@ def	on_checkBox_high_stateChanged(state):
 	high_check = state
 	ui.spinBox_high.setEnabled(state)
 
+def on_checkBox_base_2_stateChanged(state):
+	global base_check
+	base_check = state
+
+def	on_checkBox_notch_2_stateChanged(state):
+	global notch_check
+	notch_check = state
+
+def on_checkBox_low_2_stateChanged(state):
+	global low_check
+	low_check = state
+	ui.spinBox_low_2.setEnabled(state)
+
+def	on_checkBox_high_2_stateChanged(state):
+	global high_check
+	high_check = state
+	ui.spinBox_high_2.setEnabled(state)
+
 def on_comboBox_indexChanged(index):
 	global current_index
 	current_index = index
-	print("the index is changed:", index)
+	print("the 1st index is changed:", index)
+
+def on_comboBox_2_indexChanged(index):
+	global current_index
+	current_index = index
+	print("the 2nd index is changed:", index)
+
+def on_tabWidget_currentChanged(index):
+	print("tab widget changed!")
+	global base_check, notch_check, low_check, high_check
+	global current_index
+	if index == 0:
+		base_check = ui.checkBox_base.isChecked()
+		notch_check = ui.checkBox_notch.isChecked()
+		low_check = ui.checkBox_low.isChecked()
+		high_check = ui.checkBox_high.isChecked()
+		current_index = ui.comboBox.currentIndex()
+	elif index == 1:
+		base_check = ui.checkBox_base_2.isChecked()
+		notch_check = ui.checkBox_notch_2.isChecked()
+		low_check = ui.checkBox_low_2.isChecked()
+		high_check = ui.checkBox_high_2.isChecked()
+		current_index = ui.comboBox_2.currentIndex()
 
 app = QApplication([])
 loader = QUiLoader()
@@ -191,7 +232,13 @@ ui.checkBox_base.stateChanged.connect(on_checkBox_base_stateChanged)
 ui.checkBox_notch.stateChanged.connect(on_checkBox_notch_stateChanged)
 ui.checkBox_low.stateChanged.connect(on_checkBox_low_stateChanged)
 ui.checkBox_high.stateChanged.connect(on_checkBox_high_stateChanged)
+ui.checkBox_base_2.stateChanged.connect(on_checkBox_base_2_stateChanged)
+ui.checkBox_notch_2.stateChanged.connect(on_checkBox_notch_2_stateChanged)
+ui.checkBox_low_2.stateChanged.connect(on_checkBox_low_2_stateChanged)
+ui.checkBox_high_2.stateChanged.connect(on_checkBox_high_2_stateChanged)
 ui.comboBox.currentIndexChanged.connect(on_comboBox_indexChanged)
+ui.comboBox_2.currentIndexChanged.connect(on_comboBox_2_indexChanged)
+ui.tabWidget.currentChanged.connect(on_tabWidget_currentChanged)
 
 ui.show()
 app.exec_()

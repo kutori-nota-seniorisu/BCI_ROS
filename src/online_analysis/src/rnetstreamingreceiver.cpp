@@ -884,8 +884,6 @@ HRESULT RNetStreamingReceiver::ClientGetBasicInfo(BasicInfoAcq* pnBasicInfo)
 		return S_OK;
 	}
 
-
-
 	return E_FAIL;
 }
 

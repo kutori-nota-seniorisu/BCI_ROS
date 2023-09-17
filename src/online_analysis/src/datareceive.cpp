@@ -64,13 +64,8 @@ int main(int argc, char *argv[])
 			++iii;
 		}
 		std::cout << std::endl;
-		// std::cout << char(pNetStreamingChannelInfoList[n].wcLabel[0])
-		// 			<< char(pNetStreamingChannelInfoList[n].wcLabel[1])
-		// 			<< char(pNetStreamingChannelInfoList[n].wcLabel[2])
-		// 			<< char(pNetStreamingChannelInfoList[n].wcLabel[3]) << std::endl;
 	}
 
-	// free(pNetStreamingChannelInfoList);
 	sleep(1);
 	if (FAILED(hr = m_NetStreaming.ClientRequestStreamData(true)))
 	{
