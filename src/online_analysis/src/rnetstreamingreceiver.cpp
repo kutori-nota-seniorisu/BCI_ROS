@@ -63,6 +63,8 @@ RNetStreamingReceiver::RNetStreamingReceiver()
 	// data_pub = n.advertise<PUBLISHED_MESSAGE_TYPE>("/published_topic", 1);
 	data_pub = n.advertise<std_msgs::Float32MultiArray>("/packet", 10);
 	rate_pub = n.advertise<std_msgs::UInt16>("/samplerate", 10);
+	chanNum_pub = n.advertise<std_msgs::UInt16>("/channum", 10);
+	sampleNum_pub = n.advertise<std_msgs::UInt16>("/samplenum", 10);
 	chan_pub = n.advertise<std_msgs::String>("/chanlabel", 10);
 }
 
@@ -880,6 +882,10 @@ HRESULT RNetStreamingReceiver::ClientGetBasicInfo(BasicInfoAcq* pnBasicInfo)
 		msg.data = m_BasicInfo.nRate;
 		ROS_INFO("I pub sample rate %u", msg.data);
 		rate_pub.publish(msg);
+
+		msg.data = m_BasicInfo.nEegChan;
+		ROS_INFO("I pub eeg channel nums %u", msg.data);
+		chanNum_pub.publish(msg);
 		
 		return S_OK;
 	}
@@ -1117,6 +1123,11 @@ HRESULT RNetStreamingReceiver::DataReady(float* pfData, unsigned long unSize, un
 	msg.data = vEegData;
 	ROS_INFO("I pub packet data!");
 	data_pub.publish(msg);
+
+	std_msgs::UInt16 msg2;
+	msg2.data = nNumSamples;
+	ROS_INFO("I pub sample nums %u", msg2.data);
+	sampleNum_pub.publish(msg2);
 
 	return S_OK;
 }

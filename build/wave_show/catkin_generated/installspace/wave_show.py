@@ -22,8 +22,14 @@ high_check = False
 # combo box 当前索引
 current_index = -1
 
-# 采样频率，默认为1000Hz
+# 采样频率，默认为2048Hz
 sampleRate = 2048
+
+# 通道数量，默认为35
+chanNum = 35
+
+# 数据包长度，默认为512
+packetLen = 512
 
 # 参数：50Hz陷波滤波器
 # 将要被移除的频率 (Hz)
@@ -35,9 +41,6 @@ beta = 0.95
 notch_b = [1, alpha, 1]
 notch_a = [1, alpha * beta, beta**2]
 
-# t 为时间刻度
-t = np.arange(0,512)
-
 # 需要手动创建信号的类，然后才可将信号与槽相互连接
 class MySignal(QObject):
 	signal = Signal(Float32MultiArray)
@@ -46,6 +49,11 @@ class MySignal(QObject):
 def wave_draw(val):
 	global base_check, notch_check, high_check, low_check
 	global current_index
+	global chanNum, packetLen
+
+	# t 为时间刻度
+	t = np.arange(0,packetLen)
+
 	nEegChan = val.shape[0]
 	dDeltaY = 1.0 / nEegChan
 
@@ -98,7 +106,7 @@ def wave_draw(val):
 	if current_index != -1:
 		# print("I draw picture 3")
 		Ts = 1 / sampleRate
-		L = 512
+		L = packetLen
 		# 频率分辨率
 		delta_f = sampleRate / L
 		# 傅里叶变换
@@ -128,17 +136,31 @@ def callback_get_chan(chan):
 	ui.comboBox.addItem(chan.data)
 	ui.comboBox_2.addItem(chan.data)
 
+# 获取通道数量
+def callback_get_chanNum(num):
+	global chanNum
+	chanNum = num.data
+	print("通道数量为：", chanNum)
+
+# 获取数据包长度
+def callback_get_sampleNum(sampleNum):
+	global packetLen
+	packetLen = sampleNum.data
+	print("数据包长度为：", packetLen)
+
 # 定义了 ros 接收节点的回调函数，接收到数据包后发送信号，由槽函数进行绘制
 def callback_get_packet(data):
-	global mysi
+	global mysi, chanNum
 	# 把一维数组转换成二维数组
-	rawdata = np.array(data.data[:]).reshape(512, 35).T
+	rawdata = np.array(data.data[:]).reshape(packetLen, chanNum).T
 	# print(rawdata.shape)
 	mysi.signal.emit(rawdata)
 
 rospy.init_node('wave_show', anonymous=True)
 rospy.Subscriber("packet", Float32MultiArray, callback_get_packet)
 rospy.Subscriber("samplerate", UInt16, callback_get_rate)
+rospy.Subscriber("channum", UInt16, callback_get_chanNum)
+rospy.Subscriber("samplenum", UInt16, callback_get_sampleNum)
 rospy.Subscriber("chanlabel", String, callback_get_chan)
 
 def on_checkBox_base_stateChanged(state):
@@ -211,7 +233,7 @@ loader = QUiLoader()
 # 来注册 ui 文件中的第三方控件，这样加载的时候
 # loader才知道第三方控件对应的类，才能实例化对象
 loader.registerCustomWidget(pg.GraphicsLayoutWidget)
-ui = loader.load('/home/wuyou/BCI_ROS/src/wave_show/scripts/ui_waveshow.ui')
+ui = loader.load("/home/wuyou/BCI_ROS/src/wave_show/ui/ui_waveshow.ui")
 # widget 是控件名称，需要注意
 pw = ui.widget
 pw.setBackground('w')

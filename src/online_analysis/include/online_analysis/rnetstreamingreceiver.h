@@ -78,6 +78,8 @@ private:
 	ros::NodeHandle n;
 	ros::Publisher data_pub;
 	ros::Publisher rate_pub;
+	ros::Publisher chanNum_pub;
+	ros::Publisher sampleNum_pub;
 	ros::Publisher chan_pub;
 
 };

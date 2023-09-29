@@ -69,10 +69,10 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/online_analysis" TYPE PROGRAM FILES "/home/wuyou/BCI_ROS/build/online_analysis/catkin_generated/installspace/exp_pub.py")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/online_analysis" TYPE PROGRAM FILES "/home/wuyou/BCI_ROS/build/online_analysis/catkin_generated/installspace/test_pub.py")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/online_analysis" TYPE PROGRAM FILES "/home/wuyou/BCI_ROS/build/online_analysis/catkin_generated/installspace/exp_sub.py")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/online_analysis" TYPE PROGRAM FILES "/home/wuyou/BCI_ROS/build/online_analysis/catkin_generated/installspace/test_sub.py")
 endif()
 
