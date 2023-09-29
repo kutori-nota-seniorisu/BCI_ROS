@@ -49,35 +49,3 @@ Qt版本 5.9.9
 1. 首先运行相机配置launch文件：`roslaunch realsense2_camera rs_aligned_depth.launch`
 2. 接着运行数据发送与分析节点：`roslaunch online_analysis ana_simu.launch`
 3. 最后运行相机节点：`rosrun bci_grip col_align_depth.cpp`
-
-## online_analysis
-
-此功能包内包含 python 文件与 cpp 文件。
-
-### src/rnetstreaming.cpp
-
-src/rnetstreaming.cpp 定义了一个数据接收的类: RNetStreamingReceiver, include/online_analysis/rnetstreaming.h 是其声明。在该类中，定义了两个发布者，在通过 tcp/ip 通信接收到 Curry8 发送的数据后，对外发出。
-
-### src/datareceive.cpp
-
-该文件定义了一个节点，用于创建 RNetStreamingReceiver 类的实例化对象。该文件是需要执行的文件。
-
-### scripts/key_read.py
-
-该文件定义了一个发布节点。运行该节点后，程序将会读取键盘的输入，并将输入作为消息发布给接收节点。
-
-### scripts/eeg_pub_man.py
-
-该文件定义了一个发布离线数据的节点。在读取本地数据后，默认发布的数据包为高斯分布的噪声信号，当该节点收到 key_read.py 发布的键盘输入消息后，根据该消息选择发布何种数据。输入消息为1-9时，对应发布的数据为9Hz-17Hz的实验数据；输入消息为0时，发布高斯噪声信号。
-
-### scripts/onlineanalysis.py
-
-该文件定义了一个数据接收节点，并在获取数据后对其进行在线分析，最后将分析的结果发布出去。
-
-### scripts/eeg_pub_auto.py
-
-该文件定义了一个发布离线数据的节点，在读取本地的 .mat 文件数据后，将512组数据，每组35导，作为一个数据包，发送给数据分析节点(onlineanalysis.py)
-
-### scripts/key_control.py
-
-该文件定义了一个接受节点。该节点是与 key_read.py 所定义的节点匹配的测试节点，能够接受 key_read.py 发布的键盘输入消息，并以输出到命令框。

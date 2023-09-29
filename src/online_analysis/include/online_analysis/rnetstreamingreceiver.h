@@ -3,11 +3,18 @@
 
 #include <string>
 #include <atomic>
+#include <arpa/inet.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <time.h>
+#include <iostream>
 #include <ros/ros.h>
 #include <std_msgs/String.h>
 #include <std_msgs/Float32MultiArray.h>
 #include <std_msgs/UInt16.h>
 #include "Packets.h"
+
 typedef int SOCKET;
 using namespace std;
 
