@@ -168,6 +168,36 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
+online_analysis/CMakeFiles/test_listener.dir/rule:
+	cd /home/wuyou/BCI_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 online_analysis/CMakeFiles/test_listener.dir/rule
+.PHONY : online_analysis/CMakeFiles/test_listener.dir/rule
+
+# Convenience name for target.
+test_listener: online_analysis/CMakeFiles/test_listener.dir/rule
+
+.PHONY : test_listener
+
+# fast build rule for target.
+test_listener/fast:
+	cd /home/wuyou/BCI_ROS/build && $(MAKE) -f online_analysis/CMakeFiles/test_listener.dir/build.make online_analysis/CMakeFiles/test_listener.dir/build
+.PHONY : test_listener/fast
+
+# Convenience name for target.
+online_analysis/CMakeFiles/test_talker.dir/rule:
+	cd /home/wuyou/BCI_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 online_analysis/CMakeFiles/test_talker.dir/rule
+.PHONY : online_analysis/CMakeFiles/test_talker.dir/rule
+
+# Convenience name for target.
+test_talker: online_analysis/CMakeFiles/test_talker.dir/rule
+
+.PHONY : test_talker
+
+# fast build rule for target.
+test_talker/fast:
+	cd /home/wuyou/BCI_ROS/build && $(MAKE) -f online_analysis/CMakeFiles/test_talker.dir/build.make online_analysis/CMakeFiles/test_talker.dir/build
+.PHONY : test_talker/fast
+
+# Convenience name for target.
 online_analysis/CMakeFiles/datareceive.dir/rule:
 	cd /home/wuyou/BCI_ROS/build && $(MAKE) -f CMakeFiles/Makefile2 online_analysis/CMakeFiles/datareceive.dir/rule
 .PHONY : online_analysis/CMakeFiles/datareceive.dir/rule
@@ -251,6 +281,60 @@ src/rnetstreamingreceiver.cpp.s:
 	cd /home/wuyou/BCI_ROS/build && $(MAKE) -f online_analysis/CMakeFiles/rnetstreamingreceiver.dir/build.make online_analysis/CMakeFiles/rnetstreamingreceiver.dir/src/rnetstreamingreceiver.cpp.s
 .PHONY : src/rnetstreamingreceiver.cpp.s
 
+src/test_listener.o: src/test_listener.cpp.o
+
+.PHONY : src/test_listener.o
+
+# target to build an object file
+src/test_listener.cpp.o:
+	cd /home/wuyou/BCI_ROS/build && $(MAKE) -f online_analysis/CMakeFiles/test_listener.dir/build.make online_analysis/CMakeFiles/test_listener.dir/src/test_listener.cpp.o
+.PHONY : src/test_listener.cpp.o
+
+src/test_listener.i: src/test_listener.cpp.i
+
+.PHONY : src/test_listener.i
+
+# target to preprocess a source file
+src/test_listener.cpp.i:
+	cd /home/wuyou/BCI_ROS/build && $(MAKE) -f online_analysis/CMakeFiles/test_listener.dir/build.make online_analysis/CMakeFiles/test_listener.dir/src/test_listener.cpp.i
+.PHONY : src/test_listener.cpp.i
+
+src/test_listener.s: src/test_listener.cpp.s
+
+.PHONY : src/test_listener.s
+
+# target to generate assembly for a file
+src/test_listener.cpp.s:
+	cd /home/wuyou/BCI_ROS/build && $(MAKE) -f online_analysis/CMakeFiles/test_listener.dir/build.make online_analysis/CMakeFiles/test_listener.dir/src/test_listener.cpp.s
+.PHONY : src/test_listener.cpp.s
+
+src/test_talker.o: src/test_talker.cpp.o
+
+.PHONY : src/test_talker.o
+
+# target to build an object file
+src/test_talker.cpp.o:
+	cd /home/wuyou/BCI_ROS/build && $(MAKE) -f online_analysis/CMakeFiles/test_talker.dir/build.make online_analysis/CMakeFiles/test_talker.dir/src/test_talker.cpp.o
+.PHONY : src/test_talker.cpp.o
+
+src/test_talker.i: src/test_talker.cpp.i
+
+.PHONY : src/test_talker.i
+
+# target to preprocess a source file
+src/test_talker.cpp.i:
+	cd /home/wuyou/BCI_ROS/build && $(MAKE) -f online_analysis/CMakeFiles/test_talker.dir/build.make online_analysis/CMakeFiles/test_talker.dir/src/test_talker.cpp.i
+.PHONY : src/test_talker.cpp.i
+
+src/test_talker.s: src/test_talker.cpp.s
+
+.PHONY : src/test_talker.s
+
+# target to generate assembly for a file
+src/test_talker.cpp.s:
+	cd /home/wuyou/BCI_ROS/build && $(MAKE) -f online_analysis/CMakeFiles/test_talker.dir/build.make online_analysis/CMakeFiles/test_talker.dir/src/test_talker.cpp.s
+.PHONY : src/test_talker.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -264,6 +348,8 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... test"
+	@echo "... test_listener"
+	@echo "... test_talker"
 	@echo "... datareceive"
 	@echo "... rnetstreamingreceiver"
 	@echo "... src/datareceive.o"
@@ -272,6 +358,12 @@ help:
 	@echo "... src/rnetstreamingreceiver.o"
 	@echo "... src/rnetstreamingreceiver.i"
 	@echo "... src/rnetstreamingreceiver.s"
+	@echo "... src/test_listener.o"
+	@echo "... src/test_listener.i"
+	@echo "... src/test_listener.s"
+	@echo "... src/test_talker.o"
+	@echo "... src/test_talker.i"
+	@echo "... src/test_talker.s"
 .PHONY : help
 
 

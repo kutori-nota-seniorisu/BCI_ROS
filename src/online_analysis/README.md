@@ -10,6 +10,16 @@
 
 `rnetstreamingreceiver.cpp`:根据 Curry8 自带例程修改纯C++类,是与 Curry8/Curry8 仿真器 链接的核心。该类实现了与 Curry8 的 tcp/ip 通信,获取 Curry8 发送的数据包,并发送给其他节点。发布数据涉及到的 publisher 在该类中定义,目前有采样频率、数据包、通道标签的 publisher
 
+`test_talker.cpp`:发布节点(测试)。在该节点中定义了一个最基本的发布节点,需要在 CMakeLists.txt 文件中进行如下配置(文件中已配置):
+
+- `add_executable(test_talker src/test_talker.cpp)`
+- `target_link_libraries(test_talker ${catkin_LIBRARIES})`
+
+`test_listener.py`:订阅节点(测试)。在该节点中定义了一个最基本的订阅节点,需要在 CMakeLists.txt 文件中进行如下配置(文件中已配置):
+
+- `add_executable(test_listener src/test_listener.cpp)`
+- `target_link_libraries(test_listener ${catkin_LIBRARIES})`
+
 ## include
 
 在 include 文件夹中,存放 *.h 文件,包含数据结构体头文件与类的声明。

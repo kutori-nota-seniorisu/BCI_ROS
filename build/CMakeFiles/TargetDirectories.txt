@@ -64,6 +64,8 @@
 /home/wuyou/BCI_ROS/build/online_analysis/CMakeFiles/rebuild_cache.dir
 /home/wuyou/BCI_ROS/build/online_analysis/CMakeFiles/edit_cache.dir
 /home/wuyou/BCI_ROS/build/online_analysis/CMakeFiles/test.dir
+/home/wuyou/BCI_ROS/build/online_analysis/CMakeFiles/test_listener.dir
+/home/wuyou/BCI_ROS/build/online_analysis/CMakeFiles/test_talker.dir
 /home/wuyou/BCI_ROS/build/online_analysis/CMakeFiles/datareceive.dir
 /home/wuyou/BCI_ROS/build/online_analysis/CMakeFiles/rnetstreamingreceiver.dir
 /home/wuyou/BCI_ROS/build/ptb_show/CMakeFiles/install/strip.dir
