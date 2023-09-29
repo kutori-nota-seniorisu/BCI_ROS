@@ -23,7 +23,7 @@ high_check = False
 current_index = -1
 
 # 采样频率，默认为1000Hz
-sampleRate = 1000
+sampleRate = 2048
 
 # 参数：50Hz陷波滤波器
 # 将要被移除的频率 (Hz)
@@ -36,7 +36,7 @@ notch_b = [1, alpha, 1]
 notch_a = [1, alpha * beta, beta**2]
 
 # t 为时间刻度
-t = np.arange(0,500)
+t = np.arange(0,512)
 
 # 需要手动创建信号的类，然后才可将信号与槽相互连接
 class MySignal(QObject):
@@ -98,7 +98,7 @@ def wave_draw(val):
 	if current_index != -1:
 		# print("I draw picture 3")
 		Ts = 1 / sampleRate
-		L = 500
+		L = 512
 		# 频率分辨率
 		delta_f = sampleRate / L
 		# 傅里叶变换
@@ -132,7 +132,7 @@ def callback_get_chan(chan):
 def callback_get_packet(data):
 	global mysi
 	# 把一维数组转换成二维数组
-	rawdata = np.array(data.data[:]).reshape(500, 10).T
+	rawdata = np.array(data.data[:]).reshape(512, 35).T
 	# print(rawdata.shape)
 	mysi.signal.emit(rawdata)
 
@@ -203,6 +203,7 @@ def on_tabWidget_currentChanged(index):
 		low_check = ui.checkBox_low_2.isChecked()
 		high_check = ui.checkBox_high_2.isChecked()
 		current_index = ui.comboBox_2.currentIndex()
+
 
 app = QApplication([])
 loader = QUiLoader()

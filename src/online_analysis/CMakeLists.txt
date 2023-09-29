@@ -178,7 +178,7 @@ target_link_libraries(datareceive
 # )
 catkin_install_python(PROGRAMS
 	scripts/eeg_pub_auto.py
-	scripts/eeg_pub_man.py
+	scripts/eeg_pub_manual.py
 	scripts/onlineanalysis.py
 	scripts/key_read.py
 	scripts/exp_pub.py
