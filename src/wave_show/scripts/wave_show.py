@@ -211,7 +211,7 @@ loader = QUiLoader()
 # 来注册 ui 文件中的第三方控件，这样加载的时候
 # loader才知道第三方控件对应的类，才能实例化对象
 loader.registerCustomWidget(pg.GraphicsLayoutWidget)
-ui = loader.load('/home/wuyou/BCI_ROS/src/wave_show/scripts/ui_waveshow.ui')
+ui = loader.load("/home/wuyou/BCI_ROS/src/wave_show/ui/ui_waveshow.ui")
 # widget 是控件名称，需要注意
 pw = ui.widget
 pw.setBackground('w')
