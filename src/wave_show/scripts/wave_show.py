@@ -103,14 +103,14 @@ def wave_draw(val):
 		# 偏移量
 		nYOffset = (i + 0.5) * dDeltaY
 		# 绘制
-		p1.plot(t, wave_data[i] * dAutoScale + nYOffset)
+		p1.plot(t, wave_data[i] * dAutoScale + nYOffset, pen=(0, 0, 0))
 	
 	p2.clear()
 	# 曲线绘制
 	if current_index != -1:
 		# print("I draw picture 2")
 		auto_scale_single = dDeltaY / ((aMax[current_index] - aMin[current_index]) * 1.25)
-		p2.plot(t, wave_data[current_index] * auto_scale_single)
+		p2.plot(t, wave_data[current_index] * auto_scale_single, pen=(0, 0, 0))
 
 	p3.clear()
 	# 曲线绘制
@@ -129,7 +129,7 @@ def wave_draw(val):
 		fft_wave[1 : int(L / 2)] = 2 * fft_wave[1 : int(L / 2)]
 		# 频率坐标
 		freqs_x = np.arange(0, int(L / 2)) * delta_f
-		p3.plot(freqs_x, fft_wave)
+		p3.plot(freqs_x, fft_wave, pen=(0, 0, 0))
 
 # 实例化信号类的对象，然后将该对象的信号与对应的槽函数连接，此处槽函数为 test_func1
 mysi = MySignal()
@@ -165,8 +165,10 @@ def callback_get_sampleNum(sampleNum):
 # 定义了 ros 接收节点的回调函数，接收到数据包后发送信号，由槽函数进行绘制
 def callback_get_packet(data):
 	global mysi, chanNum
+	L = int(len(data.data) / chanNum)
+	print("L is ", L)
 	# 把一维数组转换成二维数组
-	rawdata = np.array(data.data[:]).reshape(packetLen, chanNum).T
+	rawdata = np.array(data.data[:]).reshape(L, chanNum).T
 	# print(rawdata.shape)
 	mysi.signal.emit(rawdata)
 
