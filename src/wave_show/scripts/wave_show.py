@@ -5,6 +5,7 @@ from std_msgs.msg import String
 from std_msgs.msg import UInt16
 from std_msgs.msg import Float32MultiArray
 from scipy import signal, fft
+import scipy.io as scio
 
 from PySide2.QtWidgets import QApplication
 from PySide2.QtUiTools import QUiLoader
@@ -36,6 +37,9 @@ wave_data = 0
 
 # 显示的数据长度 3s*2048Hz
 showLen = 0
+
+# 判断是否是第一次读
+count = 0
 
 # 参数：50Hz陷波滤波器
 # 将要被移除的频率 (Hz)
@@ -164,11 +168,28 @@ def callback_get_sampleNum(sampleNum):
 
 # 定义了 ros 接收节点的回调函数，接收到数据包后发送信号，由槽函数进行绘制
 def callback_get_packet(data):
-	global mysi, chanNum
+	global mysi, chanNum, count
 	L = int(len(data.data) / chanNum)
 	print("L is ", L)
 	# 把一维数组转换成二维数组
 	rawdata = np.array(data.data[:]).reshape(L, chanNum).T
+	# temp存储了一份接收到的最新的数据包
+	# 如果count为0，说明是第一次存储数据，mat文件存储temp
+	# 如果count非0，说明不是第一次存储数据
+	# 首先用scio读取已有文件，将最新的数据包（temp）拼接在已有数据（temp1）的后面
+	# 然后覆盖原文件保存
+	# 可能的问题：读写速度过慢
+	temp = rawdata
+	if count == 0:
+		print("count 应该是0", count)
+		count = count + 1
+	else:
+		print("count 应该是1", count)
+		temp1 = scio.loadmat('/home/wuyou/BCI_ROS/src/online_analysis/scripts/save_eeg.mat')
+		temp1 = np.array(temp1['SaveEegData'])
+		temp = np.hstack((temp1, temp))
+	# 将数组保存到MAT文件
+	scio.savemat('/home/wuyou/BCI_ROS/src/online_analysis/scripts/save_eeg.mat', {'SaveEegData': temp})
 	# print(rawdata.shape)
 	mysi.signal.emit(rawdata)
 
